@@ -1,58 +1,175 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <title>訂單送出中...</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- ✅ 自動跳轉的網址 -->
-  <meta http-equiv="refresh" content="2; url=https://script.google.com/macros/s/AKfycbz9ZWoO764fjcRI0AN5yv9M-xyP6xf_9O6hd0Tg0q0BvpAmbMAfZCqL6Dg1SY5_rgFe/exec?orderTime=2025-08-07T16%3A42&orderId=ORD20250807-001&email=kensu.water.chestnut%40gmail.com&branch=%E5%8F%B0%E4%B8%AD%E5%BA%97&items=%E8%8F%B1%E8%A7%92%E9%85%A5x2%2C%E7%82%B8%E9%AE%AE%E5%A5%B6x1&delivery=%E5%86%B7%E8%97%8D&note=%E5%8A%A0%E8%BE%A3&fee=100&total=450&authuser=0" />
-
+  <meta charset="UTF-8">
+  <title>叫貨明細</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #111;
-      color: #fff;
-      font-family: 'Segoe UI', 'Noto Sans TC', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #00ffcc;
-    }
-
-    p {
-      font-size: 1.2rem;
-      opacity: 0.8;
-    }
-
-    .loader {
-      margin-top: 30px;
-      border: 6px solid #333;
-      border-top: 6px solid #00ffcc;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+    :root{--card-w:820px;}
+    body{font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans TC",sans-serif;
+         color:#222;margin:0;background:#f5f6f7;}
+    .wrap{max-width:var(--card-w);margin:56px auto;padding:0 16px;}
+    .card{background:#fff;border:1px solid #e6e6e6;border-radius:12px;box-shadow:0 2px 14px rgba(0,0,0,.06);padding:28px;}
+    .title{font-weight:900;font-size:34px;letter-spacing:.15em;text-align:center;margin:0 0 22px;}
+    .sub{color:#666;margin:0 0 14px 2px;}
+    table{width:100%;border-collapse:collapse;border:1px solid #e8e8e8;border-radius:8px;overflow:hidden;}
+    th,td{border:1px solid #eee;padding:12px 14px;vertical-align:top;font-size:15px;line-height:1.5;}
+    th{width:160px;background:#fbfbfb;text-align:left;white-space:nowrap;}
+    td.muted{color:#9aa0a6;}
+    .status{margin-top:14px;font-size:14px}
+    .status.ok{color:#2e7d32}
+    .status.warn{color:#a15c00}
+    .tag{font-size:12px;color:#9aa0a6;margin-left:8px}
+    pre#debug{display:none;margin-top:14px;padding:12px;background:#0f172a;color:#e2e8f0;border-radius:8px;overflow:auto}
   </style>
 </head>
 <body>
-  <h1>訂單送出中...</h1>
-  <p>請稍候，我們正在通知總部準備出貨 🛵</p>
-  <div class="loader"></div>
+  <div class="wrap">
+    <div class="card">
+      <h1 class="title">叫貨明細</h1>
+      <p class="sub">以下為本次訂單資訊：</p>
+
+      <table>
+        <tr><th>訂單時間</th>   <td id="order_time"     class="muted">（空）</td></tr>
+        <tr><th>訂單編號</th>   <td id="order_id"       class="muted">（空）</td></tr>
+        <tr><th>信箱</th>       <td id="email"          class="muted">（空）</td></tr>
+        <tr><th>分店名稱</th>   <td id="store_name"     class="muted">（空）</td></tr>
+        <tr><th>寄貨方式</th>   <td id="delivery_method" class="muted">（空）</td></tr>
+        <tr><th>取貨備註</th>   <td id="pickup_note"    class="muted">（空）</td></tr>
+        <tr><th>商品明細</th>   <td id="order_details"  class="muted">（空）</td></tr>
+        <tr><th>實際運費</th>   <td id="shipping"       class="muted">（空）</td></tr>
+        <tr><th>總計金額</th>   <td id="total"          class="muted">（空）</td></tr>
+      </table>
+
+      <p id="status" class="status">正在嘗試寄通知給總部… <span class="tag">(本頁不需停留即可關閉)</span></p>
+      <pre id="debug"></pre>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    "use strict";
+
+    // 你的 Make Webhook（已填好）
+    const WEBHOOK = "https://hook.eu2.make.com/mxd447qyeae62is1m1vsutndp3bqhudf";
+
+    // ===== 工具 =====
+    const esc = s => String(s).replace(/[&<>"']/g,m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
+    const toHtml = s => esc(s).replace(/\r\n|\r|\n/g,"<br>");
+
+    // 欄位對照（支援中英、別名）
+    const labelMap = new Map(Object.entries({
+      order_time:"order_time", time:"order_time","訂單時間":"order_time",
+      order_id:"order_id", id:"order_id","訂單編號":"order_id",
+      email:"email","信箱":"email",
+      store_name:"store_name","分店名稱":"store_name",
+      delivery_method:"delivery_method","寄貨方式":"delivery_method",
+      pickup_note:"pickup_note","取貨備註":"pickup_note",
+      order_details:"order_details","商品明細":"order_details",
+      shipping:"shipping",shipping_fee:"shipping","實際運費":"shipping",
+      total:"total",total_amount:"total","總計金額":"total"
+    }));
+
+    const qs = new URLSearchParams(location.search);
+
+    // 目標資料
+    const data = {
+      order_time:"", order_id:"", email:"", store_name:"",
+      delivery_method:"", pickup_note:"", order_details:"",
+      shipping:"", total:""
+    };
+
+    // 雙向解析：key=value 或 value=欄位名 都吃
+    for (const [rawK,rawV] of qs.entries()){
+      const k=(rawK||"").trim(), v=(rawV||"").trim();
+
+      if (labelMap.has(k) && !data[labelMap.get(k)]) { // 正常
+        data[labelMap.get(k)] = v; continue;
+      }
+      if (labelMap.has(v) && !data[labelMap.get(v)]) { // 反向
+        data[labelMap.get(v)] = k; continue;
+      }
+    }
+
+    // 先把畫面填好
+    const fill = (id,val,html=false)=>{
+      const el = document.getElementById(id);
+      if(!el) return;
+      if(val){
+        if(html) el.innerHTML = toHtml(val);
+        else { el.textContent = val; el.classList.remove("muted"); }
+      }else{
+        el.textContent = "（空）";
+        el.classList.add("muted");
+      }
+    };
+
+    fill("order_time",   data.order_time);
+    fill("order_id",     data.order_id);
+    fill("email",        data.email);
+    fill("store_name",   data.store_name);
+    fill("delivery_method", data.delivery_method);
+    fill("pickup_note",  data.pickup_note,  true);
+    fill("order_details",data.order_details,true);
+    fill("shipping",     data.shipping);
+    fill("total",        data.total);
+
+    const statusEl = document.getElementById("status");
+    const debugEl  = document.getElementById("debug");
+
+    // 傳給 Make（你在 Make 已把這些欄位對應到 EmailJS）
+    const payload = {
+      template_id: "template_ceydmzp",
+      user_id: "nMamM2Ecz2ztnkCOV",
+      accessToken: "f5omy7Am47n3EeMYtS66J",
+      template_params: { ...data, order_details: toHtml(data.order_details) }
+    };
+
+    function sendPost(){
+      return fetch(WEBHOOK,{
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify(payload)
+      });
+    }
+    function sendGetFallback(){
+      return new Promise(res=>{
+        const u = new URL(WEBHOOK);
+        for (const [k,v] of Object.entries(data)) u.searchParams.append(k,v||"");
+        u.searchParams.append("template_id", payload.template_id);
+        u.searchParams.append("user_id", payload.user_id);
+        u.searchParams.append("accessToken", payload.accessToken);
+        const img = new Image();
+        let done=false;
+        const finish=t=>{ if(!done){done=true;res(t);} };
+        img.onload = ()=>finish("img-ok");
+        img.onerror= ()=>finish("img-err");
+        img.src = u.toString();
+        setTimeout(()=>finish("timeout"), 4000);
+      });
+    }
+
+    // 送通知（先 POST，不行再用 IMG GET 備援）
+    sendPost().then(r=>{
+      if(!r.ok) throw new Error("POST "+r.status);
+      statusEl.classList.add("ok");
+      statusEl.textContent = "✅ 成功寄通知給總部，明細表請自行留存。";
+    }).catch(async err=>{
+      const tag = await sendGetFallback();
+      statusEl.classList.add("warn");
+      statusEl.textContent = (tag==="img-ok")
+        ? "⚠️ 已用備援通道送出通知，請留意信箱是否收到。"
+        : "⚠️ 網路不穩，已嘗試送出通知；請稍後再檢查信箱。";
+
+      if (qs.get("debug")==="1"){
+        debugEl.style.display="block";
+        debugEl.textContent =
+          "原始 QueryString:\n"+location.search+"\n\n"+
+          "解析後:\n"+JSON.stringify(data,null,2)+"\n\n"+
+          "錯誤: "+(err?.message||String(err))+"\n備援: "+tag;
+      }
+    });
+  })();
+  </script>
 </body>
 </html>
