@@ -1,175 +1,354 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <title>叫貨明細</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>啃酥菱角酥｜分店營運手冊＆品項販售規範</title>
+  <meta name="description" content="啃酥菱角酥加盟分店營運管理手冊、品項販售規範與銷售回報入口。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    :root{--card-w:820px;}
-    body{font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans TC",sans-serif;
-         color:#222;margin:0;background:#f5f6f7;}
-    .wrap{max-width:var(--card-w);margin:56px auto;padding:0 16px;}
-    .card{background:#fff;border:1px solid #e6e6e6;border-radius:12px;box-shadow:0 2px 14px rgba(0,0,0,.06);padding:28px;}
-    .title{font-weight:900;font-size:34px;letter-spacing:.15em;text-align:center;margin:0 0 22px;}
-    .sub{color:#666;margin:0 0 14px 2px;}
-    table{width:100%;border-collapse:collapse;border:1px solid #e8e8e8;border-radius:8px;overflow:hidden;}
-    th,td{border:1px solid #eee;padding:12px 14px;vertical-align:top;font-size:15px;line-height:1.5;}
-    th{width:160px;background:#fbfbfb;text-align:left;white-space:nowrap;}
-    td.muted{color:#9aa0a6;}
-    .status{margin-top:14px;font-size:14px}
-    .status.ok{color:#2e7d32}
-    .status.warn{color:#a15c00}
-    .tag{font-size:12px;color:#9aa0a6;margin-left:8px}
-    pre#debug{display:none;margin-top:14px;padding:12px;background:#0f172a;color:#e2e8f0;border-radius:8px;overflow:auto}
+    :root{
+      --bg:#0b0c0f;
+      --surface:#101216;
+      --muted:#9ca3af;
+      --text:#f8fafc;
+      --brand:#f59e0b; /* amber-500 */
+      --brand-2:#22c55e; /* green-500 */
+      --card:#141821;
+      --border:#1f2937;
+      --ok:#10b981;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:"Noto Sans TC", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 10% -10%, #1f2937 0%, rgba(31,41,55,0) 60%) , var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:var(--brand)}
+    .container{max-width:1080px;margin:0 auto;padding:24px}
+    /* Top Nav */
+    .nav{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(12px);
+      background:rgba(11,12,15,.7); border-bottom:1px solid var(--border);
+    }
+    .nav-inner{display:flex; align-items:center; gap:16px; padding:14px 18px; max-width:1080px; margin:0 auto}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.6px}
+    .brand .dot{width:10px; height:10px; border-radius:999px; background:linear-gradient(135deg,var(--brand),#fcd34d)}
+    .nav-links{margin-left:auto; display:flex; gap:14px; flex-wrap:wrap}
+    .nav a{color:var(--text); text-decoration:none; padding:8px 12px; border-radius:10px; border:1px solid transparent}
+    .nav a:hover{border-color:var(--border); background:#11151c}
+    /* Announcement Bar (CSS marquee replacement) */
+    .announce-wrap{position:relative; overflow:hidden; border-bottom:1px dashed #2a3443; background:linear-gradient(90deg,#11151c,#0d1117);}
+    .announce{display:flex; white-space:nowrap; gap:40px; padding:10px 0; font-weight:700}
+    .announce .tag{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.3); color:#fbbf24; font-size:13px}
+    .announce .tag svg{width:14px; height:14px}
+    .announce-track{display:flex; gap:40px; will-change:transform; animation:scrollX 24s linear infinite}
+    @keyframes scrollX{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    /* Hero */
+    .hero{padding:36px 0 8px}
+    .hero h1{margin:0; font-size:40px; line-height:1.15}
+    .hero p{margin:10px 0 0; color:var(--muted)}
+    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .btn{appearance:none; border:1px solid var(--border); background:linear-gradient(180deg,#1b2230,#141a24); color:var(--text);
+      padding:12px 16px; border-radius:14px; text-decoration:none; font-weight:700; box-shadow:var(--shadow)}
+    .btn.primary{border-color:rgba(245,158,11,.5); background:linear-gradient(180deg,#2a1f0b,#1a1306)}
+    .btn.success{border-color:rgba(34,197,94,.5); background:linear-gradient(180deg,#0d2016,#0a1611)}
+    .kbd{display:inline-flex; align-items:center; gap:8px; color:#93c5fd; font-size:12px}
+    /* Sections */
+    section{scroll-margin-top:84px}
+    .grid{display:grid; grid-template-columns:repeat(12, 1fr); gap:16px}
+    .card{grid-column:span 12; background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+      border:1px solid var(--border); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow)}
+    .card h2{margin:2px 0 12px; font-size:22px}
+    .meta{display:flex; align-items:center; gap:10px; color:var(--muted); font-size:13px}
+    .badge{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; border:1px solid #334155; background:#0b1220; font-size:12px}
+    .kbar{display:flex; gap:8px; flex-wrap:wrap}
+    .kbar .badge{background:rgba(15,23,42,.66)}
+    /* Lists */
+    .list{margin:0; padding-left:18px}
+    .list li{margin:8px 0}
+    .callout{border:1px dashed #334155; background:#0d131b; padding:12px 14px; border-radius:12px}
+    .two-col{display:grid; grid-template-columns:1fr; gap:14px}
+    @media(min-width:860px){.two-col{grid-template-columns:1fr 1fr}}
+    .timeline{display:grid; gap:12px; margin-top:8px}
+    .tl{display:grid; grid-template-columns:auto 1fr; gap:10px; align-items:flex-start}
+    .tl .dot{width:12px; height:12px; border-radius:999px; background:var(--brand)}
+    .tl .line{grid-column:1; width:2px; background:#2a3443; height:100%; margin:2px auto 0}
+    .tl .content{grid-column:2}
+    .table{width:100%; border-collapse:separate; border-spacing:0 8px}
+    .table th, .table td{padding:10px 12px; text-align:left}
+    .table thead th{font-size:12px; color:var(--muted); border-bottom:1px solid #253043}
+    .row{background:#0d131b; border:1px solid #253043; border-radius:10px}
+    .row td:first-child{border-top-left-radius:10px; border-bottom-left-radius:10px}
+    .row td:last-child{border-top-right-radius:10px; border-bottom-right-radius:10px}
+    .note{font-size:13px; color:var(--muted)}
+    footer{padding:40px 0 60px; color:#9aa4b2; font-size:13px}
+    /* Print */
+    @media print{
+      .nav,.announce-wrap,.cta{display:none}
+      body{background:#fff; color:#000}
+      .card{box-shadow:none; background:#fff; border-color:#ccc}
+      a{color:#000; text-decoration:underline}
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <h1 class="title">叫貨明細</h1>
-      <p class="sub">以下為本次訂單資訊：</p>
-
-      <table>
-        <tr><th>訂單時間</th>   <td id="order_time"     class="muted">（空）</td></tr>
-        <tr><th>訂單編號</th>   <td id="order_id"       class="muted">（空）</td></tr>
-        <tr><th>信箱</th>       <td id="email"          class="muted">（空）</td></tr>
-        <tr><th>分店名稱</th>   <td id="store_name"     class="muted">（空）</td></tr>
-        <tr><th>寄貨方式</th>   <td id="delivery_method" class="muted">（空）</td></tr>
-        <tr><th>取貨備註</th>   <td id="pickup_note"    class="muted">（空）</td></tr>
-        <tr><th>商品明細</th>   <td id="order_details"  class="muted">（空）</td></tr>
-        <tr><th>實際運費</th>   <td id="shipping"       class="muted">（空）</td></tr>
-        <tr><th>總計金額</th>   <td id="total"          class="muted">（空）</td></tr>
-      </table>
-
-      <p id="status" class="status">正在嘗試寄通知給總部… <span class="tag">(本頁不需停留即可關閉)</span></p>
-      <pre id="debug"></pre>
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand"><span class="dot"></span>啃酥加盟 · 營運中心</div>
+      <nav class="nav-links">
+        <a href="#manual">營運手冊</a>
+        <a href="#policy">品項販售規範</a>
+        <a href="#report">營收回報</a>
+        <a href="#faq">FAQ</a>
+      </nav>
     </div>
   </div>
 
-  <script>
-  (function(){
-    "use strict";
+  <!-- Announcement Bar -->
+  <div class="announce-wrap" aria-label="announcement">
+    <div class="container">
+      <div class="announce">
+        <div class="announce-track">
+          <span class="tag" title="每月例行叫貨">
+            <!-- bell icon -->
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 18H9m8-6a5 5 0 10-10 0c0 2-1 3-2 4h14c-1-1-2-2-2-4zM9.354 19.354A2 2 0 0012 21a2 2 0 002-2" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            【總部公告】各分店請務必每月完成例行叫貨，未完成將依合約與制度處理。
+          </span>
+          <span class="tag">🔁 每月 3 日提醒、5 日前回報營收、逾期視情況調整獎勵與權益</span>
+          <span class="tag">📋 進貨/營收數據異常將啟動審查與改善機制</span>
+          <!-- duplicate for seamless loop -->
+          <span class="tag">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 18H9m8-6a5 5 0 10-10 0c0 2-1 3-2 4h14c-1-1-2-2-2-4zM9.354 19.354A2 2 0 0012 21a2 2 0 002-2" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            【總部公告】各分店請務必每月完成例行叫貨，未完成將依合約與制度處理。
+          </span>
+          <span class="tag">🔁 每月 3 日提醒、5 日前回報營收、逾期視情況調整獎勵與權益</span>
+          <span class="tag">📋 進貨/營收數據異常將啟動審查與改善機制</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    // 你的 Make Webhook（已填好）
-    const WEBHOOK = "https://hook.eu2.make.com/mxd447qyeae62is1m1vsutndp3bqhudf";
+  <header class="container hero">
+    <h1>分店營運手冊 ＋ 品項販售規範</h1>
+    <p>此頁彙整「每月營收回報機制、獎懲制度、營業天數管理、品項販售規範與違規處置」等重點，並提供一鍵前往回報表單。</p>
+    <div class="cta">
+      <a class="btn primary" href="#report">前往營收回報入口</a>
+      <a class="btn" href="#manual">查看營運手冊重點</a>
+      <span class="kbd">發佈：2025/03/17 · 最新版</span>
+    </div>
+  </header>
 
-    // ===== 工具 =====
-    const esc = s => String(s).replace(/[&<>"']/g,m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
-    const toHtml = s => esc(s).replace(/\r\n|\r|\n/g,"<br>");
+  <main class="container">
+    <!-- Manual Section -->
+    <section id="manual" class="grid">
+      <article class="card">
+        <h2>一、營運管理手冊（重點整理）</h2>
+        <div class="meta">適用對象：所有加盟分店｜回報窗口：Google 表單</div>
+        <div class="two-col" style="margin-top:12px">
+          <div>
+            <h3>1) 營收回報機制</h3>
+            <ul class="list">
+              <li>每月 <strong>3 日</strong>總部發提醒，<strong>5 日前</strong>提交上月營收。</li>
+              <li>逾 <strong>5 日</strong>未回報視為「未回報」，<span class="badge">6 日後個別通知</span>。</li>
+              <li>回報方式：<strong>Google 表單</strong>；營業天數少於 20 天需說明。</li>
+              <li>夜市本該營業日臨時停擺，需<strong>至少提前 4 小時</strong>向總部報備與說明。</li>
+            </ul>
+            <div class="callout note">提醒為輔助，準時回報由分店自行負責。</div>
+          </div>
+          <div>
+            <h3>2) 獎勵與懲罰</h3>
+            <div class="two-col">
+              <div>
+                <div class="badge">🎁 獎勵</div>
+                <ul class="list">
+                  <li>準時回報 → <strong>每次進貨滿 10,000 折 200</strong></li>
+                  <li>連續 6 個月準時 → <strong>FB 廣告曝光＋DM 設計</strong> 乙次</li>
+                  <li>連續 12 個月準時 → <strong>進貨 95 折</strong>＋專屬行銷支援</li>
+                </ul>
+              </div>
+              <div>
+                <div class="badge">⚠️ 懲罰</div>
+                <ul class="list">
+                  <li>第 1 次未回報 → <strong>取消當次進貨優惠</strong></li>
+                  <li>累計 2 次未回報 → <strong>當次進貨價 +5%</strong></li>
+                  <li>累計 3 次未回報 → <strong>正式警告／可能終止加盟</strong></li>
+                </ul>
+              </div>
+            </div>
+            <details style="margin-top:8px">
+              <summary>逾期（超過 5 號）細則</summary>
+              <ul class="list">
+                <li>逾期 1–2 日：可收但獎勵減半。</li>
+                <li>逾期 3–5 日：視為未回報，取消獎勵。</li>
+                <li>連續 2 個月逾期（<=2 日）：取消當次進貨獎勵。</li>
+                <li>連續 3 個月逾期（<=2 日）：視為不穩定回報，<strong>當次進貨價 +5%</strong>。</li>
+                <li>恢復：連續 3 個月準時回報 → 恢復原折扣（既往獎勵不補發）。</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+        <div style="height:10px"></div>
+        <div class="two-col">
+          <div>
+            <h3>3) 營業天數管理</h3>
+            <ul class="list">
+              <li>因整修/政策等導致天數少，但準時回報 → <strong>仍享獎勵</strong>。</li>
+              <li>每月營業日數 <strong>< 50%</strong> → 取消進貨折扣且影響權益。</li>
+              <li>營業天數極少且影響品牌 → 需提交改善計畫；未改善可能<strong>終止加盟</strong>。</li>
+            </ul>
+          </div>
+          <div>
+            <h3>4) 進貨/營收數據不符之處置</h3>
+            <ul class="list">
+              <li>每月比對：進貨量 × 平均售價 × 庫存，發現異常將要求 3 日內補件。</li>
+              <li>無心錯誤：需補正數據。</li>
+              <li>惡意造假：<strong>暫停優惠、要求補回少報額、加強監管</strong>；情節重大依法究責並得終止合約。</li>
+            </ul>
+          </div>
+        </div>
+        <div style="height:10px"></div>
+        <div class="callout">
+          <strong>回報範例欄位（摘要）</strong>
+          <div class="two-col">
+            <ul class="list">
+              <li>分店名稱／負責人／回報月份</li>
+              <li>營業天數（<span class="badge">低於 20 天需說明</span>）</li>
+              <li>現金營收／LINE Pay／外送營收（不扣手續費）</li>
+            </ul>
+            <ul class="list">
+              <li>本月庫存量</li>
+              <li>是否有促銷與內容</li>
+              <li>問題回饋與總部建議</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
 
-    // 欄位對照（支援中英、別名）
-    const labelMap = new Map(Object.entries({
-      order_time:"order_time", time:"order_time","訂單時間":"order_time",
-      order_id:"order_id", id:"order_id","訂單編號":"order_id",
-      email:"email","信箱":"email",
-      store_name:"store_name","分店名稱":"store_name",
-      delivery_method:"delivery_method","寄貨方式":"delivery_method",
-      pickup_note:"pickup_note","取貨備註":"pickup_note",
-      order_details:"order_details","商品明細":"order_details",
-      shipping:"shipping",shipping_fee:"shipping","實際運費":"shipping",
-      total:"total",total_amount:"total","總計金額":"total"
-    }));
+    <!-- Policy Section -->
+    <section id="policy" class="grid">
+      <article class="card">
+        <h2>二、品項販售規範 ＆ 銷售回報</h2>
+        <p class="note">目的：確保各分店販售<strong>完整品項</strong>、維持一致品牌體驗；違規將依合約處理。</p>
+        <div class="two-col" style="margin-top:12px">
+          <div>
+            <h3>必遵守規範</h3>
+            <ul class="list">
+              <li>忠實販售總部核定之<strong>完整品項</strong>，不得擅自刪減或選擇性販售。</li>
+              <li>若遇庫存/動銷問題，<strong>立即回報總部</strong>以獲得促銷或銷售支援。</li>
+            </ul>
+            <div class="kbar">
+              <span class="badge">🧭 巡店稽查</span>
+              <span class="badge">📈 銷售&進貨數據監控</span>
+              <span class="badge">🧾 如實回報</span>
+            </div>
+          </div>
+          <div>
+            <h3>違規處置（限期改善）</h3>
+            <ul class="list">
+              <li>取消叫貨優惠</li>
+              <li>提高進貨成本</li>
+              <li>嚴重者：終止合作並追究違約責任</li>
+            </ul>
+            <div class="callout note">每位加盟夥伴皆是品牌成長的重要推手，請自我檢視、確保遵循。</div>
+          </div>
+        </div>
+      </article>
+    </section>
 
-    const qs = new URLSearchParams(location.search);
+    <!-- Report Section -->
+    <section id="report" class="grid">
+      <article class="card">
+        <h2>三、營收回報入口</h2>
+        <p>每月<strong>5 日前</strong>完成上月營收回報。逾期或未回報將影響優惠與權益。</p>
+        <div class="cta">
+          <a class="btn success" href="https://forms.gle/xKUG81EcHkVvAu7k9" target="_blank" rel="noopener">立即填寫 Google 表單</a>
+          <a class="btn" href="#faq">查看回報常見問題</a>
+        </div>
+        <div class="timeline" style="margin-top:16px">
+          <div class="tl"><span class="dot"></span><div class="content"><strong>每月 3 日</strong>：總部於官方 LINE 群組發出提醒。</div></div>
+          <div class="tl"><span class="dot"></span><div class="content"><strong>每月 5 日前</strong>：提交上月營收與欄位資訊（含營業天數、付款通路、庫存與促銷）。</div></div>
+          <div class="tl"><span class="dot"></span><div class="content"><strong>逾期與未報</strong>：依制度調整獎勵／視未報次數採取處置。</div></div>
+        </div>
+      </article>
+    </section>
 
-    // 目標資料
-    const data = {
-      order_time:"", order_id:"", email:"", store_name:"",
-      delivery_method:"", pickup_note:"", order_details:"",
-      shipping:"", total:""
-    };
+    <!-- FAQ Section -->
+    <section id="faq" class="grid">
+      <article class="card">
+        <h2>常見問答</h2>
+        <details open>
+          <summary><strong>Q1</strong>：本月營業天數少於 20 天怎麼辦？</summary>
+          <div class="note">仍需準時回報，並於欄位說明原因（如整修、政策、天災等）。</div>
+        </details>
+        <details>
+          <summary><strong>Q2</strong>：臨時無法出攤要怎麼報備？</summary>
+          <div class="note">需<strong>至少提前 4 小時</strong>聯繫總部並說明原因，以免影響品牌形象。</div>
+        </details>
+        <details>
+          <summary><strong>Q3</strong>：連續準時回報 12 個月可獲哪些支持？</summary>
+          <div class="note">每次進貨享 <strong>95 折</strong>，並提供專屬行銷支援。</div>
+        </details>
+        <details>
+          <summary><strong>Q4</strong>：若進貨與營收數字對不起來？</summary>
+          <div class="note">總部會進行比對，若異常將要求 3 日內補資料；惡意造假將暫停優惠並依法處理。</div>
+        </details>
+      </article>
+    </section>
 
-    // 雙向解析：key=value 或 value=欄位名 都吃
-    for (const [rawK,rawV] of qs.entries()){
-      const k=(rawK||"").trim(), v=(rawV||"").trim();
+    <section class="grid">
+      <article class="card">
+        <h2>附錄：回報欄位示意表</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>欄位</th>
+              <th>內容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row">
+              <td>分店名稱／負責人／回報月份</td>
+              <td>文字填寫</td>
+            </tr>
+            <tr class="row">
+              <td>營業天數</td>
+              <td>數字（低於 20 天需說明）</td>
+            </tr>
+            <tr class="row">
+              <td>本月現金營收／LINE Pay／外送營收</td>
+              <td>金額（外送與 LINE Pay 請填未扣手續費金額）</td>
+            </tr>
+            <tr class="row">
+              <td>本月庫存量</td>
+              <td>數字</td>
+            </tr>
+            <tr class="row">
+              <td>是否有促銷與內容</td>
+              <td>是/否＋文字敘述</td>
+            </tr>
+            <tr class="row">
+              <td>問題回饋與建議</td>
+              <td>文字敘述</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note">以上為摘要示意，實際以 Google 表單為準。</p>
+      </article>
+    </section>
 
-      if (labelMap.has(k) && !data[labelMap.get(k)]) { // 正常
-        data[labelMap.get(k)] = v; continue;
-      }
-      if (labelMap.has(v) && !data[labelMap.get(v)]) { // 反向
-        data[labelMap.get(v)] = k; continue;
-      }
-    }
-
-    // 先把畫面填好
-    const fill = (id,val,html=false)=>{
-      const el = document.getElementById(id);
-      if(!el) return;
-      if(val){
-        if(html) el.innerHTML = toHtml(val);
-        else { el.textContent = val; el.classList.remove("muted"); }
-      }else{
-        el.textContent = "（空）";
-        el.classList.add("muted");
-      }
-    };
-
-    fill("order_time",   data.order_time);
-    fill("order_id",     data.order_id);
-    fill("email",        data.email);
-    fill("store_name",   data.store_name);
-    fill("delivery_method", data.delivery_method);
-    fill("pickup_note",  data.pickup_note,  true);
-    fill("order_details",data.order_details,true);
-    fill("shipping",     data.shipping);
-    fill("total",        data.total);
-
-    const statusEl = document.getElementById("status");
-    const debugEl  = document.getElementById("debug");
-
-    // 傳給 Make（你在 Make 已把這些欄位對應到 EmailJS）
-    const payload = {
-      template_id: "template_ceydmzp",
-      user_id: "nMamM2Ecz2ztnkCOV",
-      accessToken: "f5omy7Am47n3EeMYtS66J",
-      template_params: { ...data, order_details: toHtml(data.order_details) }
-    };
-
-    function sendPost(){
-      return fetch(WEBHOOK,{
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body: JSON.stringify(payload)
-      });
-    }
-    function sendGetFallback(){
-      return new Promise(res=>{
-        const u = new URL(WEBHOOK);
-        for (const [k,v] of Object.entries(data)) u.searchParams.append(k,v||"");
-        u.searchParams.append("template_id", payload.template_id);
-        u.searchParams.append("user_id", payload.user_id);
-        u.searchParams.append("accessToken", payload.accessToken);
-        const img = new Image();
-        let done=false;
-        const finish=t=>{ if(!done){done=true;res(t);} };
-        img.onload = ()=>finish("img-ok");
-        img.onerror= ()=>finish("img-err");
-        img.src = u.toString();
-        setTimeout(()=>finish("timeout"), 4000);
-      });
-    }
-
-    // 送通知（先 POST，不行再用 IMG GET 備援）
-    sendPost().then(r=>{
-      if(!r.ok) throw new Error("POST "+r.status);
-      statusEl.classList.add("ok");
-      statusEl.textContent = "✅ 成功寄通知給總部，明細表請自行留存。";
-    }).catch(async err=>{
-      const tag = await sendGetFallback();
-      statusEl.classList.add("warn");
-      statusEl.textContent = (tag==="img-ok")
-        ? "⚠️ 已用備援通道送出通知，請留意信箱是否收到。"
-        : "⚠️ 網路不穩，已嘗試送出通知；請稍後再檢查信箱。";
-
-      if (qs.get("debug")==="1"){
-        debugEl.style.display="block";
-        debugEl.textContent =
-          "原始 QueryString:\n"+location.search+"\n\n"+
-          "解析後:\n"+JSON.stringify(data,null,2)+"\n\n"+
-          "錯誤: "+(err?.message||String(err))+"\n備援: "+tag;
-      }
-    });
-  })();
-  </script>
+    <footer class="container">
+      <div>© 啃酥菱角酥 營運管理團隊 · 發佈：2025/03/17 · 本頁僅供加盟內部使用。</div>
+    </footer>
+  </main>
 </body>
 </html>
