@@ -3,19 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>啃酥菱角酥｜分店營運手冊＆品項規範（總部版・一頁式RWD）</title>
-  <meta name="description" content="正式清楚的一頁式總部文件：完整整理《加盟分店營運管理手冊》與《品項販售規範＆銷售回報》，手機與桌機皆良好閱讀，含下載連結。">
+  <title>啃酥菱角酥｜分店營運手冊＆品項規範（總部正式版・一頁式RWD）</title>
+  <meta name="description" content="依據《加盟分店營運管理手冊》與《品項販售規範＆銷售回報》完整重排，正式清楚、手機友善的一頁式總部版。">
+  <link rel="icon" href="https://kensufried.com/wp-content/uploads/2025/06/啃酥LOGO-2-100x100.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
       --bg:#ffffff; --text:#0f172a; --muted:#64748b; --line:#e2e8f0; --card:#f8fafc;
-      --accent:#f59e0b; --accent-ink:#1f2937; --radius:16px; --max:1000px;
+      --accent:#f59e0b; --accent-ink:#111827; --radius:16px; --max:1000px;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    html,body{height:100%}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
     body{margin:0; font-family:"Noto Sans TC",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--text); background:var(--bg)}
     img{max-width:100%; height:auto}
     a{color:inherit; text-decoration:none}
@@ -23,19 +22,18 @@
     .container{max-width:var(--max); margin:0 auto; padding:clamp(16px,4vw,24px)}
     /* Header */
     header.topbar{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.9); backdrop-filter:saturate(1.2) blur(8px); border-bottom:1px solid var(--line)}
+    .hero{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
     .brand{display:flex; align-items:center; gap:12px}
     .brand img{width:36px; height:36px}
     .brand h1{margin:0; font-size:18px; font-weight:800; letter-spacing:.02em}
-    .hero{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
     .actions{display:flex; gap:8px; flex-wrap:wrap}
     .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border:1px solid var(--line); border-radius:12px; font-weight:800; background:#fff}
     .btn-primary{background:var(--accent); color:var(--accent-ink); border-color:#fbbf24}
-    /* Sections */
-    main.page{display:block}
+    /* Blocks */
     section.block{border:1px solid var(--line); border-radius:var(--radius); background:#fff; padding:clamp(14px,2.5vw,18px); margin:16px 0}
     .block h2{margin:6px 0 10px; font-size:20px; font-weight:800; border-left:4px solid var(--accent); padding-left:10px}
     .block h3{margin:16px 0 8px; font-size:16px; font-weight:800}
-    .meta{display:flex; gap:16px; flex-wrap:wrap; color:var(--muted); font-size:14px}
+    .meta{display:flex; gap:12px; flex-wrap:wrap; color:var(--muted); font-size:14px}
     p{line-height:1.9; margin:10px 0; font-size:16px}
     ul,ol{margin:10px 0 10px 1.25rem; line-height:1.9; font-size:16px}
     .note{font-size:13px; color:var(--muted)}
@@ -45,207 +43,175 @@
     @media (max-width: 800px){ .grid-two{grid-template-columns:1fr} }
     .section-actions{display:flex; gap:8px; flex-wrap:wrap}
     .backtop{position:fixed; right:14px; bottom:16px; display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:999px; border:1px solid var(--line); background:#fff}
-    .sr{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
   </style>
 </head>
 <body id="top">
-  <!-- Header -->
+  <!-- 頂部 -->
   <header class="topbar">
     <div class="container hero">
       <a class="brand" href="#top" aria-label="返回頂部">
-        <!-- 換成你的「小惡魔」LOGO 路徑即可 -->
+        <!-- 可換成你的「小惡魔」LOGO 路徑 -->
         <img src="https://kensufried.com/wp-content/uploads/2025/06/啃酥LOGO-2.png" alt="啃酥LOGO">
         <h1>啃酥加盟 · 營運中心</h1>
       </a>
       <div class="actions">
         <a class="btn" href="#manual">營運手冊</a>
         <a class="btn" href="#policy">品項規範</a>
-        <a class="btn btn-primary" href="#downloads" title="下載PDF與HTML">下載</a>
+        <a class="btn btn-primary" href="#downloads">下載</a>
       </div>
     </div>
   </header>
 
-  <main class="container page">
-      <!-- 公告 -->
-      <section id="notice" class="block">
-        <h2>【公告】每月叫貨＆營收回報（總部通用）</h2>
-        <div class="banner" role="note">各分店務必每月完成例行叫貨與上月營收回報；未完成將依合約處理。</div>
-        <div class="grid-two">
-          <div>
-            <h3>回報節點</h3>
-            <ul>
-              <li>每月 <b>3 日</b>：官方 LINE 群組發送提醒。</li>
-              <li><b>5 日前</b>：提交上月營收（逾期處理見下）。</li>
-              <li><b>6 日起</b>：未回報者視為「未回報」，由總部逐一通知並影響相關權益。</li>
-            </ul>
-            <p class="note">夜市臨時停攤需至少提前 4 小時向總部請假並說明原因；營業日數低於 20 天者請於表單註記原因。</p>
-          </div>
-          <div>
-            <h3>獎勵方案（最新版）</h3>
-            <ul>
-              <li>準時回報 → <b>每次進貨滿 10,000 折 200</b>，總部<b>隨機換取相對應原物料</b>。</li>
-              <li>連續 6 個月準時 → <b>FB 廣告曝光＋DM 設計</b> 乙次。</li>
-              <li>連續 12 個月準時 → <b>每次進貨享 95 折</b>＋專屬行銷支援，<b>自動兌換進階方案（可指定品項）</b>。</li>
-            </ul>
-          </div>
+  <main class="container">
+    <!-- 公告 -->
+    <section id="notice" class="block">
+      <h2>【公告】每月叫貨與營收回報</h2>
+      <div class="banner" role="note">各分店務必每月完成例行叫貨與上月營收回報；未完成將依合約處理。</div>
+      <div class="grid-two">
+        <div>
+          <h3>回報節點</h3>
+          <ul>
+            <li>每月 <b>3 日</b>：官方 LINE 群組發送提醒。</li>
+            <li><b>5 日前</b>：提交上月營收（逾期處理見下）。</li>
+            <li><b>6 日起</b>：未回報視為「未回報」，總部逐一通知並影響相關權益。</li>
+          </ul>
+          <p class="note">夜市臨時停攤須至少提前 4 小時向總部請假並說明；營業日數低於 20 天者請於表單註記原因。</p>
         </div>
-      </section>
-
-      <!-- 手冊正文 -->
-      <section id="manual" class="block">
-        <h2>加盟分店營運管理手冊</h2>
-        <div class="meta"><span class="badge">發佈日期：2025年03月17日</span><span class="badge">適用對象：所有加盟分店</span></div>
-        
-        <section id="m-1">
-          <h3>1. 營收回報機制</h3>
-          <p>為強化品牌管理與支援加盟分店提升業績，總部要求每月準時回報營收數據。提醒僅為輔助，分店仍需自行負責準時回報。</p>
+        <div>
+          <h3>獎勵方案（依你最新指示）</h3>
           <ul>
-            <li>每月 3 號：總部透過官方 LINE 群組發送統一提醒。</li>
-            <li>超過 5 號未回報：6 號起由總部個別通知，並視為「未回報」處理。</li>
+            <li>準時回報 → <b>每次進貨滿 10,000 折 200</b>，總部<b>隨機換取相對應原物料</b>。</li>
+            <li>連續 6 個月準時 → <b>FB 廣告曝光＋DM 設計</b> 乙次。</li>
+            <li>連續 12 個月準時 → <b>每次進貨享 95 折</b>＋專屬行銷支援，並<b>自動兌換進階方案（可指定品項）</b>。</li>
           </ul>
-          <h4 class="sr">回報規則</h4>
-          <ul>
-            <li>每月 5 號前提交上一個月營收數據（<a href="#m-5">提交方式見 §5</a>）。</li>
-            <li>若營業天數少於 20 天，需提供原因（如裝修、政策影響等）。</li>
-            <li>若原定營業日臨時無法擺攤，需至少提前 4 小時向總部請假並說明（如裝修、政策、天災等）。無故缺席致品牌受損者，總部得請求額外賠償。</li>
-          </ul>
-        </section>
-
-        <section id="m-2">
-          <h3>2. 獎勵與懲罰機制</h3>
-          <h4 class="sr">獎勵</h4>
-          <ul>
-            <li>每月準時回報 → 每次進貨滿 10,000 元折 200（總部隨機換取相對應原物料）。</li>
-            <li>連續 6 個月準時回報 → FB 廣告曝光、DM 設計乙次。</li>
-            <li>連續 12 個月準時回報 → 每次進貨享 95 折與專屬行銷支援；自動兌換進階方案（可指定品項）。</li>
-          </ul>
-          <h4 class="sr">懲罰</h4>
-          <ul>
-            <li>首次未回報 → 取消當次進貨優惠資格。</li>
-            <li>累計 2 次未回報 → 當次進貨價格提高 5%，以補償管理成本。</li>
-            <li>累計 3 次未回報 → 發正式警告並要求限期改善；屢勸不聽者終止加盟資格。</li>
-          </ul>
-        </section>
-
-        <section id="m-2a">
-          <h3>2-1. 逾期回報（超過 5 號）</h3>
-          <ul>
-            <li>當月逾期 1–2 日 → 可接受，但當月獎勵減半。</li>
-            <li>逾期 3–5 日 → 當月視為「未回報」，取消獎勵。</li>
-            <li>連續 2 個月逾期（2 日內）→ 取消當次進貨獎勵。</li>
-            <li>連續 3 個月逾期（2 日內）→ 視為「不穩定回報」，當次進貨價格提高 5%。</li>
-            <li>恢復獎勵：連續 3 個月準時回報（5 日前）可恢復原有折扣，但過去獎勵不補發。</li>
-          </ul>
-        </section>
-
-        <section id="m-2b">
-          <h3>2-2. 間斷性回報</h3>
-          <p>若呈現「有月報／沒月報」的間斷狀態（如：第一個月回報、第二個月未回報、第三個月回報），則不享有任何「連續回報」獎勵。</p>
-        </section>
-
-        <section id="m-3">
-          <h3>3. 營業天數管理</h3>
-          <ul>
-            <li>因整修或政策等因素營業天數較少，且仍準時回報 → 仍享回報獎勵。</li>
-            <li>每月營業日數低於 50% → 取消進貨折扣並影響加盟權益。</li>
-            <li>營業天數極少且影響品牌形象 → 須提交改善計畫，否則可能終止加盟資格。</li>
-          </ul>
-        </section>
-
-        <section id="m-4">
-          <h3>4. 月營收回報欄位（表單填寫）</h3>
-          <ul>
-            <li>分店名稱、負責人、回報月份、營業天數（低於 20 天請註記原因）。</li>
-            <li>本月現金營收／LINE Pay 營收（不扣手續費）／外送營收（不扣手續費）。</li>
-            <li>本月庫存量、促銷活動（如有，請填寫內容）。</li>
-            <li>營業額回報請扣除總部商品以外之品項。</li>
-            <li>其他回饋（庫存過剩、滯銷等）與對總部之建議（促銷方式、廣告需求等）。</li>
-          </ul>
-        </section>
-
-        <section id="m-5">
-          <h3>5. 提交方式與期限</h3>
-          <ul>
-            <li>提交期限：每月 5 日前。</li>
-            <li>提交方式：<a href="https://forms.gle/xKUG81EcHkVvAu7k9" target="_blank" rel="noopener">Google 表單</a>。</li>
-          </ul>
-        </section>
-
-        <section id="m-6">
-          <h3>6. 營收與進貨不符之管理與懲罰</h3>
-          <p>總部每月定期比對進貨量、平均售價與庫存狀況，若營收與進貨資料明顯不符，將依下列流程處理：</p>
-          <ol>
-            <li>發出「數據異常」警示：3 日內補繳詳細銷售紀錄並解釋差異；無心錯誤須主動更正。</li>
-            <li>若確認惡意造假：暫停進貨優惠，3 日內補回少報營收，並納入加強監管（提高審核頻率）。</li>
-            <li>涉及法律者（偽造報表、詐欺等）：依法追究；總部得終止合約、視同違約並扣除保證金。</li>
-          </ol>
-        </section>
-
-        <section id="m-7">
-          <h3>7. 最終聲明</h3>
-          <p>所有加盟分店皆需遵守營收回報機制，以確保品牌穩定發展。準時回報者享有更多優惠與行銷支援；未遵守規範者，權益將受影響。如有疑問，請聯繫總部營運團隊。</p>
-        </section>
-      </section>
-
-      <!-- 品項規範正文 -->
-      <section id="policy" class="block">
-        <h2>品項販售規範＆銷售回報</h2>
-        <p>為確保消費者在各分店皆能獲得一致的產品與服務，請務必遵守以下規範。</p>
-        
-        <section id="p-1">
-          <h3>1. 完整販售公司規定之產品</h3>
-          <ul>
-            <li>所有加盟分店須販售總部核定之完整品項，不得擅自刪減或選擇性販售。</li>
-            <li>遇庫存或銷售問題，請立即向總部反映，以利提供銷售建議或促銷支援。</li>
-          </ul>
-        </section>
-
-        <section id="p-2">
-          <h3>2. 總部將加強管理與監督</h3>
-          <ul>
-            <li>巡店與稽查機制：不定期現場稽查，確保依規販售完整品項。</li>
-            <li>銷售與進貨數據監控：分店須如實回報銷售狀況，總部據以檢視是否有異常。</li>
-          </ul>
-        </section>
-
-        <section id="p-3">
-          <h3>3. 違規處理措施</h3>
-          <p>若分店未於通知後限期內改善，將依合約採取：</p>
-          <ul>
-            <li>取消叫貨優惠。</li>
-            <li>提高進貨成本。</li>
-            <li>嚴重違規者：終止合作並追究違約責任。</li>
-          </ul>
-        </section>
-
-        <section id="p-4">
-          <h3>結語</h3>
-          <p>維護品牌形象與消費者信賴是我們共同的責任。請各分店即刻自我檢視並確保遵守規範；如需協助，請與總部營運團隊聯繫。</p>
-        </section>
-      </section>
-
-      <!-- 下載區 -->
-      <section id="downloads" class="block">
-        <h2>下載與版本資訊</h2>
-        <div class="section-actions">
-          <a class="btn" href="啃酥菱角酥加盟分店營運管理手冊.pdf" download>下載《營運管理手冊》PDF</a>
-          <a class="btn" href="品項販售規範&amp;銷售回報.pdf" download>下載《品項規範》PDF</a>
         </div>
-        <p class="note">此頁面為總部正式整理的一頁式參考版，內容依據官方文件而來；如文件更新，以總部最新公告為準。</p>
-      </section>
+      </div>
+    </section>
+
+    <!-- 手冊正文 -->
+    <section id="manual" class="block">
+      <h2>加盟分店營運管理手冊</h2>
+      <div class="meta"><span class="badge">發佈日期：2025 年 03 月 17 日</span><span class="badge">適用對象：所有加盟分店</span></div>
+
+      <h3>1. 營收回報機制</h3>
+      <p>為強化品牌管理與支援加盟分店提升業績，總部要求每月準時回報營收數據。提醒僅為輔助，分店仍需自行負責準時回報。</p>
+      <ul>
+        <li>每月 3 號：總部透過官方 LINE 群組發送統一提醒。</li>
+        <li>超過 5 號未回報：6 號起由總部個別通知，並視為「未回報」處理。</li>
+      </ul>
+      <h4>回報規則</h4>
+      <ul>
+        <li>每月 5 號前提交上一個月的營收數據（提交方式見 §5）。</li>
+        <li>若營業天數少於 20 天，需提供原因（如裝修、政策影響等）。</li>
+        <li>原定營業日臨時無法擺攤，須至少提前 4 小時向總部請假並說明（如裝修、政策、天災等）。無故缺席致品牌受損者，總部得請求額外賠償。</li>
+      </ul>
+
+      <h3>2. 獎勵與懲罰機制</h3>
+      <h4>獎勵</h4>
+      <ul>
+        <li>每月準時回報 → 每次進貨滿 10,000 元折 200（總部隨機換取相對應原物料）。</li>
+        <li>連續 6 個月準時回報 → FB 廣告曝光、DM 設計乙次。</li>
+        <li>連續 12 個月準時回報 → 每次進貨享 95 折與專屬行銷支援；自動兌換進階方案（可指定品項）。</li>
+      </ul>
+      <h4>懲罰</h4>
+      <ul>
+        <li>第一次未回報 → 取消當次進貨優惠資格。</li>
+        <li>累計 2 次未回報 → 當次進貨價格提高 5%，以補償管理成本。</li>
+        <li>累計 3 次未回報 → 發出正式警告並要求限期改善；屢勸不聽者終止加盟資格。</li>
+      </ul>
+
+      <h3>2-1. 逾期回報（超過 5 號）</h3>
+      <ul>
+        <li>當月逾期 1–2 日 → 可接受，但當月獎勵減半。</li>
+        <li>逾期 3–5 日 → 當月視為「未回報」，取消獎勵。</li>
+        <li>連續 2 個月逾期（2 日內）→ 取消當次進貨獎勵。</li>
+        <li>連續 3 個月逾期（2 日內）→ 視為「不穩定回報」，當次進貨價格提高 5%。</li>
+        <li>恢復獎勵：連續 3 個月準時回報（5 日前）可恢復原有折扣，但過去獎勵不補發。</li>
+      </ul>
+
+      <h3>2-2. 間斷性回報</h3>
+      <p>若呈現「有月報／沒月報」的間斷狀態（如第一個月回報、第二個月未回報、第三個月回報），則不享有任何「連續回報」獎勵。</p>
+
+      <h3>3. 營業天數管理</h3>
+      <ul>
+        <li>因整修或政策等因素營業天數較少，且仍準時回報 → 仍享回報獎勵。</li>
+        <li>每月營業日數低於 50% → 取消進貨折扣並影響加盟權益。</li>
+        <li>營業天數極少且影響品牌形象 → 須提交改善計畫，否則可能終止加盟資格。</li>
+      </ul>
+
+      <h3>4. 月營收回報欄位（表單填寫）</h3>
+      <ul>
+        <li>分店名稱、負責人、回報月份、營業天數（低於 20 天請註記原因）。</li>
+        <li>本月現金營收／LINE Pay 營收（不扣手續費）／外送營收（不扣手續費）。</li>
+        <li>本月庫存量、是否有促銷活動（如有，請填寫活動內容）。</li>
+        <li>營業額回報請扣除總部商品以外之品項。</li>
+        <li>其他回饋（庫存過剩、滯銷等）與對總部之建議（促銷方式、廣告需求等）。</li>
+      </ul>
+
+      <h3>5. 提交方式與期限</h3>
+      <ul>
+        <li>提交期限：每月 5 日前。</li>
+        <li>提交方式：<a href="https://forms.gle/xKUG81EcHkVvAu7k9" target="_blank" rel="noopener">Google 表單</a>。</li>
+      </ul>
+
+      <h3>6. 營收與進貨不符之管理與懲罰</h3>
+      <p>總部每月定期比對進貨量、平均售價與庫存狀況，若營收與進貨資料明顯不符，將依下列流程處理：</p>
+      <ol>
+        <li>發出「數據異常」警示：3 日內補交詳細銷售紀錄並解釋差異；若為無心錯誤，須主動更正。</li>
+        <li>確認惡意造假：暫停進貨優惠；3 日內補回少報營收，並納入加強監管（提高審核頻率）。</li>
+        <li>若涉法律（偽造報表、詐欺等）：依法追究；總部得終止合約、視同違約並扣除保證金。</li>
+      </ol>
+
+      <h3>7. 最終聲明</h3>
+      <p>所有加盟分店皆需遵守營收回報機制，以確保品牌穩定發展。準時回報者享有更多優惠與行銷支援；未遵守規範者，權益將受影響。如有疑問，請聯繫總部營運團隊。</p>
+    </section>
+
+    <!-- 品項規範正文 -->
+    <section id="policy" class="block">
+      <h2>品項販售規範＆銷售回報</h2>
+
+      <h3>前言</h3>
+      <p>感謝各位夥伴長期對「啃酥菱角酥」的支持與努力，讓品牌持續成長。近期總部發現部分分店未依合約販售完整品項，僅挑選特定商品銷售，影響品牌形象與市場策略。為確保各分店提供一致產品與服務，特此通知如下。</p>
+
+      <h3>1. 完整販售公司規定之產品</h3>
+      <ul>
+        <li>所有加盟分店必須販售總部核定之完整品項，不得私自刪減或選擇性販售。</li>
+        <li>若有庫存或銷售問題，請立即向總部反映，以利提供銷售建議或促銷支援。</li>
+      </ul>
+
+      <h3>2. 總部將加強管理與監督</h3>
+      <ul>
+        <li>巡店與稽查機制：不定期安排人員進行現場稽查，確保依規販售完整品項。</li>
+        <li>銷售與進貨數據監控：分店須如實回報銷售狀況，總部將依據數據檢視是否有異常。</li>
+      </ul>
+
+      <h3>3. 違規處理措施</h3>
+      <ul>
+        <li>未於限期內改善者，依合約採取：取消叫貨優惠、提高進貨成本。</li>
+        <li>嚴重違規者：終止合作並追究違約責任。</li>
+      </ul>
+
+      <h3>結語</h3>
+      <p>每位加盟夥伴皆是品牌成功的重要推手。維護品牌形象與消費者信賴是共同責任；請各分店即刻自我檢視並確保遵守規範。如有需要，請與總部營運團隊聯繫，我們將竭誠協助。</p>
+    </section>
+
+    <!-- 下載 -->
+    <section id="downloads" class="block">
+      <h2>下載與版本資訊</h2>
+      <div class="section-actions">
+        <a class="btn" href="啃酥菱角酥加盟分店營運管理手冊.pdf" download>下載《營運管理手冊》PDF</a>
+        <a class="btn" href="品項販售規範&amp;銷售回報.pdf" download>下載《品項規範》PDF</a>
+      </div>
+      <p class="note">本頁面內容依據 2025/03/17 版官方文件整理；如日後更新，請以總部最新公告為準。</p>
+    </section>
   </main>
 
   <a class="backtop" href="#top" aria-label="回到頂部">↑</a>
 
   <script>
-    // 修正錨點被 sticky header 蓋住的位移
-    function offsetAnchor(){
-      if(location.hash.length > 0){
-        window.scrollTo({top: window.scrollY - 72});
-      }
-    }
-    window.addEventListener('hashchange', offsetAnchor);
-    window.setTimeout(offsetAnchor, 1);
+    // 錨點位移：避免被 sticky header 蓋住
+    function _offset(){ if(location.hash){ window.scrollTo({top: window.scrollY - 72}); } }
+    window.addEventListener('hashchange', _offset); setTimeout(_offset, 1);
   </script>
 </body>
 </html>
