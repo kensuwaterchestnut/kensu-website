@@ -1,346 +1,474 @@
+
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>啃酥菱角酥｜加盟分店營運手冊＆品項規範（RWD重構）</title>
-  <meta name="description" content="啃酥菱角酥分店營運重點、品項販售規範與每月回報入口。全新RWD版：手機體驗最佳化、箭頭＋文字摺疊說明、品牌小惡魔風格。" />
-  <!-- Brand OG (可保留/調整為自家網域) -->
-  <meta property="og:title" content="啃酥菱角酥｜加盟分店營運與品項規範" />
-  <meta property="og:description" content="每月回報機制、獎懲與原物料自動兌換、品項規範與FAQ。" />
-  <meta property="og:image" content="https://kensufried.com/wp-content/uploads/2025/06/223.jpg" />
-  <meta property="og:type" content="website" />
-  <link rel="icon" href="https://kensufried.com/wp-content/uploads/2025/06/啃酥LOGO-2-100x100.png" />
-
-  <!-- 字型：沿用品牌網站 Noto Sans TC -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>啃酥菱角酥｜分店營運手冊＆品項規範（完整文字・極簡RWD）</title>
+  <meta name="description" content="完整文字版：加盟分店營運管理手冊＋品項販售規範＆銷售回報。包含目錄、清楚標題、整齊段落；附原始 PDF 下載連結。">
+  <link rel="icon" href="https://kensufried.com/wp-content/uploads/2025/06/啃酥LOGO-2-100x100.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    /* ========== 核心設計變數（品牌小惡魔黑金） ========== */
-    :root{
-      --bg:#0b0c0f;           /* 背景深黑 */
-      --surface:#111318;      /* 容器底色 */
-      --text:#f6f7fb;         /* 主要文字 */
-      --muted:#a3aab7;        /* 次要文字 */
-      --brand:#f59e0b;        /* 金黃 */
-      --brand-2:#ff4d6d;      /* 小惡魔點綴桃紅 */
-      --border:#1e2635;       /* 邊框色 */
-      --ok:#16a34a;           /* 成功 */
-      --warn:#f59e0b;         /* 警示 */
-      --bad:#ef4444;          /* 錯誤 */
-      --radius:18px;
-      --shadow:0 10px 30px rgba(0,0,0,.35);
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:"Noto Sans TC", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(1200px 700px at 8% -10%, rgba(255,77,109,.08), transparent 60%),
-        radial-gradient(1200px 800px at 100% 0%, rgba(245,158,11,.08), transparent 55%),
-        var(--bg);
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    }
-    a{color:var(--brand); text-decoration:none}
-    img{max-width:100%; height:auto}
-    .container{max-width:1080px; margin:0 auto; padding:clamp(16px,4vw,24px)}
-
-    /* ========== 導覽列（行動優先） ========== */
-    .nav{position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(10px); background:rgba(11,12,15,.65); border-bottom:1px solid var(--border)}
-    .nav-inner{display:flex; align-items:center; gap:12px; padding:12px clamp(12px,3vw,18px)}
-    .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.6px}
-    .brand img{width:30px; height:30px; border-radius:10px; background:#0f0f11}
-    .brand .devil{display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:50%; background:linear-gradient(135deg, var(--brand-2), #ff8fab); box-shadow:0 0 0 2px rgba(255,77,109,.35) inset}
-    .nav-links{margin-left:auto; display:flex; gap:8px; overflow:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none}
-    .nav-links::-webkit-scrollbar{display:none}
-    .chip{flex:0 0 auto; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.04); border:1px solid var(--border); font-weight:700; font-size:13px}
-    .chip:focus-visible{outline:2px solid var(--brand)}
-
-    /* ========== 公告條：手機預設靜態、桌機才滑動 ========== */
-    .announce{border-bottom:1px dashed #2a3443; background:linear-gradient(90deg,#12151b,#0d1117)}
-    .announce-inner{display:flex; align-items:center; gap:12px; padding:10px clamp(12px,3vw,18px); white-space:nowrap; overflow:hidden}
-    .tag{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.3); color:#fbbf24; font-size:12px}
-    .scroll{display:flex; gap:16px}
-    @media (min-width:900px){
-      .scroll{animation:scrollX 28s linear infinite}
-      @keyframes scrollX{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-    }
-
-    /* ========== Hero ========== */
-    .hero{padding:clamp(18px,4vw,36px) 0 8px}
-    .hero h1{margin:0; font-size:clamp(20px,5vw,40px); line-height:1.15}
-    .hero p{margin:.5rem 0 0; color:var(--muted); font-size:clamp(14px,2.7vw,16px)}
-    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
-    .btn{appearance:none; border:1px solid var(--border); background:linear-gradient(180deg,#1b2230,#141a24); color:var(--text); padding:10px 14px; border-radius:12px; font-weight:800; font-size:14px; box-shadow:var(--shadow)}
-    .btn.primary{border-color:rgba(245,158,11,.5); background:linear-gradient(180deg,#2a1f0b,#1a1306)}
-    .btn.success{border-color:rgba(22,163,74,.5); background:linear-gradient(180deg,#0d2016,#0a1611)}
-
-    /* ========== 區塊卡片與網格 ========== */
-    section{scroll-margin-top:84px}
-    .grid{display:grid; grid-template-columns:1fr; gap:clamp(10px,2vw,16px)}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)); border:1px solid var(--border); border-radius:var(--radius); padding:clamp(14px,3.2vw,20px); box-shadow:var(--shadow)}
-    .card h2{margin:2px 0 10px; font-size:clamp(18px,3.6vw,24px)}
-    .note{color:var(--muted); font-size:13px}
-
-    /* ========== 摺疊（箭頭＋文字說明） ========== */
-    details{border:1px solid var(--border); border-radius:14px; background:#0d131b; padding:0; overflow:hidden}
-    summary{list-style:none; cursor:pointer; padding:12px 14px; display:flex; align-items:center; gap:10px; font-weight:800}
-    summary::-webkit-details-marker{display:none}
-    .arrow{width:18px; height:18px; display:inline-block; border:2px solid var(--text); border-left:0; border-top:0; transform:rotate(45deg); transition:.25s transform ease}
-    details[open] .arrow{transform:rotate(225deg)}
-    .panel{padding:0 14px 14px 44px}
-    .list{margin:0; padding-left:18px}
-    .list li{margin:8px 0; line-height:1.6}
-
-    /* ========== 雙欄在桌機才出現，手機單欄 ========== */
-    .two-col{display:grid; grid-template-columns:1fr; gap:12px}
-    @media(min-width:860px){.two-col{grid-template-columns:1fr 1fr}}
-
-    /* ========== 表格（可滾動） ========== */
-    .table-wrap{overflow:auto}
-    table{width:100%; border-collapse:separate; border-spacing:0 8px; min-width:560px}
-    th,td{padding:10px 12px; text-align:left}
-    thead th{font-size:12px; color:var(--muted); border-bottom:1px solid #253043}
-    tbody tr{background:#0d131b; border:1px solid #253043}
-    tbody td:first-child{border-top-left-radius:10px; border-bottom-left-radius:10px}
-    tbody td:last-child{border-top-right-radius:10px; border-bottom-right-radius:10px}
-
-    footer{padding:36px 0 56px; color:#9aa4b2; font-size:12px}
-
-    /* 列印簡化 */
-    @media print{
-      .nav,.announce,.cta{display:none}
-      body{background:#fff; color:#000}
-      .card{box-shadow:none; background:#fff; border-color:#ccc}
-      a{color:#000; text-decoration:underline}
-    }
+    :root{ --bg:#fff; --text:#111827; --muted:#6b7280; --line:#e5e7eb; --card:#f9fafb; --brand:#111827; --accent:#f59e0b; --radius:16px; }
+    *{box-sizing:border-box} html,body{height:100%} body{margin:0; font-family:"Noto Sans TC",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:var(--bg); color:var(--text);}
+    .container{max-width:980px; margin:0 auto; padding:clamp(16px,4vw,24px)}
+    header.topbar{border-bottom:1px solid var(--line)}
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit}
+    .brand img{width:36px; height:36px} .brand h1{margin:0; font-size:18px; font-weight:800}
+    .actions a.btn{display:inline-block; padding:10px 14px; border-radius:10px; font-weight:800; border:1px solid var(--line); text-decoration:none; color:inherit; margin-left:8px}
+    .btn-primary{background:var(--accent); border-color:#f59e0b; color:#111}
+    .hero{display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between}
+    .toc-wrap{display:grid; grid-template-columns:1fr; gap:14px; margin-top:10px}
+    .toc-block{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:14px}
+    .toc-title{margin:0 0 8px; font-size:15px; color:var(--muted)}
+    .toc-grid{display:flex; flex-wrap:wrap; gap:8px}
+    a.toc-item{padding:8px 10px; border:1px solid var(--line); border-radius:999px; font-size:13px; font-weight:600; text-decoration:none; color:inherit; background:#fff}
+    .section{padding:clamp(16px,3vw,24px) 0; border-bottom:1px solid var(--line)}
+    .section:last-child{border-bottom:0}
+    h2.sec-title{margin:0 0 12px; font-size:clamp(18px,3.5vw,22px); font-weight:800}
+    .doc-section{margin:16px 0; padding:16px; border:1px solid var(--line); border-radius:12px; background:#fff}
+    .doc-h3{margin:0 0 10px; font-size:18px; font-weight:800; border-left:4px solid var(--accent); padding-left:10px}
+    .doc-content p{line-height:1.9; margin:10px 0; font-size:15px}
+    .doc-content ul, .doc-content ol{margin:10px 0 10px 1.25rem; line-height:1.9}
+    .kv{display:flex; gap:6px; align-items:flex-start; margin:6px 0}
+    .kv b{min-width:7em; display:inline-block}
+    footer{padding:24px 0 48px; color:#9ca3af; font-size:12px}
   </style>
 </head>
 <body>
-  <!-- 導覽列 -->
-  <div class="nav">
-    <div class="nav-inner container" style="padding-inline:0">
+  <header class="topbar">
+    <div class="container hero">
       <a class="brand" href="#top" aria-label="返回頂部">
-        <span class="devil" aria-hidden="true"></span>
-        <img src="https://kensufried.com/wp-content/uploads/2025/06/啃酥LOGO-2.png" alt="啃酥小惡魔LOGO" />
-        <span>啃酥加盟 · 營運中心</span>
+        <img src="https://kensufried.com/wp-content/uploads/2025/06/啃酥LOGO-2.png" alt="啃酥LOGO">
+        <h1>啃酥加盟 · 營運中心（完整文字版）</h1>
       </a>
-      <div class="nav-links" role="navigation" aria-label="快速導覽">
-        <a class="chip" href="#manual">營運重點</a>
-        <a class="chip" href="#policy">品項規範</a>
-        <a class="chip" href="#reward">獎懲＆兌換</a>
-        <a class="chip" href="#report">回報入口</a>
-        <a class="chip" href="#faq">FAQ</a>
+      <div class="actions">
+        <a class="btn" href="啃酥菱角酥加盟分店營運管理手冊.pdf" download>下載手冊 PDF</a>
+        <a class="btn" href="品項販售規範&銷售回報.pdf" download>下載品項規範 PDF</a>
+        <a class="btn btn-primary" href="#toc">跳至目錄</a>
       </div>
-    </div>
-  </div>
-
-  <!-- 公告條（手機靜態、桌機滑動） -->
-  <div class="announce">
-    <div class="announce-inner container" style="padding-inline:0">
-      <div class="tag">【總部公告】各分店請務必每月完成例行叫貨；未完成將依合約處理。</div>
-      <div class="scroll">
-        <div class="tag">🔁 每月 3 日提醒、5 日前回報上月營收</div>
-        <div class="tag">🧾 數據異常將啟動審查與改善機制</div>
-        <div class="tag">📦 連準時回報可享原物料自動兌換加碼</div>
-        <!-- 重複一輪無縫滾動 -->
-        <div class="tag">🔁 每月 3 日提醒、5 日前回報上月營收</div>
-        <div class="tag">🧾 數據異常將啟動審查與改善機制</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Hero -->
-  <header class="container hero" id="top">
-    <h1>分店營運手冊 ＋ 品項販售規範（行動版最佳化）</h1>
-    <p>新版重構：手機排版乾淨、所有下拉改為「箭頭＋文字說明」的摺疊面板，並套用品牌小惡魔黑金風格與 LOGO。</p>
-    <div class="cta">
-      <a class="btn primary" href="#report">前往營收回報</a>
-      <a class="btn" href="#manual">查看重點</a>
-      <span class="note">發佈：2025/08/21 · 版本 RWD-1.0</span>
     </div>
   </header>
 
-  <main class="container">
-    <!-- 營運重點 -->
-    <section id="manual" class="grid">
-      <article class="card">
-        <h2>一、營運管理手冊（重點）</h2>
-
-        <details>
-          <summary><span class="arrow"></span> 1) 每月營收回報機制</summary>
-          <div class="panel">
-            <ul class="list">
-              <li>每月 <strong>3 日</strong>總部發提醒，<strong>5 日前</strong>提交上月營收。</li>
-              <li>逾 <strong>5 日</strong>未回報視為「未回報」，<span class="note">6 日後個別通知</span>。</li>
-              <li>回報方式：<strong>Google 表單</strong>；營業天數少於 20 天需說明。</li>
-              <li>夜市本該營業日臨時停擺，需<strong>至少提前 4 小時</strong>向總部報備與說明。</li>
-            </ul>
-            <div class="note">提醒為輔助，準時回報由分店自行負責。</div>
+  <main id="top">
+    <section class="section" id="toc">
+      <div class="container">
+        <h2 class="sec-title">章節目錄</h2>
+        <div class="toc-wrap">
+          <div class="toc-block">
+            <p class="toc-title">《加盟分店營運管理手冊》</p>
+            <div class="toc-grid"><a class="toc-item" href="#manual-01-">前言</a>
+<a class="toc-item" href="#manual-02-">營收回報機制</a>
+<a class="toc-item" href="#manual-03-">獎勵與懲罰機制</a>
+<a class="toc-item" href="#manual-04-">營業天數管理</a>
+<a class="toc-item" href="#manual-05-">月營收報表範例</a>
+<a class="toc-item" href="#manual-06-">提交方式與期限</a>
+<a class="toc-item" href="#manual-07-">營收與進貨不符之管理與懲罰</a>
+<a class="toc-item" href="#manual-08-">最終聲明</a></div>
           </div>
-        </details>
-
-        <details>
-          <summary><span class="arrow"></span> 2) 營業天數管理</summary>
-          <div class="panel">
-            <ul class="list">
-              <li>因整修/政策等導致天數少，但準時回報 → <strong>仍享獎勵</strong>。</li>
-              <li>每月營業日數 <strong>< 50%</strong> → 取消進貨折扣且影響權益。</li>
-              <li>營業天數極少且影響品牌 → 需提交改善計畫；未改善可能<strong>終止加盟</strong>。</li>
-            </ul>
-          </div>
-        </details>
-
-        <details>
-          <summary><span class="arrow"></span> 3) 進貨/營收數據不符之處置</summary>
-          <div class="panel">
-            <ul class="list">
-              <li>每月比對：進貨量 × 平均售價 × 庫存，發現異常將要求 3 日內補件。</li>
-              <li>無心錯誤：需補正數據。</li>
-              <li>惡意造假：<strong>暫停優惠、要求補回少報額、加強監管</strong>；情節重大依法究責並得終止合約。</li>
-            </ul>
-          </div>
-        </details>
-      </article>
-    </section>
-
-    <!-- 品項規範 -->
-    <section id="policy" class="grid">
-      <article class="card">
-        <h2>二、品項販售規範</h2>
-        <details open>
-          <summary><span class="arrow"></span> 必遵守原則</summary>
-          <div class="panel">
-            <ul class="list">
-              <li>忠實販售總部核定之<strong>完整品項</strong>，不得擅自刪減或選擇性販售。</li>
-              <li>若遇庫存/動銷問題，<strong>立即回報總部</strong>以獲得促銷或銷售支援。</li>
-              <li>配合巡店稽查、銷售與進貨數據監控，如實回報。</li>
-            </ul>
-          </div>
-        </details>
-        <details>
-          <summary><span class="arrow"></span> 違規處置（限期改善）</summary>
-          <div class="panel">
-            <ul class="list">
-              <li>取消叫貨優惠</li>
-              <li>提高進貨成本</li>
-              <li>嚴重者：終止合作並追究違約責任</li>
-            </ul>
-            <div class="note">請自我檢視、共同維持一致品牌體驗。</div>
-          </div>
-        </details>
-      </article>
-    </section>
-
-    <!-- 獎懲與原物料兌換 -->
-    <section id="reward" class="grid">
-      <article class="card">
-        <h2>三、獎勵與懲罰（原物料自動兌換）</h2>
-        <div class="two-col">
-          <div>
-            <details open>
-              <summary><span class="arrow"></span> 🎁 獎勵（自動兌換）</summary>
-              <div class="panel">
-                <ul class="list">
-                  <li>準時回報 → <strong>每次進貨滿 10,000 自動換取相對應原物料</strong></li>
-                  <li>連續 6 個月準時 → <strong>原物料自動兌換加碼</strong>（等值加贈）</li>
-                  <li>連續 12 個月準時 → <strong>原物料自動兌換進階方案</strong>（可指定品項，依月公告）</li>
-                </ul>
-                <div class="note">加碼細節以每月公告為準；系統將依訂單金額自動折算並隨貨附上。</div>
-              </div>
-            </details>
-          </div>
-          <div>
-            <details>
-              <summary><span class="arrow"></span> ⚠️ 懲罰與逾期規範</summary>
-              <div class="panel">
-                <ul class="list">
-                  <li>第 1 次未回報 → <strong>取消當次進貨優惠</strong></li>
-                  <li>累計 2 次未回報 → <strong>當次進貨價 +5%</strong></li>
-                  <li>累計 3 次未回報 → <strong>正式警告／可能終止加盟</strong></li>
-                </ul>
-                <details>
-                  <summary><span class="arrow"></span> 逾期（超過 5 號）細則</summary>
-                  <div class="panel">
-                    <ul class="list">
-                      <li>逾期 1–2 日：可收但獎勵減半。</li>
-                      <li>逾期 3–5 日：視為未回報，取消獎勵。</li>
-                      <li>連續 2 個月逾期（≤2 日）：取消當次進貨獎勵。</li>
-                      <li>連續 3 個月逾期（≤2 日）：視為不穩定回報 → <strong>當次進貨價 +5%</strong>。</li>
-                      <li>恢復：連續 3 個月準時回報 → 恢復原折扣（既往獎勵不補發）。</li>
-                    </ul>
-                  </div>
-                </details>
-              </div>
-            </details>
+          <div class="toc-block">
+            <p class="toc-title">《品項販售規範＆銷售回報》</p>
+            <div class="toc-grid"><a class="toc-item" href="#policy-01-">封面/前言(自動)</a>
+<a class="toc-item" href="#policy-02-">完整販售公司規定之產品</a>
+<a class="toc-item" href="#policy-03-">總部將加強管理與監督</a>
+<a class="toc-item" href="#policy-04-">違規處理措施</a>
+<a class="toc-item" href="#policy-05-">結語</a></div>
           </div>
         </div>
-      </article>
+      </div>
     </section>
 
-    <!-- 回報入口 -->
-    <section id="report" class="grid">
-      <article class="card">
-        <h2>四、營收回報入口</h2>
-        <p class="note">請於<strong>每月 5 日前</strong>完成上月營收回報。逾期或未回報將影響優惠與權益。</p>
-        <div class="cta">
-          <a class="btn success" href="https://forms.gle/xKUG81EcHkVvAu7k9" target="_blank" rel="noopener">立即填寫 Google 表單</a>
-          <a class="btn" href="#faq">查看回報常見問題</a>
-        </div>
-        <details style="margin-top:12px">
-          <summary><span class="arrow"></span> 回報時間軸</summary>
-          <div class="panel">
-            <ul class="list">
-              <li><strong>每月 3 日</strong>：官方 LINE 群組發提醒。</li>
-              <li><strong>每月 5 日前</strong>：提交營收（含營業天數、付款通路、庫存與促銷）。</li>
-              <li><strong>逾期與未報</strong>：依制度調整獎勵／視未報次數採取處置。</li>
-            </ul>
-          </div>
-        </details>
-      </article>
+    <section class="section" id="manual">
+      <div class="container">
+        <h2 class="sec-title">《加盟分店營運管理手冊》完整文字</h2>
+        
+<section class="doc-section" id="manual-01-">
+  <h3 class="doc-h3">前言</h3>
+  <div class="doc-content">
+    <p><strong>發佈日期：</strong>2025年03月17日</p>
+<p><strong>適用對象：</strong>所有加盟分店</p>
+  </div>
+</section>
+
+
+<section class="doc-section" id="manual-02-">
+  <h3 class="doc-h3">營收回報機制</h3>
+  <div class="doc-content">
+    <ol>
+<li></li>
+</ol>
+<p>營收回報機制</p>
+<p>為強化品牌管理與支援加盟分店提升業績，總部要求每月準時回報營收數據。</p>
+<ul>
+<li>每月</li>
+</ul>
+<p>3</p>
+<p>號，總部將透過官方</p>
+<p>LINE</p>
+<p>群組發送統一提醒，請各分店留意。</p>
+<ul>
+<li>超過</li>
+</ul>
+<p>5</p>
+<p>號仍未回報，</p>
+<p>6</p>
+<p>號後總部將個別通知尚未提交的分店，並視為「未回報」處理，影響相關權益。</p>
+<ul>
+<li>提醒是輔助機制，分店仍需自行負責準時回報。</li>
+</ul>
+<ul>
+<li>回報規則：</li>
+</ul>
+<ul>
+<li>每月5號前提交上一個月的營收數據。</li>
+</ul>
+<ul>
+<li>回報方式：</li>
+</ul>
+<p>Google</p>
+<p>表單</p>
+<ul>
+<li>若營業天數少於20天，需提供原因（如裝修、政策影響等）。</li>
+</ul>
+<ul>
+<li>夜市本該營業日，若臨時因故無法擺攤，一律需與總部回報申請請假，須至少提前4小時通知，並提供原因（如裝修、政策、天災影響等），若無故缺席者導致品牌形象受損，總部有權要求加盟商額外賠償。</li>
+</ul>
+  </div>
+</section>
+
+
+<section class="doc-section" id="manual-03-">
+  <h3 class="doc-h3">獎勵與懲罰機制</h3>
+  <div class="doc-content">
+    <ol>
+<li></li>
+</ol>
+<p>獎勵與懲罰機制</p>
+<ul>
+<li>獎勵機制</li>
+</ul>
+<ul>
+<li>每月準時回報 → 每次進貨滿</li>
+</ul>
+<p>10000元</p>
+<p>折扣</p>
+<p>200</p>
+<p>元</p>
+<ul>
+<li>連續</li>
+</ul>
+<p>6</p>
+<p>個月準時回報 → FB</p>
+<p>廣告曝光、</p>
+<p>DM</p>
+<p>設計乙次</p>
+<ul>
+<li>連續</li>
+</ul>
+<p>12</p>
+<p>個月準時回報 → 每次進貨享</p>
+<p>95折</p>
+<p>優惠與專屬行銷支援。</p>
+<ul>
+<li>懲罰機制</li>
+</ul>
+<ul>
+<li>第一次未回報 → 取消當次進貨優惠資格。</li>
+</ul>
+<ul>
+<li>累計</li>
+</ul>
+<p>2</p>
+<p>次未回報 → 當次進貨價格提高5%，以補償管理成本。</p>
+<ul>
+<li>累計</li>
+</ul>
+<p>3</p>
+<p>次未回報 → 發出正式警告通知，要求限期改善，屢勸不聽者，終止加盟資格。</p>
+<ul>
+<li>逾期回報（超過</li>
+</ul>
+<p>5</p>
+<p>號後回報）</p>
+<ul>
+<li>當月逾期回報（</li>
+</ul>
+<p>1-2日回報） → 可接受，但獎勵減半</p>
+<ul>
+<li>3-5日後才回報 → 當月視為「未回報」，且取消獎勵</li>
+</ul>
+<ul>
+<li>連續</li>
+</ul>
+<p>2</p>
+<p>個月逾期</p>
+<p>(2</p>
+<p>日內) → 取消當次進貨獎勵</p>
+<ul>
+<li>連續</li>
+</ul>
+<p>3</p>
+<p>個月逾期</p>
+<p>(2</p>
+<p>日內) → 視為「不穩定回報」，當次進貨價格提高5%，以補償管理成本。</p>
+<ul>
+<li>恢復獎勵的方法：</li>
+</ul>
+<p>如連續</p>
+<p>3</p>
+<p>個月內準時回報（每月5日前），可恢復原本的進貨折扣，但過去的獎勵仍不補發。</p>
+<ul>
+<li>間斷性回報</li>
+</ul>
+<p>如第一個月回報；第二個月未回報；第三個月回報，則無法享受連續回報獎勵</p>
+  </div>
+</section>
+
+
+<section class="doc-section" id="manual-04-">
+  <h3 class="doc-h3">營業天數管理</h3>
+  <div class="doc-content">
+    <ol>
+<li></li>
+</ol>
+<p>營業天數管理</p>
+<ul>
+<li>若因整修、政策等因素導致營業天數較少，但仍準時回報 → 依舊享有回報獎勵</li>
+</ul>
+<ul>
+<li>每月營業日數低於50% → 取消進貨折扣與影響加盟權益</li>
+</ul>
+<ul>
+<li>若營業天數極少且影響品牌形象 → 需提交改善計畫，否則可能終止加盟資格</li>
+</ul>
+  </div>
+</section>
+
+
+<section class="doc-section" id="manual-05-">
+  <h3 class="doc-h3">月營收報表範例</h3>
+  <div class="doc-content">
+    <ol>
+<li></li>
+</ol>
+<p>月營收報表範例</p>
+<p>請各分店根據範例回報營業數據</p>
+<ul>
+<li>分店名稱：</li>
+</ul>
+<p>_________</p>
+<ul>
+<li>負責人：</li>
+</ul>
+<p>___________</p>
+<ul>
+<li>回報月份：</li>
+</ul>
+<p>_________</p>
+<ul>
+<li>營業天數：</li>
+</ul>
+<p>_________</p>
+<p>（若低於</p>
+<p>20</p>
+<p>天，請提供原因）</p>
+<ul>
+<li>本月現金營收：</li>
+</ul>
+<p>________</p>
+<ul>
+<li>本月</li>
+</ul>
+<p>LINEPAY</p>
+<p>營收</p>
+<p>(</p>
+<p>不扣手續費)：</p>
+<p>________</p>
+<ul>
+<li>本月外送營收</li>
+</ul>
+<p>(</p>
+<p>不扣手續費)：</p>
+<p>___________</p>
+<ul>
+<li>本月庫存量：</li>
+</ul>
+<p>________</p>
+<ul>
+<li>本月是否有做促銷活動：</li>
+</ul>
+<p>__________</p>
+<ul>
+<li>如有促銷活動請輸入活動內容：</li>
+</ul>
+<p>_________</p>
+<ul>
+<li>營業額回報請扣除總部商品以外之品項</li>
+</ul>
+<ul>
+<li>其他回饋與建議本月遇到的問題（如庫存過剩、某品項滯銷等）：</li>
+</ul>
+<p>________________________________________</p>
+<ul>
+<li>建議總部的改進事項（如促銷方式、廣告需求等）：</li>
+</ul>
+<p>________________________________________</p>
+  </div>
+</section>
+
+
+<section class="doc-section" id="manual-06-">
+  <h3 class="doc-h3">提交方式與期限</h3>
+  <div class="doc-content">
+    <ol>
+<li></li>
+</ol>
+<p>報表提交方式提交期限</p>
+<ul>
+<li>每月</li>
+</ul>
+<p>5</p>
+<p>日前</p>
+<ul>
+<li>提交方式：</li>
+</ul>
+<p>Google</p>
+<p>表單</p>
+<p>&lt;a href=&quot;https://forms.gle/xKUG81EcHkVvAu7k9&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://forms.gle/xKUG81EcHkVvAu7k9&lt;/a&gt;</p>
+  </div>
+</section>
+
+
+<section class="doc-section" id="manual-07-">
+  <h3 class="doc-h3">營收與進貨不符之管理與懲罰</h3>
+  <div class="doc-content">
+    <ol>
+<li></li>
+</ol>
+<p>加盟分店回報營業額與進貨成本不符的懲罰機制</p>
+<p>為確保啃酥菱角酥加盟分店的誠信經營，防止營業額瞞報或進貨數據異常，特訂立以下管理與懲罰措施：</p>
+<p>營業額與進貨數據的審查機制</p>
+<ul>
+<li>總部每月定期審查，會根據進貨數量、平均售價、庫存狀況，比對加盟店回報的營業額。若發現營業額與進貨數據明顯不符，將要求加盟店提供詳細紀錄與解釋。</li>
+</ul>
+<ul>
+<li>數據異常發出警告通知，要求加盟店3天內補交詳細銷售紀錄，並解釋差異原因。若確認為無心錯誤，須主動補回正確數據。</li>
+</ul>
+<ul>
+<li>數據不符（確定惡意造假）暫停進貨優惠。加盟店須在3天內補回少報的營業額，並接受進一步監管（可能增加審核頻率）。若涉及法律問題（如偽造報表、蓄意詐欺），將依法追究責任。總部有權終止加盟合約，視同違約處理，並扣除保證金。</li>
+</ul>
+  </div>
+</section>
+
+
+<section class="doc-section" id="manual-08-">
+  <h3 class="doc-h3">最終聲明</h3>
+  <div class="doc-content">
+    <ol>
+<li></li>
+</ol>
+<p>最終聲明</p>
+<p>所有加盟分店皆需遵守營收回報機制，以確保品牌穩定發展。準時回報的店家將享有更多優惠與行銷支援，而未遵守規範的店家則可能影響加盟權益。</p>
+<p>如有任何疑問，請隨時聯繫總部營運團隊，我們將提供協助。</p>
+<p>啃酥菱角酥營運管理團隊</p>
+<p>2025年03月17日</p>
+  </div>
+</section>
+
+      </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="grid">
-      <article class="card">
-        <h2>常見問答</h2>
-        <details open>
-          <summary><span class="arrow"></span> Q1：本月營業天數少於 20 天怎麼辦？</summary>
-          <div class="panel note">仍需準時回報，並於欄位說明原因（如整修、政策、天災等）。</div>
-        </details>
-        <details>
-          <summary><span class="arrow"></span> Q2：臨時無法出攤要怎麼報備？</summary>
-          <div class="panel note">需<strong>至少提前 4 小時</strong>聯繫總部並說明原因，以免影響品牌形象。</div>
-        </details>
-        <details>
-          <summary><span class="arrow"></span> Q3：連續準時回報 12 個月可獲哪些支持？</summary>
-          <div class="panel note">享<strong>原物料自動兌換進階方案</strong>與行銷支援，詳見每月公告。</div>
-        </details>
-        <details>
-          <summary><span class="arrow"></span> Q4：若進貨與營收數字對不起來？</summary>
-          <div class="panel note">系統每月比對，若異常將要求三日內補件；惡意造假將暫停優惠並依法處理。</div>
-        </details>
-      </article>
-    </section>
+    <section class="section" id="policy">
+      <div class="container">
+        <h2 class="sec-title">《品項販售規範＆銷售回報》完整文字</h2>
+        
+<section class="doc-section" id="policy-01-">
+  <h3 class="doc-h3">封面/前言(自動)</h3>
+  <div class="doc-content">
+    <p>親愛的加盟夥伴們：</p>
+<p>感謝各位長期以來對「啃酥菱角酥」品牌的支持與努力，共同提供高品質的產品與服務，讓品牌持續成長。</p>
+<p>然而，近期總部發現部分加盟分店未按照合約規範販售完整品項，僅挑選特定商品進行銷售，影響品牌形象與市場策略。</p>
+<p>為確保所有消費者皆能在各分店獲得一致的產品與服務，本公司特此通知如下</p>
+<p>即日起，請所有分店務必遵守以下規範</p>
+  </div>
+</section>
 
-    <footer class="container">
-      <div>© 啃酥菱角酥 營運管理團隊 · 內部文件（請勿外流） · 品牌樣式：小惡魔黑金</div>
-    </footer>
+
+<section class="doc-section" id="policy-02-">
+  <h3 class="doc-h3">完整販售公司規定之產品</h3>
+  <div class="doc-content">
+    <ol>
+<li></li>
+</ol>
+<p>完整販售公司規定之產品</p>
+<ul>
+<li>根據合約內容，所有加盟分店必須販售總部核定之完整品項，不得私自刪減或選擇性販售。</li>
+</ul>
+<ul>
+<li>若有庫存或銷售問題，請立即向總部反映，以利提供銷售建議或促銷支援。</li>
+</ul>
+  </div>
+</section>
+
+
+<section class="doc-section" id="policy-03-">
+  <h3 class="doc-h3">總部將加強管理與監督</h3>
+  <div class="doc-content">
+    <ol>
+<li></li>
+</ol>
+<p>總部將加強管理與監督</p>
+<ul>
+<li>巡店與稽查機制：本公司將不定期安排人員進行現場稽查，確保分店依規販售完整品項。</li>
+</ul>
+<ul>
+<li>銷售與進貨數據監控：所有分店須如實回報銷售狀況，總部將依據數據檢視是否有異常情況。</li>
+</ul>
+  </div>
+</section>
+
+
+<section class="doc-section" id="policy-04-">
+  <h3 class="doc-h3">違規處理措施</h3>
+  <div class="doc-content">
+    <ol>
+<li></li>
+</ol>
+<p>違規處理措施</p>
+<ul>
+<li>若分店未於通知後限期內改善，本公司將依合約規範採取以下處置</li>
+</ul>
+<ul>
+<li>取消叫貨優惠</li>
+</ul>
+<ul>
+<li>提高進貨成本</li>
+</ul>
+<ul>
+<li>嚴重違規者，將終止合作並追究違約責任</li>
+</ul>
+<p>我們深信，每一位加盟夥伴都是品牌成功的重要推手，維護品牌形象與消費者信賴是我們共同的責任。請各分店即刻自我檢視，確保遵守規範。如有任何問題，歡迎與總部營運團隊聯繫，我們將竭誠提供協助。</p>
+  </div>
+</section>
+
+
+<section class="doc-section" id="policy-05-">
+  <h3 class="doc-h3">結語</h3>
+  <div class="doc-content">
+    <p>感謝您的配合與努力，讓我們攜手讓「啃酥菱角酥」更茁壯。</p>
+<p>啃酥菱角酥營運管理團隊</p>
+<p>2025年03月17日</p>
+  </div>
+</section>
+
+      </div>
+    </section>
   </main>
 
-  <script>
-    // 可選：打開任一 <details> 時，關閉同層其他（乾淨的行動體驗）
-    document.querySelectorAll('section').forEach(sec=>{
-      sec.addEventListener('toggle', e=>{
-        if(e.target.tagName==='DETAILS' && e.target.open){
-          sec.querySelectorAll('details').forEach(d=>{ if(d!==e.target) d.open=false })
-        }
-      }, true)
-    })
-  </script>
+  <footer>
+    <div class="container">© 啃酥菱角酥 營運管理團隊 · 內部文件（請勿外流）</div>
+  </footer>
 </body>
 </html>
