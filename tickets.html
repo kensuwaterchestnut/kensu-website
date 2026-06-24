@@ -70,7 +70,7 @@
     .topbar{
       position:sticky;
       top:0;
-      z-index:50;
+      z-index:60;
       background:rgba(255,250,243,.95);
       backdrop-filter:blur(12px);
       border-bottom:1px solid var(--line);
@@ -111,10 +111,26 @@
       white-space:nowrap;
     }
 
-    .header-link{
-      color:var(--brown);
-      font-size:13px;
-      white-space:nowrap;
+    .menu-btn{
+      width:42px;
+      height:42px;
+      border:0;
+      background:transparent;
+      display:inline-flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:5px;
+      cursor:pointer;
+      flex:0 0 auto;
+    }
+
+    .menu-btn span{
+      width:22px;
+      height:2px;
+      background:var(--brown);
+      border-radius:999px;
+      display:block;
     }
 
     .top-tabs{
@@ -127,8 +143,7 @@
       border-top:1px solid rgba(88,63,43,.10);
     }
 
-    .tab-btn,
-    .top-tabs a{
+    .tab-btn{
       position:relative;
       padding:5px 0;
       border:0;
@@ -142,8 +157,7 @@
       white-space:nowrap;
     }
 
-    .tab-btn::after,
-    .top-tabs a::after{
+    .tab-btn::after{
       content:"";
       position:absolute;
       left:0;
@@ -160,6 +174,102 @@
 
     .tab-btn.active::after{
       background:var(--brown);
+    }
+
+    .menu-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(47,36,27,.28);
+      z-index:80;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .2s ease;
+    }
+
+    .menu-overlay.open{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .drawer{
+      position:fixed;
+      top:0;
+      right:0;
+      bottom:0;
+      width:min(360px,88vw);
+      z-index:90;
+      background:#fffaf3;
+      border-left:1px solid var(--line);
+      box-shadow:-18px 0 40px rgba(77,54,33,.12);
+      transform:translateX(100%);
+      transition:transform .24s ease;
+      padding:18px 20px 24px;
+      overflow:auto;
+    }
+
+    .drawer.open{
+      transform:translateX(0);
+    }
+
+    .drawer-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding-bottom:14px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .drawer-title{
+      margin:0;
+      font-size:16px;
+      font-weight:500;
+      color:var(--brown);
+    }
+
+    .drawer-close{
+      width:38px;
+      height:38px;
+      border:0;
+      background:transparent;
+      color:var(--brown);
+      font-size:26px;
+      line-height:1;
+      cursor:pointer;
+    }
+
+    .drawer-group{
+      padding:16px 0;
+      border-bottom:1px solid rgba(88,63,43,.12);
+    }
+
+    .drawer-group:last-child{
+      border-bottom:none;
+    }
+
+    .drawer-label{
+      margin:0 0 9px;
+      color:var(--soft);
+      font-size:12px;
+      letter-spacing:.08em;
+    }
+
+    .drawer a{
+      display:block;
+      padding:10px 0;
+      color:#2f241b;
+      font-size:15px;
+      line-height:1.6;
+      border-bottom:1px solid rgba(88,63,43,.08);
+    }
+
+    .drawer a:last-child{
+      border-bottom:none;
+    }
+
+    .drawer a strong{
+      color:var(--brown);
+      font-weight:600;
     }
 
     .hero{
@@ -239,14 +349,6 @@
     .section:first-child{
       padding-top:0;
       border-top:none;
-    }
-
-    .section-en{
-      margin:0 0 6px;
-      color:var(--brown2);
-      font-size:11px;
-      letter-spacing:.2em;
-      font-weight:600;
     }
 
     h2{
@@ -448,10 +550,6 @@
         width:54px;
       }
 
-      .header-link{
-        display:none;
-      }
-
       .hero{
         grid-template-columns:1fr;
         padding-top:22px;
@@ -471,8 +569,7 @@
         padding-top:8px;
       }
 
-      .tab-btn,
-      .top-tabs a{
+      .tab-btn{
         font-size:13px;
       }
 
@@ -537,6 +634,36 @@
 </head>
 
 <body id="top">
+  <script>
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbyhenhBl3J1ccBs4jZbALiZg9cobC8FKw6rWhSDNcDdj8FnNkcsDD8Y96_Z4xICNtMEQA/exec";
+    const REPORT_URL = "https://forms.gle/xKUG81EcHkVvAu7k9";
+  </script>
+
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+  <aside class="drawer" id="drawer" aria-label="功能選單">
+    <div class="drawer-head">
+      <p class="drawer-title">功能選單</p>
+      <button class="drawer-close" type="button" onclick="closeMenu()" aria-label="關閉選單">×</button>
+    </div>
+
+    <div class="drawer-group">
+      <p class="drawer-label">制度頁面</p>
+      <a href="index.html"><strong>回營運中心</strong></a>
+    </div>
+
+    <div class="drawer-group">
+      <p class="drawer-label">系統連結</p>
+      <a href="javascript:void(0)" onclick="openExternal(GAS_URL)">點數回饋系統</a>
+      <a href="javascript:void(0)" onclick="openExternal(REPORT_URL)">營收回報系統</a>
+    </div>
+
+    <div class="drawer-group">
+      <p class="drawer-label">頁面操作</p>
+      <a href="#top" onclick="closeMenu()">回到頂部</a>
+    </div>
+  </aside>
+
   <header class="topbar">
     <div class="top-inner">
       <div class="brand-row">
@@ -544,10 +671,15 @@
           <img src="https://raw.githubusercontent.com/kensuwaterchestnut/ken-su-New-Product-Request/main/%E5%8E%BB%E8%83%8C%E5%9C%96%E9%BB%91%E8%89%B2.png" alt="啃酥 LOGO">
           <p class="brand-title">三色單制度公告</p>
         </a>
-        <a class="header-link" href="index.html">回營運中心</a>
+
+        <button class="menu-btn" type="button" onclick="openMenu()" aria-label="開啟選單">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
 
-      <nav class="top-tabs" aria-label="分頁選單">
+      <nav class="top-tabs" aria-label="本頁分頁">
         <button class="tab-btn active" data-tab="summary" onclick="openTab('summary')">公告摘要</button>
         <button class="tab-btn" data-tab="definition" onclick="openTab('definition')">三色單定義</button>
         <button class="tab-btn" data-tab="period" onclick="openTab('period')">效期與累積</button>
@@ -562,7 +694,7 @@
     <section class="hero">
       <div>
         <h1>三色單制度公告<br><span>黃單・橘單・紅單</span></h1>
-        <p>本制度用於加盟分店營運管理、違規輔導與重大違約處置。</p>
+        <p>本制度用於加盟分店營運管理、違規輔導與重大違約處置。內容採分頁呈現，方便分店快速查閱。</p>
       </div>
       <div class="hero-badge">V1.1 營運管理執行標準</div>
     </section>
@@ -570,7 +702,6 @@
     <section class="shell">
       <div class="panel active" id="panel-summary">
         <div class="section">
-          <p class="section-en">SUMMARY</p>
           <h2>公告摘要</h2>
 
           <div class="meta">
@@ -594,7 +725,6 @@
 
       <div class="panel" id="panel-definition">
         <div class="section">
-          <p class="section-en">DEFINITION</p>
           <h2>三色單定義</h2>
 
           <table aria-label="三色單定義">
@@ -613,12 +743,14 @@
                 <td data-label="分店要做">依期限補正並回傳佐證。</td>
                 <td data-label="可能後果">逾期未改善 → 橘單；最近 90 天滿 3 張 → 轉橘單 1 張。</td>
               </tr>
+
               <tr>
                 <td data-label="單別"><b>橘單（違規）</b></td>
                 <td data-label="用途 / 情況">一般違規，涉及裁罰或停權措施。</td>
                 <td data-label="分店要做">限期改善並提交補正佐證。</td>
                 <td data-label="可能後果">依合約裁罰；逾期未改善 → 紅單；最近 180 天滿 2 張 → 升級 B 級紅單。</td>
               </tr>
+
               <tr>
                 <td data-label="單別" class="danger"><b>紅單（重大）</b></td>
                 <td data-label="用途 / 情況">重大違約或重大違規，包含跑料、食安重大疑慮、侵權、惡意拒稽核等。</td>
@@ -630,9 +762,8 @@
         </div>
       </div>
 
-果" class="danger"><b>A      <div class="panel" id="panel-period">
+      <div class="panel" id="panel-period">
         <div class="section">
-          <p class="section-en">PERIOD</p>
           <h2>效期與累積</h2>
 
           <h3>黃單｜90天</h3>
@@ -658,7 +789,6 @@
 
       <div class="panel" id="panel-runaway">
         <div class="section">
-          <p class="section-en">RUNAWAY MATERIAL</p>
           <h2>跑料＝A級紅單</h2>
 
           <div class="notice-line danger">
@@ -680,7 +810,6 @@
 
       <div class="panel" id="panel-appeal">
         <div class="section">
-          <p class="section-en">APPEAL</p>
           <h2>申覆與說明期限</h2>
 
           <ul>
@@ -694,7 +823,6 @@
 
       <div class="panel" id="panel-legal">
         <div class="section">
-          <p class="section-en">LEGAL</p>
           <h2>權利保留與最終解釋</h2>
 
           <p class="note">
@@ -721,6 +849,23 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    function openMenu(){
+      document.getElementById("drawer").classList.add("open");
+      document.getElementById("menuOverlay").classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMenu(){
+      document.getElementById("drawer").classList.remove("open");
+      document.getElementById("menuOverlay").classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    function openExternal(url){
+      closeMenu();
+      window.open(url, "_blank", "noopener");
+    }
+
     function openTab(id){
       document.querySelectorAll(".tab-btn").forEach(btn => {
         btn.classList.toggle("active", btn.dataset.tab === id);
@@ -742,6 +887,10 @@
     }
 
     window.addEventListener("hashchange", openFromHash);
+    window.addEventListener("keydown", e => {
+      if(e.key === "Escape") closeMenu();
+    });
+
     setTimeout(openFromHash, 1);
   </script>
 </body>
