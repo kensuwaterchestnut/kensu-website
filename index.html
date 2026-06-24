@@ -3,331 +3,703 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>啃酥菱角酥｜分店營運手冊＆品項規範</title>
-  <meta name="description" content="2026 最新制度：回報機制保留；點數回饋採當月進貨達標（≥30,000）才可能發放。新增三色單制度（V1.1｜合約等效版）：跑料＝A級紅單可直接解約；B級紅單12個月內累積2張啟動解約。">
-  <link rel="icon" href="https://raw.githubusercontent.com/kensuwaterchestnut/kensu-website/main/%E5%95%83%E9%85%A5%20Ken-01.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta name="format-detection" content="telephone=no">
+  <title>啃酥菱角酥｜分店營運中心</title>
+  <meta name="description" content="啃酥菱角酥分店營運中心，包含回報制度、點數回饋、指定場域、品項販售規範與三色單制度公告。">
+
+  <link rel="icon" href="https://raw.githubusercontent.com/kensuwaterchestnut/ken-su-New-Product-Request/main/%E5%8E%BB%E8%83%8C%E5%9C%96%E9%BB%91%E8%89%B2.png">
 
   <style>
     :root{
-      --bg:#ffffff;
-      --text:#0f172a;
-      --muted:#64748b;
-      --line:#e2e8f0;
-      --card:#f8fafc;
-      --accent:#f59e0b;
-      --accent-ink:#111827;
-      --danger:#b91c1c;
-      --radius:16px;
-      --max:1000px;
-      --shadow: 0 8px 24px rgba(15,23,42,.06);
+      --bg:#f7f1e7;
+      --paper:#fffaf3;
+      --paper2:#fff6ea;
+      --text:#2f241b;
+      --soft:#786657;
+      --line:rgba(88,63,43,.14);
+      --brown:#6b3f22;
+      --brown2:#8f5b34;
+      --gold:#d6a060;
+      --green:#407834;
+      --red:#b94222;
+      --shadow:0 18px 42px rgba(77,54,33,.08);
+      --shadow2:0 8px 20px rgba(77,54,33,.05);
+      --radius:22px;
+      --max:1080px;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *,
+    *::before,
+    *::after{
+      box-sizing:border-box;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
     body{
       margin:0;
-      font-family:"Noto Sans TC",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
-      background:var(--bg);
+      background:
+        radial-gradient(circle at 10% 6%, rgba(214,160,96,.14), transparent 28%),
+        linear-gradient(180deg,#fbf7f1 0%,#f7f1e7 48%,#fffaf4 100%);
+      font-family:"Noto Sans TC","Microsoft JhengHei",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      line-height:1.75;
+      overflow-x:hidden;
       -webkit-text-size-adjust:100%;
-      padding-bottom: env(safe-area-inset-bottom);
+      padding-bottom:env(safe-area-inset-bottom);
     }
-    img{max-width:100%; height:auto}
-    a{color:inherit; text-decoration:none}
-    a:hover{text-decoration:underline}
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-1;
+      opacity:.14;
+      background-image:radial-gradient(rgba(107,63,34,.18) 1px, transparent 1px);
+      background-size:22px 22px;
+      mask-image:linear-gradient(180deg,#000 0%,transparent 78%);
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    a:hover{
+      text-decoration:none;
+    }
+
+    img{
+      max-width:100%;
+      height:auto;
+    }
 
     .container{
-      max-width:var(--max);
+      width:min(var(--max), calc(100% - 28px));
       margin:0 auto;
-      padding:clamp(14px, 3.8vw, 22px);
     }
 
-    /* Sticky header: mobile-first with scrollable nav */
-    header.topbar{
-      position:sticky; top:0; z-index:50;
-      background:rgba(255,255,255,.92);
-      backdrop-filter:saturate(1.2) blur(10px);
+    /* ===== Topbar ===== */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,250,243,.92);
+      backdrop-filter:blur(12px);
       border-bottom:1px solid var(--line);
     }
-    .hero{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+
+    .top-inner{
+      width:min(var(--max), calc(100% - 28px));
+      margin:0 auto;
+      padding:12px 0;
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:16px;
+      align-items:center;
     }
+
     .brand{
       display:flex;
       align-items:center;
-      gap:10px;
-      min-height:44px;
+      gap:12px;
+      min-width:0;
     }
-    .brand img{width:36px; height:36px; border-radius:10px}
-    .brand h1{margin:0; font-size:16px; font-weight:900; line-height:1.2}
 
-    .actions{
+    .brand-logo{
+      width:66px;
+      height:auto;
+      display:block;
+      flex:0 0 auto;
+    }
+
+    .brand-en{
+      margin:0;
+      color:var(--brown2);
+      font-size:11px;
+      letter-spacing:.22em;
+      font-weight:600;
+    }
+
+    .brand-title{
+      margin:3px 0 0;
+      color:var(--text);
+      font-size:15px;
+      font-weight:500;
+      letter-spacing:.04em;
+      white-space:nowrap;
+    }
+
+    .nav{
       display:flex;
-      gap:10px;
+      justify-content:flex-end;
+      gap:8px;
       overflow-x:auto;
       -webkit-overflow-scrolling:touch;
-      padding-bottom:4px;
+      padding-bottom:2px;
     }
-    .actions::-webkit-scrollbar{height:6px}
-    .actions::-webkit-scrollbar-thumb{background:rgba(100,116,139,.25); border-radius:999px}
 
-    .btn{
+    .nav::-webkit-scrollbar{
+      height:4px;
+    }
+
+    .nav::-webkit-scrollbar-thumb{
+      background:rgba(107,63,34,.18);
+      border-radius:999px;
+    }
+
+    .nav a{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:8px;
-      padding:10px 14px;
-      min-height:44px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      font-weight:900;
-      background:#fff;
+      min-height:38px;
+      padding:8px 13px;
+      border-radius:999px;
+      border:1px solid rgba(107,63,34,.13);
+      background:rgba(255,255,255,.52);
+      color:#3a2b1f;
+      font-size:13px;
+      font-weight:500;
       white-space:nowrap;
       flex:0 0 auto;
-      box-shadow: 0 1px 0 rgba(15,23,42,.02);
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
     }
-    .btn:active{transform:translateY(1px)}
-    .btn-primary{background:var(--accent); color:var(--accent-ink); border-color:#fbbf24}
 
-    section.block{
-      border:1px solid var(--line);
-      border-radius:var(--radius);
+    .nav a:hover{
+      transform:translateY(-1px);
+      box-shadow:0 10px 22px rgba(77,54,33,.08);
       background:#fff;
-      padding:clamp(14px, 3.6vw, 18px);
-      margin:14px 0;
-      box-shadow: var(--shadow);
-    }
-    .block h2{
-      margin:4px 0 10px;
-      font-size:18px;
-      font-weight:900;
-      border-left:5px solid var(--accent);
-      padding-left:10px;
-      line-height:1.3;
-    }
-    .block h3{
-      margin:14px 0 8px;
-      font-size:15.5px;
-      font-weight:900;
-      line-height:1.35;
     }
 
-    .meta{display:flex; gap:8px; flex-wrap:wrap; color:var(--muted); font-size:13px}
-    p{line-height:1.9; margin:10px 0; font-size:16px}
-    ul,ol{margin:10px 0 10px 1.1rem; line-height:1.9; font-size:16px; padding:0}
-    .note{font-size:13px; color:var(--muted); line-height:1.7}
+    .nav .primary{
+      color:#fff;
+      border-color:transparent;
+      background:linear-gradient(135deg,var(--brown),var(--brown2));
+    }
 
-    .badge{
-      display:inline-block;
-      padding:6px 10px;
+    /* ===== Intro ===== */
+    .intro{
+      padding:28px 0 18px;
+      border-bottom:1px solid var(--line);
+      margin-bottom:18px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:20px;
+      align-items:end;
+    }
+
+    .intro-kicker{
+      margin:0 0 8px;
+      color:var(--brown2);
+      font-size:11px;
+      letter-spacing:.22em;
+      font-weight:600;
+    }
+
+    .intro h1{
+      margin:0;
+      color:#2d2118;
+      font-size:clamp(30px,4.4vw,48px);
+      line-height:1.17;
+      font-weight:500;
+      letter-spacing:.04em;
+    }
+
+    .intro h1 span{
+      color:var(--brown);
+    }
+
+    .intro p{
+      margin:12px 0 0;
+      max-width:720px;
+      color:var(--soft);
+      font-size:14.5px;
+      line-height:1.95;
+    }
+
+    .intro-badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:10px 16px;
       border-radius:999px;
-      font-size:12px;
-      font-weight:900;
-      border:1px solid var(--line);
-      background:var(--card);
-      line-height:1.1;
+      border:1px solid rgba(107,63,34,.13);
+      background:rgba(214,160,96,.13);
+      color:var(--brown);
+      font-size:13px;
+      font-weight:500;
+      white-space:nowrap;
     }
-    .banner{
-      background:#fff7ed;
-      border:1px solid #fde68a;
-      border-radius:14px;
-      padding:12px;
-      font-weight:800;
-      color:#a16207;
+
+    /* ===== Common ===== */
+    .block{
+      position:relative;
+      overflow:hidden;
+      background:rgba(255,250,243,.88);
+      border:1px solid rgba(107,63,34,.12);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px;
+      margin:16px 0;
+      backdrop-filter:blur(10px);
+      scroll-margin-top:120px;
+    }
+
+    .block::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      width:100%;
+      height:5px;
+      background:linear-gradient(90deg,var(--brown),var(--gold),var(--brown2));
+    }
+
+    .section-head{
+      margin-bottom:16px;
+      padding-bottom:14px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .section-en{
+      margin:0 0 6px;
+      color:var(--brown2);
+      font-size:11px;
+      letter-spacing:.2em;
+      font-weight:600;
+    }
+
+    .block h2{
+      margin:0;
+      color:#2d2118;
+      font-size:24px;
+      line-height:1.35;
+      font-weight:500;
+      letter-spacing:.03em;
+    }
+
+    .block h3{
+      margin:18px 0 8px;
+      color:#30241b;
+      font-size:16px;
+      line-height:1.45;
+      font-weight:500;
+    }
+
+    p,
+    li{
+      color:var(--text);
+      font-size:15px;
+      line-height:1.9;
+    }
+
+    p{
+      margin:10px 0;
+    }
+
+    ul,
+    ol{
+      margin:10px 0 10px 1.15rem;
+      padding:0;
+    }
+
+    .note{
+      color:var(--soft);
+      font-size:13px;
       line-height:1.8;
     }
-    .banner strong{color:#7c2d12}
 
-    .grid-two{display:grid; grid-template-columns:1fr; gap:12px}
-    @media (min-width: 860px){ .grid-two{grid-template-columns:1fr 1fr} }
+    .danger{
+      color:var(--red);
+      font-weight:600;
+    }
+
+    .ok{
+      color:var(--green);
+      font-weight:600;
+    }
+
+    .meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .badge,
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(107,63,34,.13);
+      background:rgba(255,255,255,.55);
+      color:var(--brown);
+      font-size:12px;
+      font-weight:500;
+      line-height:1.2;
+    }
+
+    .badge.danger{
+      color:var(--red);
+      border-color:rgba(185,66,34,.22);
+      background:rgba(185,66,34,.08);
+    }
+
+    .banner{
+      margin-top:14px;
+      padding:15px;
+      border-radius:18px;
+      background:rgba(214,160,96,.13);
+      border:1px solid rgba(214,160,96,.28);
+      color:#6c491f;
+      font-size:14px;
+      line-height:1.9;
+    }
+
+    .banner strong{
+      color:var(--brown);
+      font-weight:600;
+    }
+
+    .grid-two{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .sub-panel{
+      padding:15px;
+      border-radius:18px;
+      background:rgba(255,255,255,.45);
+      border:1px solid rgba(107,63,34,.10);
+    }
 
     .section-actions{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
       align-items:center;
-      margin-top:10px;
-    }
-    @media (max-width: 520px){
-      .section-actions{flex-direction:column; align-items:stretch}
-      .section-actions .btn{width:100%}
+      margin-top:12px;
     }
 
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:12px 16px;
+      border-radius:14px;
+      border:1px solid rgba(107,63,34,.13);
+      background:rgba(255,255,255,.72);
+      color:#3a2b1f;
+      font-size:14px;
+      font-weight:500;
+      letter-spacing:.03em;
+      cursor:pointer;
+      font-family:inherit;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 10px 22px rgba(77,54,33,.08);
+    }
+
+    .btn-primary{
+      color:#fff;
+      border-color:transparent;
+      background:linear-gradient(135deg,var(--brown),var(--brown2));
+      box-shadow:0 10px 22px rgba(107,63,34,.16);
+    }
+
+    /* ===== Table ===== */
     table{
       width:100%;
       border-collapse:separate;
       border-spacing:0;
       overflow:hidden;
-      border:1px solid var(--line);
-      border-radius:14px;
-      margin:10px 0;
-      background:#fff;
+      border:1px solid rgba(107,63,34,.12);
+      border-radius:18px;
+      margin:12px 0;
+      background:rgba(255,255,255,.55);
     }
-    th,td{
-      padding:12px 12px;
-      border-bottom:1px solid var(--line);
-      font-size:14.5px;
+
+    th,
+    td{
+      padding:13px 13px;
+      border-bottom:1px solid rgba(107,63,34,.10);
+      font-size:14px;
       vertical-align:top;
-      line-height:1.7;
+      line-height:1.75;
     }
+
     th{
-      background:var(--card);
+      color:#2d2118;
+      background:rgba(214,160,96,.10);
       text-align:left;
-      font-weight:900;
+      font-weight:500;
       font-size:13px;
     }
-    tr:last-child td{border-bottom:none}
 
-    /* ✅ Mobile table to cards */
-    @media (max-width: 680px){
-      table{border:none; border-radius:0; background:transparent}
-      thead{display:none}
-      tbody{display:block}
-      tr{
-        display:block;
-        border:1px solid var(--line);
-        border-radius:14px;
-        overflow:hidden;
-        margin:12px 0;
-        background:#fff;
-        box-shadow: var(--shadow);
-      }
-      td{
-        display:flex;
-        gap:10px;
-        align-items:flex-start;
-        padding:12px 12px;
-        border-bottom:1px solid var(--line);
-        font-size:15px;
-      }
-      td:last-child{border-bottom:none}
-      td::before{
-        content: attr(data-label);
-        flex:0 0 7.2em;
-        max-width:7.2em;
-        color:var(--muted);
-        font-weight:900;
-        font-size:12px;
-        line-height:1.35;
-        padding-top:2px;
-      }
+    tr:last-child td{
+      border-bottom:none;
     }
-
-    .pill{
-      display:inline-block;
-      padding:4px 10px;
-      border-radius:999px;
-      background:var(--card);
-      border:1px solid var(--line);
-      font-weight:900;
-      font-size:12px;
-      line-height:1.1;
-    }
-    .danger{color:var(--danger); font-weight:900}
-    .ok{color:#0f766e; font-weight:900}
 
     .backtop{
       position:fixed;
       right:14px;
-      bottom: calc(16px + env(safe-area-inset-bottom));
+      bottom:calc(16px + env(safe-area-inset-bottom));
+      z-index:40;
+      width:44px;
+      height:44px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      width:44px;
-      height:44px;
       border-radius:999px;
-      border:1px solid var(--line);
-      background:#fff;
-      box-shadow: var(--shadow);
-      font-weight:900;
+      border:1px solid rgba(107,63,34,.13);
+      background:rgba(255,250,243,.92);
+      color:var(--brown);
+      box-shadow:var(--shadow2);
+      font-size:18px;
+      font-weight:500;
     }
 
-    @media (min-width: 860px){
-      .hero{flex-direction:row; align-items:center; justify-content:space-between}
-      .actions{overflow:visible; padding-bottom:0}
-      .brand h1{font-size:18px}
+    .footer{
+      margin-top:22px;
+      padding:28px 12px 10px;
+      color:var(--soft);
+      font-size:12px;
+      line-height:1.9;
+      text-align:center;
+    }
+
+    /* ===== Mobile ===== */
+    @media (max-width:860px){
+      .top-inner{
+        width:100%;
+        padding:12px 12px;
+        grid-template-columns:1fr;
+        gap:10px;
+      }
+
+      .nav{
+        justify-content:flex-start;
+      }
+
+      .container{
+        width:100%;
+        padding:0 12px;
+      }
+
+      .intro{
+        grid-template-columns:1fr;
+        gap:14px;
+        padding-top:22px;
+      }
+
+      .intro h1{
+        font-size:32px;
+      }
+
+      .intro-badge{
+        width:100%;
+      }
+
+      .grid-two{
+        grid-template-columns:1fr;
+      }
+
+      .block{
+        padding:18px 15px;
+      }
+
+      .block h2{
+        font-size:22px;
+      }
+
+      .section-actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .section-actions .btn{
+        width:100%;
+      }
+    }
+
+    @media (max-width:680px){
+      table{
+        border:none;
+        border-radius:0;
+        background:transparent;
+      }
+
+      thead{
+        display:none;
+      }
+
+      tbody{
+        display:block;
+      }
+
+      tr{
+        display:block;
+        border:1px solid rgba(107,63,34,.12);
+        border-radius:18px;
+        overflow:hidden;
+        margin:12px 0;
+        background:rgba(255,255,255,.52);
+        box-shadow:var(--shadow2);
+      }
+
+      td{
+        display:grid;
+        grid-template-columns:7.4em 1fr;
+        gap:10px;
+        padding:12px;
+        border-bottom:1px solid rgba(107,63,34,.10);
+        font-size:14px;
+      }
+
+      td:last-child{
+        border-bottom:none;
+      }
+
+      td::before{
+        content:attr(data-label);
+        color:var(--soft);
+        font-size:12px;
+        line-height:1.4;
+      }
+    }
+
+    @media (max-width:520px){
+      .brand-logo{
+        width:58px;
+      }
+
+      .brand-title{
+        font-size:13px;
+      }
+
+      .brand-en{
+        font-size:10px;
+      }
+
+      .nav a{
+        min-height:36px;
+        padding:7px 11px;
+        font-size:12px;
+      }
+
+      p,
+      li{
+        font-size:14px;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *{
+        animation:none !important;
+        transition:none !important;
+        scroll-behavior:auto !important;
+      }
     }
   </style>
 </head>
 
 <body id="top">
   <script>
-    // 兌換系統（GAS）
     const GAS_URL = "https://script.google.com/macros/s/AKfycbwmcWazSQsCpQulmZRtVb9tbB_VvW2gJn_oovsqLnZh-qXx-0Jh8p6cPGe_D4QLKYkBew/exec";
   </script>
 
   <header class="topbar">
-    <div class="container hero">
+    <div class="top-inner">
       <a class="brand" href="#top" aria-label="返回頂部">
-        <img src="https://raw.githubusercontent.com/kensuwaterchestnut/kensu-website/main/%E5%95%83%E9%85%A5%20Ken-01.png" alt="啃酥LOGO">
-        <h1>啃酥總部·營運中心</h1>
+        <img class="brand-logo" src="https://raw.githubusercontent.com/kensuwaterchestnut/ken-su-New-Product-Request/main/%E5%8E%BB%E8%83%8C%E5%9C%96%E9%BB%91%E8%89%B2.png" alt="啃酥 LOGO">
+        <div>
+          <p class="brand-en">KENSU</p>
+          <p class="brand-title">啃酥總部・營運中心</p>
+        </div>
       </a>
 
-      <nav class="actions" aria-label="頁面導覽">
-        <a class="btn" href="#notice">公告</a>
-        <a class="btn" href="#manual">營運手冊</a>
-        <a class="btn" href="#venue">指定場域</a>
-        <a class="btn" href="#policy">品項規範</a>
-        <a class="btn" href="#tickets">三色單摘要</a>
-        <a class="btn" href="tickets.html" target="_blank" rel="noopener">三色單制度（分頁）</a>
-        <a class="btn" href="javascript:void(0)" onclick="window.open(GAS_URL,'_blank','noopener')">回饋兌換系統</a>
+      <nav class="nav" aria-label="頁面導覽">
+        <a href="#notice">公告</a>
+        <a href="#manual">營運手冊</a>
+        <a href="#venue">指定場域</a>
+        <a href="#policy">品項規範</a>
+        <a href="#tickets">三色單摘要</a>
+        <a href="tickets.html" target="_blank" rel="noopener">三色單制度</a>
+        <a class="primary" href="javascript:void(0)" onclick="window.open(GAS_URL,'_blank','noopener')">回饋兌換系統</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
+    <section class="intro">
+      <div>
+        <p class="intro-kicker">FRANCHISE OPERATION CENTER</p>
+        <h1>分店營運中心<br><span>制度公告與管理規範</span></h1>
+        <p>
+          本頁整合分店營收回報、點數回饋、場域出攤、品項販售與三色單制度，
+          請各分店依總部公告與系統紀錄執行。
+        </p>
+      </div>
+      <div class="intro-badge">2026 營運制度版</div>
+    </section>
 
-    <!-- 公告 -->
     <section id="notice" class="block">
-      <h2>【公告】回報制度 ＆ 點數回饋（請全體分店務必遵守）</h2>
-
-      <div class="meta">
-        <span class="badge">生效：2026/01/01</span>
-        <span class="badge">版本：V2026.01</span>
-        <span class="badge">總部保留調整權</span>
+      <div class="section-head">
+        <p class="section-en">NOTICE</p>
+        <h2>回報制度 ＆ 點數回饋</h2>
+        <div class="meta">
+          <span class="badge">生效：2026/01/01</span>
+          <span class="badge">版本：V2026.01</span>
+          <span class="badge">總部保留調整權</span>
+        </div>
       </div>
 
-      <div class="banner" role="note" style="margin-top:10px">
-        <strong>重要聲明</strong>：營收回報、完整販售與配合稽核皆屬合約義務；點數回饋為總部「加值支援」，非權利、不可索取、不可折現、不可抵扣貨款。<br>
-        <strong>預算條款</strong>：點數回饋屬總部行銷/營運支援預算之一，總部得依月份預算上限調整實際發放與可兌換品項；分店不得以此主張任何給付、補發、展延或損害賠償。<br>
-        總部並得依預算/庫存/策略調整、暫停或等值替代。
+      <div class="banner">
+        <strong>重要聲明：</strong>營收回報、完整販售與配合稽核皆屬合約義務；點數回饋為總部加值支援，非權利、不可索取、不可折現、不可抵扣貨款。<br>
+        <strong>預算條款：</strong>點數回饋屬總部行銷 / 營運支援預算之一，總部得依月份預算上限調整實際發放與可兌換品項；分店不得以此主張任何給付、補發、展延或損害賠償。
       </div>
 
       <div class="grid-two">
-        <div>
+        <div class="sub-panel">
           <h3>一、每月營收回報</h3>
           <ul>
-            <li>每月 <b>3 日</b>：官方 LINE 群組提醒（提醒僅為輔助）。</li>
-            <li><b>5 日前</b>：完成「上月營收回報」。</li>
-            <li><b>6 日起</b>：仍未回報者視為未回報，總部得依合約採取必要措施（包含取消支援、調整供貨條件、加強稽核等）。</li>
+            <li>每月 <b>3 日</b>：官方 LINE 群組提醒，提醒僅為輔助。</li>
+            <li><b>5 日前</b>：完成上月營收回報。</li>
+            <li><b>6 日起</b>：仍未回報者視為未回報，總部得依合約採取必要措施。</li>
           </ul>
-          <p class="note">回報仍需如實且可稽核；必要時須提供 POS/收款/外送後台等佐證。</p>
+          <p class="note">回報仍需如實且可稽核；必要時須提供 POS、收款、外送後台等佐證。</p>
         </div>
 
-        <div>
+        <div class="sub-panel">
           <h3>二、點數回饋</h3>
           <ul>
-            <li><span class="pill">門檻</span>：<b class="ok">當月進貨 ≥ 30,000</b> 才具回饋評估資格（以總部出貨/請款系統為準）。</li>
-            <li><span class="pill">回報前提</span>：需於 <b>5 日前</b>完成回報；<b class="danger">逾期回報者當期不發放回饋</b>（但仍須回報供管理用）。</li>
-            <li><span class="pill">點數換算</span>：<b>1 點 = NT$1（總部供應價）</b>，僅能於兌換系統換取公告品項，不可折現或抵扣貨款。</li>
-            <li><span class="pill">上限</span>：<b class="danger">每店每月兌換上限 ≤ 500 點</b>（=總部供應價 NT$500）。</li>
+            <li><span class="pill">門檻</span> <b class="ok">當月進貨 ≥ 30,000</b> 才具回饋評估資格。</li>
+            <li><span class="pill">回報前提</span> 需於 <b>5 日前</b> 完成回報；逾期回報者當期不發放回饋。</li>
+            <li><span class="pill">點數換算</span> <b>1 點 = NT$1</b>，僅能於兌換系統換取公告品項。</li>
+            <li><span class="pill">上限</span> <b class="danger">每店每月兌換上限 ≤ 500 點</b>。</li>
           </ul>
         </div>
       </div>
 
-      <h3>三、點數發放標準（依進貨金額區間）</h3>
-      <p class="note">※ 點數由總部依當月進貨金額與合規狀態核算；每月固定結算發放，並顯示於系統。總部得依預算上限調整，並以公告/系統為準。</p>
+      <h3>三、點數發放標準</h3>
+      <p class="note">點數由總部依當月進貨金額與合規狀態核算；每月固定結算發放，並顯示於系統。</p>
 
-      <!-- ✅ 加上 data-label，手機會自動卡片化 -->
       <table aria-label="點數發放區間表">
         <thead>
           <tr>
-            <th>當月進貨金額（總部系統）</th>
+            <th>當月進貨金額</th>
             <th>當期核發點數</th>
             <th>總部控成本設計</th>
           </tr>
@@ -336,22 +708,22 @@
           <tr>
             <td data-label="當月進貨金額"><b>未滿 30,000</b></td>
             <td data-label="核發點數"><b>0 點</b></td>
-            <td data-label="控成本設計">未達門檻不發放</td>
+            <td data-label="控成本設計">未達門檻不發放。</td>
           </tr>
           <tr>
             <td data-label="當月進貨金額"><b>30,000 – 49,999</b></td>
             <td data-label="核發點數"><b>100 點</b></td>
-            <td data-label="控成本設計">低成本回饋，主要用於小額品項兌換</td>
+            <td data-label="控成本設計">低成本回饋，主要用於小額品項兌換。</td>
           </tr>
           <tr>
             <td data-label="當月進貨金額"><b>50,000 – 79,999</b></td>
             <td data-label="核發點數"><b>200 點</b></td>
-            <td data-label="控成本設計">中低回饋</td>
+            <td data-label="控成本設計">中低回饋。</td>
           </tr>
           <tr>
             <td data-label="當月進貨金額"><b>80,000 – 119,999</b></td>
             <td data-label="核發點數"><b>300 點</b></td>
-            <td data-label="控成本設計">中回饋</td>
+            <td data-label="控成本設計">中回饋。</td>
           </tr>
           <tr>
             <td data-label="當月進貨金額"><b>120,000 以上</b></td>
@@ -362,53 +734,52 @@
       </table>
 
       <div class="grid-two">
-        <div>
-          <h3>四、點數結算/發放日</h3>
+        <div class="sub-panel">
+          <h3>四、點數結算 / 發放日</h3>
           <ul>
-            <li><b>每月 10 日</b>：總部統一結算並更新點數（顯示於系統）。</li>
-            <li>如遇欠款、重大違規、數據異常未釐清，總部得暫停/凍結當期點數。</li>
+            <li><b>每月 10 日</b>：總部統一結算並更新點數。</li>
+            <li>如遇欠款、重大違規、數據異常未釐清，總部得暫停或凍結當期點數。</li>
           </ul>
         </div>
 
-        <div>
+        <div class="sub-panel">
           <h3>五、點數有效期</h3>
           <ul>
-            <li><b>有效期限</b>：點數自「發放當月」起算，於「<b>次次月月底</b>」到期失效。<br>例：1 月發放 → 3/31 到期；2 月發放 → 4/30 到期。</li>
-            <li><b>到期不補發、不展延</b>（若因總部缺貨/系統因素導致無法兌換，將由總部另行公告延長）。</li>
-            <li><b>扣點順序</b>：兌換時採「先到期先扣點」。</li>
+            <li>點數自發放當月起算，於<b>次次月月底</b>到期失效。</li>
+            <li>到期不補發、不展延；兌換時採先到期先扣點。</li>
           </ul>
         </div>
       </div>
 
-      <h3>六、點數查詢與兌換（系統）</h3>
+      <h3>六、點數查詢與兌換</h3>
       <ul>
-        <li>點數查詢：貴分店輸入「<b>總部登記信箱</b>」即可查詢點數餘額。</li>
+        <li>點數查詢：輸入總部登記信箱即可查詢點數餘額。</li>
         <li>兌換商品：兌換品項、可兌換數量與狀態以系統公告為準。</li>
-        <li>兌換方式：於系統查看兌換條件並與總部LINE訊息申請；總部審核後扣除點數安排出貨/併入下次叫貨出貨（以系統公告為準）。</li>
+        <li>兌換方式：於系統查看兌換條件並與總部 LINE 訊息申請。</li>
       </ul>
 
       <div class="section-actions">
         <a class="btn btn-primary" href="javascript:void(0)" onclick="window.open(GAS_URL,'_blank','noopener')">開啟回饋兌換系統</a>
-        <span class="note">（輸入總部登記信箱查詢/兌換）</span>
+        <span class="note">輸入總部登記信箱查詢 / 兌換。</span>
       </div>
-
-      <p class="note">若需變更登記信箱，請先通知總部更新資料，避免查詢不到或資料不符。</p>
     </section>
 
-    <!-- 手冊 -->
     <section id="manual" class="block">
-      <h2>加盟分店營運管理手冊）</h2>
-      <div class="meta">
-        <span class="badge">生效：2026/01/01</span>
-        <span class="badge">版本：V2026.01</span>
-        <span class="badge">適用：所有加盟分店</span>
+      <div class="section-head">
+        <p class="section-en">OPERATION MANUAL</p>
+        <h2>加盟分店營運管理手冊</h2>
+        <div class="meta">
+          <span class="badge">生效：2026/01/01</span>
+          <span class="badge">版本：V2026.01</span>
+          <span class="badge">適用：所有加盟分店</span>
+        </div>
       </div>
 
       <h3>0. 總則</h3>
       <ul>
         <li>營收回報、完整販售與配合稽核皆屬合約義務，不得作為交換獎勵之條件。</li>
-        <li>點數回饋屬總部加值支援：非權利、不可索取、不可折現、不可抵扣貨款；總部得依預算/庫存/策略調整、暫停或等值替代。</li>
-        <li><b>預算條款</b>：點數回饋屬總部行銷/營運支援預算之一，總部得依月份預算上限調整實際發放與可兌換品項；分店不得以此主張任何給付、補發、展延或損害賠償。</li>
+        <li>點數回饋屬總部加值支援：非權利、不可索取、不可折現、不可抵扣貨款。</li>
+        <li>總部得依預算、庫存與策略調整、暫停或等值替代。</li>
       </ul>
 
       <h3>1. 營收回報機制</h3>
@@ -418,74 +789,76 @@
         <li>6 日起仍未回報：視為未回報，總部得依合約採取必要措施。</li>
       </ul>
 
-      <h3>2. 回報規則（可稽核）</h3>
+      <h3>2. 回報規則</h3>
       <ul>
         <li>營業天數少於 20 天需註記原因。</li>
         <li>營業額回報須扣除總部商品以外之品項。</li>
-        <li>總部得不定期要求 POS/收款/外送後台等佐證。</li>
+        <li>總部得不定期要求 POS、收款、外送後台等佐證。</li>
       </ul>
 
-      <h3>3. 點數回饋（進貨達標＋回報合規）</h3>
+      <h3>3. 點數回饋</h3>
       <ul>
-        <li><b>門檻</b>：當月進貨 ≥ 30,000 才具回饋評估資格（以總部系統為準）。</li>
-        <li><b>回報前提</b>：5 日前完成回報；逾期回報者當期不發放回饋（但仍須回報）。</li>
-        <li><b>點數換算</b>：1 點 = NT$1（總部供應價），僅能兌換公告品項，不可折現或抵扣貨款。</li>
-        <li><b>核發方式</b>：依「進貨金額區間」核發（見公告表），並於每月 10 日更新於系統。</li>
-        <li><b>上限</b>：每店每月兌換上限 ≤ 500 點。</li>
-        <li><b>有效期</b>：發放當月起算至次次月月底到期；到期不補發、不展延；兌換採先到期先扣點。</li>
+        <li>當月進貨 ≥ 30,000 才具回饋評估資格。</li>
+        <li>5 日前完成回報；逾期回報者當期不發放回饋，但仍須回報。</li>
+        <li>1 點 = NT$1，僅能兌換公告品項，不可折現或抵扣貨款。</li>
+        <li>每店每月兌換上限 ≤ 500 點。</li>
+        <li>發放當月起算至次次月月底到期；到期不補發、不展延。</li>
       </ul>
 
-      <h3>4. 回饋兌換清單與申請（以系統為準）</h3>
-      <p>兌換品項、庫存狀態、兌換規則與申請流程，請以「回饋兌換系統」頁面公告為準。</p>
+      <h3>4. 回饋兌換清單與申請</h3>
+      <p>兌換品項、庫存狀態、兌換規則與申請流程，請以回饋兌換系統頁面公告為準。</p>
 
       <div class="section-actions">
         <a class="btn btn-primary" href="javascript:void(0)" onclick="window.open(GAS_URL,'_blank','noopener')">開啟回饋兌換系統</a>
-        <span class="note">（輸入總部登記信箱查詢/兌換）</span>
       </div>
 
       <h3>5. 提交方式</h3>
       <ul>
         <li>提交期限：每月 5 日前。</li>
-        <li>提交方式：<a href="https://forms.gle/xKUG81EcHkVvAu7k9" target="_blank" rel="noopener">Google 表單</a>。</li>
+        <li>提交方式：<a class="ok" href="https://forms.gle/xKUG81EcHkVvAu7k9" target="_blank" rel="noopener">Google 表單</a>。</li>
       </ul>
     </section>
 
-    <!-- 指定場域 -->
     <section id="venue" class="block">
-      <h2>指定場域出攤規範</h2>
+      <div class="section-head">
+        <p class="section-en">VENUE RULES</p>
+        <h2>指定場域出攤規範</h2>
+      </div>
 
-      <div class="banner" role="note">
+      <div class="banner">
         <strong>核心原則：</strong>場域採「選擇日＝保留日」。若場域有多個營業日，分店僅選擇部分出攤，其餘營業日由總部安排其他分店進駐，以避免卡位造成空窗。
       </div>
 
-      <h3>1) 規範說明</h3>
+      <h3>1. 規範說明</h3>
       <ul>
-        <li>指定場域係指：營業日多、攤位資源稀缺、品牌曝光重要之夜市/場域。</li>
-        <li>分店取得的是「出攤日保留權」，非永久獨占、非保證。</li>
+        <li>指定場域係指營業日多、攤位資源稀缺、品牌曝光重要之夜市或場域。</li>
+        <li>分店取得的是出攤日保留權，非永久獨占、非保證。</li>
       </ul>
 
-      <h3>2) 出攤日規則</h3>
+      <h3>2. 出攤日規則</h3>
       <ul>
-        <li>若某場域每週/每月有 <b>4 個營業日</b>，分店僅選擇出攤 <b>2 天</b>：該分店僅保留其所選 2 天，其餘 2 天由總部安排其他分店進駐。</li>
+        <li>若某場域每週 / 每月有 4 個營業日，分店僅選擇出攤 2 天，該分店僅保留其所選 2 天，其餘 2 天由總部安排其他分店進駐。</li>
       </ul>
 
-      <h3>3) 請假規則與替補安排</h3>
+      <h3>3. 請假規則與替補安排</h3>
       <ul>
-        <li><b>天災/突發</b>：最晚需提前 <b>4 小時</b>向總部請假並說明。</li>
-        <li><b>可預期之行程</b>：需提前 <b>3–7 天</b>請假，供總部安排其他分店替補。</li>
-        <li>未依規請假或臨時缺席者，總部得立即安排替補，並列入營運管理紀錄；情節重大者得取消其場域保留權/優先權或依合約處理。</li>
+        <li>天災 / 突發：最晚需提前 <b>4 小時</b>向總部請假並說明。</li>
+        <li>可預期之行程：需提前 <b>3–7 天</b>請假，供總部安排其他分店替補。</li>
+        <li>未依規請假或臨時缺席者，總部得立即安排替補，並列入營運管理紀錄。</li>
       </ul>
     </section>
 
-    <!-- 品項規範 -->
     <section id="policy" class="block">
-      <h2>品項販售規範＆銷售回報</h2>
+      <div class="section-head">
+        <p class="section-en">PRODUCT POLICY</p>
+        <h2>品項販售規範＆銷售回報</h2>
+      </div>
 
       <h3>1. 必須完整販售公司核定之產品</h3>
       <ul>
         <li>所有加盟分店必須販售總部核定之完整品項，不得私自刪減或選擇性販售。</li>
-        <li>若有庫存或銷售問題，請立即向總部反映，以利提供建議或支援。</li>
-        <li class="danger"><b>未完整販售者</b>：視為違規，當期回饋不予發放，並納入稽核名單。</li>
+        <li>若有庫存或銷售問題，請立即向總部反映。</li>
+        <li class="danger">未完整販售者，視為違規，當期回饋不予發放，並納入稽核名單。</li>
       </ul>
 
       <h3>2. 總部將加強管理與監督</h3>
@@ -494,70 +867,84 @@
         <li>依據回報與進貨數據監控異常。</li>
       </ul>
 
-      <h3>3. 違規處理措施（依三色單制度 V1.1）</h3>
+      <h3>3. 違規處理措施</h3>
       <ul>
-        <li>一般缺失：黃單（輔導）限期改善；90天內累積滿3張可轉橘單。</li>
-        <li>一般違規：橘單（違規）並依合約裁罰（首次違規 NT$5,000）；180天內橘單累積滿2張升級B級紅單。</li>
-        <li class="danger"><b>跑料</b>：A級紅單（重大違約）→可依合約直接解約；並得立即停權/停供貨。</li>
-        <li><b>B級紅單</b>：最近12個月內累積滿2張 → 依合約啟動解約程序。</li>
+        <li>一般缺失：黃單輔導限期改善；90 天內累積滿 3 張可轉橘單。</li>
+        <li>一般違規：橘單並依合約裁罰；180 天內橘單累積滿 2 張升級 B 級紅單。</li>
+        <li class="danger">跑料：A 級紅單重大違約，可依合約直接解約，並得立即停權 / 停供貨。</li>
+        <li>B 級紅單：最近 12 個月內累積滿 2 張，依合約啟動解約程序。</li>
       </ul>
 
       <div class="section-actions">
-        <a class="btn btn-primary" href="tickets.html" target="_blank" rel="noopener">查看完整三色單制度（分頁）</a>
+        <a class="btn btn-primary" href="tickets.html" target="_blank" rel="noopener">查看完整三色單制度</a>
       </div>
     </section>
 
-    <!-- ✅ 三色單摘要 -->
     <section id="tickets" class="block">
-      <h2>【公告】加盟分店三色單制度（黃單／橘單／紅單｜V1.1）</h2>
-
-      <div class="meta">
-        <span class="badge">合約等效版</span>
-        <span class="badge danger" style="border-color:rgba(185,28,28,.25); background:rgba(185,28,28,.06)">跑料＝A級紅單（直接解約）</span>
-        <span class="badge">B級紅單：12個月內累積2張 → 解約</span>
-        <span class="badge">黃/橘單有累積門檻</span>
+      <div class="section-head">
+        <p class="section-en">THREE-COLOR TICKET</p>
+        <h2>加盟分店三色單制度摘要</h2>
+        <div class="meta">
+          <span class="badge">合約等效版</span>
+          <span class="badge danger">跑料＝A級紅單</span>
+          <span class="badge">B級紅單12個月內2張 → 解約</span>
+        </div>
       </div>
 
-      <div class="banner" role="note" style="margin-top:10px">
-        <strong>核心：</strong>跑料屬重大違約（A級紅單），總部得立即停權/停供貨並依加盟合約啟動解約。<br>
-        其他重大違規列為B級紅單，<strong>最近12個月內累積滿2張</strong>即依合約啟動解約程序（等效於一年最多一次紅單機會）。
+      <div class="banner">
+        <strong>核心：</strong>跑料屬重大違約 A 級紅單，總部得立即停權 / 停供貨並依加盟合約啟動解約。其他重大違規列為 B 級紅單，最近 12 個月內累積滿 2 張即依合約啟動解約程序。
       </div>
 
-      <h3>效期與累積（重點）</h3>
+      <h3>效期與累積</h3>
       <ul>
-        <li><b>黃單（90天）</b>：最近90天滿3張 → 轉橘單1張；同一事項90天內再犯得直接橘單。</li>
-        <li><b>橘單（180天）</b>：最近180天滿2張 → 升級B級紅單；滿2張得啟動解約審查或加重處置（依合約）。</li>
-        <li><b>紅單（12個月）</b>：效期12個月；<b>B級紅單</b>最近12個月滿2張 → 解約。</li>
+        <li><b>黃單 90 天：</b>最近 90 天滿 3 張 → 轉橘單 1 張；同一事項 90 天內再犯得直接橘單。</li>
+        <li><b>橘單 180 天：</b>最近 180 天滿 2 張 → 升級 B 級紅單。</li>
+        <li><b>紅單 12 個月：</b>B 級紅單最近 12 個月滿 2 張 → 解約。</li>
       </ul>
 
       <div class="section-actions">
         <a class="btn btn-primary" href="tickets.html" target="_blank" rel="noopener">開啟完整公告分頁</a>
       </div>
 
-      <p class="note">※ 以上為執行標準；如與加盟合約牴觸，以加盟合約為準。總部保留修訂與最終解釋權。</p>
+      <p class="note">如與加盟合約牴觸，以加盟合約為準。總部保留修訂與最終解釋權。</p>
     </section>
 
-    <!-- 權利保留 -->
-    <section class="block" id="legal">
-      <h2>權利保留與最終解釋</h2>
+    <section id="legal" class="block">
+      <div class="section-head">
+        <p class="section-en">LEGAL</p>
+        <h2>權利保留與最終解釋</h2>
+      </div>
+
       <p class="note">
         本頁所載制度、回饋點數與兌換內容，屬總部營運管理與行銷支援措施之一，非加盟商之權利或合約給付。總部得不經另行通知，依品牌策略、預算上限、庫存與營運需要，調整、暫停或終止本制度及其兌換品項、點數核發方式與相關規則；並以總部公告與系統顯示為準。<br>
         <b>總部保有修改權利與最終解釋權。</b>
       </p>
     </section>
 
+    <footer class="footer">
+      酥味香企業社 ｜ 統一編號：93428964<br>
+      地址：台中市石岡區石岡街61號<br>
+      本頁面內容由總部保有修改權利<br>
+      © <span id="year"></span> 啃酥菱角酥 All Rights Reserved.
+    </footer>
   </main>
 
   <a class="backtop" href="#top" aria-label="回到頂部">↑</a>
 
   <script>
-    function _offset(){
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function offsetHash(){
       if(location.hash){
-        window.scrollTo({top: window.scrollY - 72});
+        window.scrollTo({
+          top: window.scrollY - 86,
+          behavior:"instant"
+        });
       }
     }
-    window.addEventListener('hashchange', _offset);
-    setTimeout(_offset, 1);
+
+    window.addEventListener("hashchange", offsetHash);
+    setTimeout(offsetHash, 1);
   </script>
 </body>
 </html>
