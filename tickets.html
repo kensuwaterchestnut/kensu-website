@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="format-detection" content="telephone=no">
   <title>啃酥菱角酥｜三色單制度公告</title>
-  <meta name="description" content="啃酥菱角酥三色單制度公告，包含黃單、橘單、紅單定義、效期累積與跑料 A 級紅單處置規範。">
-
+  <meta name="description" content="啃酥菱角酥三色單制度公告，包含黃單、橘單、紅單定義、效期累積、跑料 A 級紅單與申覆說明。">
   <link rel="icon" href="https://raw.githubusercontent.com/kensuwaterchestnut/ken-su-New-Product-Request/main/%E5%8E%BB%E8%83%8C%E5%9C%96%E9%BB%91%E8%89%B2.png">
 
   <style>
@@ -15,35 +14,23 @@
       --paper:#fffaf3;
       --text:#2f241b;
       --soft:#786657;
-      --line:rgba(88,63,43,.14);
+      --line:rgba(88,63,43,.16);
       --brown:#6b3f22;
       --brown2:#8f5b34;
       --gold:#d6a060;
       --red:#b94222;
-      --green:#407834;
       --shadow:0 18px 42px rgba(77,54,33,.08);
-      --shadow2:0 8px 20px rgba(77,54,33,.05);
-      --radius:22px;
       --max:1000px;
     }
 
-    *,
-    *::before,
-    *::after{
-      box-sizing:border-box;
-      -webkit-tap-highlight-color:transparent;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       color:var(--text);
       background:
-        radial-gradient(circle at 10% 6%, rgba(214,160,96,.14), transparent 28%),
-        linear-gradient(180deg,#fbf7f1 0%,#f7f1e7 48%,#fffaf4 100%);
+        radial-gradient(circle at 10% 6%, rgba(214,160,96,.13), transparent 28%),
+        linear-gradient(180deg,#fbf7f1 0%,#f7f1e7 50%,#fffaf4 100%);
       font-family:"Noto Sans TC","Microsoft JhengHei",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
       line-height:1.75;
       overflow-x:hidden;
@@ -57,33 +44,26 @@
       inset:0;
       pointer-events:none;
       z-index:-1;
-      opacity:.14;
+      opacity:.11;
       background-image:radial-gradient(rgba(107,63,34,.18) 1px, transparent 1px);
       background-size:22px 22px;
-      mask-image:linear-gradient(180deg,#000 0%,transparent 78%);
+      mask-image:linear-gradient(180deg,#000 0%,transparent 76%);
     }
 
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
-
-    .container{
-      width:min(var(--max), calc(100% - 28px));
-      margin:0 auto;
-    }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(var(--max),calc(100% - 28px));margin:0 auto}
 
     .topbar{
       position:sticky;
       top:0;
       z-index:50;
-      background:rgba(255,250,243,.92);
+      background:rgba(255,250,243,.94);
       backdrop-filter:blur(12px);
       border-bottom:1px solid var(--line);
     }
 
     .top-inner{
-      width:min(var(--max), calc(100% - 28px));
+      width:min(var(--max),calc(100% - 28px));
       margin:0 auto;
       padding:12px 0;
       display:grid;
@@ -99,8 +79,8 @@
       min-width:0;
     }
 
-    .brand-logo{
-      width:66px;
+    .brand img{
+      width:64px;
       height:auto;
       display:block;
       flex:0 0 auto;
@@ -116,7 +96,6 @@
 
     .brand-title{
       margin:3px 0 0;
-      color:var(--text);
       font-size:15px;
       font-weight:500;
       letter-spacing:.04em;
@@ -140,19 +119,12 @@
       padding:8px 13px;
       border-radius:999px;
       border:1px solid rgba(107,63,34,.13);
-      background:rgba(255,255,255,.52);
+      background:rgba(255,255,255,.55);
       color:#3a2b1f;
       font-size:13px;
       font-weight:500;
       white-space:nowrap;
       flex:0 0 auto;
-      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
-    }
-
-    .nav a:hover{
-      transform:translateY(-1px);
-      box-shadow:0 10px 22px rgba(77,54,33,.08);
-      background:#fff;
     }
 
     .nav .primary{
@@ -161,17 +133,16 @@
       background:linear-gradient(135deg,var(--brown),var(--brown2));
     }
 
-    .intro{
+    .hero{
       padding:28px 0 18px;
       border-bottom:1px solid var(--line);
-      margin-bottom:18px;
       display:grid;
       grid-template-columns:1fr auto;
       gap:20px;
       align-items:end;
     }
 
-    .intro-kicker{
+    .hero-kicker{
       margin:0 0 8px;
       color:var(--brown2);
       font-size:11px;
@@ -179,7 +150,7 @@
       font-weight:600;
     }
 
-    .intro h1{
+    .hero h1{
       margin:0;
       color:#2d2118;
       font-size:clamp(30px,4.4vw,48px);
@@ -188,11 +159,9 @@
       letter-spacing:.04em;
     }
 
-    .intro h1 span{
-      color:var(--brown);
-    }
+    .hero h1 span{color:var(--brown)}
 
-    .intro p{
+    .hero p{
       margin:12px 0 0;
       max-width:720px;
       color:var(--soft);
@@ -200,7 +169,7 @@
       line-height:1.95;
     }
 
-    .intro-badge{
+    .hero-badge{
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -215,33 +184,67 @@
       white-space:nowrap;
     }
 
-    .block{
-      position:relative;
-      overflow:hidden;
+    .tabs{
+      position:sticky;
+      top:69px;
+      z-index:40;
+      margin:0 -2px;
+      padding:12px 0;
+      background:linear-gradient(180deg,rgba(247,241,231,.96),rgba(247,241,231,.88));
+      backdrop-filter:blur(10px);
+      overflow-x:auto;
+      display:flex;
+      gap:8px;
+      -webkit-overflow-scrolling:touch;
+      border-bottom:1px solid rgba(88,63,43,.08);
+    }
+
+    .tab-btn{
+      flex:0 0 auto;
+      min-height:40px;
+      padding:9px 14px;
+      border-radius:999px;
+      border:1px solid rgba(107,63,34,.14);
+      background:rgba(255,255,255,.55);
+      color:#3a2b1f;
+      font-family:inherit;
+      font-size:13px;
+      font-weight:500;
+      cursor:pointer;
+    }
+
+    .tab-btn.active{
+      color:#fff;
+      background:linear-gradient(135deg,var(--brown),var(--brown2));
+      border-color:transparent;
+    }
+
+    .shell{
+      margin:16px 0 0;
       background:rgba(255,250,243,.88);
       border:1px solid rgba(107,63,34,.12);
-      border-radius:var(--radius);
+      border-radius:22px;
       box-shadow:var(--shadow);
-      padding:22px;
-      margin:16px 0;
+      padding:24px;
       backdrop-filter:blur(10px);
-      scroll-margin-top:120px;
     }
 
-    .block::before{
-      content:"";
-      position:absolute;
-      left:0;
-      top:0;
-      width:100%;
-      height:5px;
-      background:linear-gradient(90deg,var(--brown),var(--gold),var(--brown2));
+    .panel{display:none}
+    .panel.active{display:block;animation:fadeIn .22s ease}
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(5px)}
+      to{opacity:1;transform:translateY(0)}
     }
 
-    .section-head{
-      margin-bottom:16px;
-      padding-bottom:14px;
-      border-bottom:1px solid var(--line);
+    .section{
+      padding:18px 0;
+      border-top:1px solid var(--line);
+    }
+
+    .section:first-child{
+      padding-top:0;
+      border-top:none;
     }
 
     .section-en{
@@ -253,9 +256,9 @@
     }
 
     h2{
-      margin:0;
+      margin:0 0 10px;
       color:#2d2118;
-      font-size:24px;
+      font-size:25px;
       line-height:1.35;
       font-weight:500;
       letter-spacing:.03em;
@@ -269,17 +272,14 @@
       font-weight:500;
     }
 
-    p,
-    li{
+    p,li{
       color:var(--text);
       font-size:15px;
       line-height:1.9;
     }
 
-    ul{
-      margin:10px 0 10px 1.15rem;
-      padding:0;
-    }
+    p{margin:10px 0}
+    ul{margin:10px 0 10px 1.15rem;padding:0}
 
     .note{
       color:var(--soft);
@@ -292,11 +292,30 @@
       font-weight:600;
     }
 
+    .notice-line{
+      margin:14px 0;
+      padding:14px 0;
+      border-top:1px solid rgba(88,63,43,.14);
+      border-bottom:1px solid rgba(88,63,43,.14);
+      color:#6c491f;
+      font-size:14px;
+      line-height:1.9;
+    }
+
+    .notice-line.danger{
+      color:#7c2715;
+    }
+
+    .notice-line strong{
+      color:var(--brown);
+      font-weight:600;
+    }
+
     .meta{
       display:flex;
       gap:8px;
       flex-wrap:wrap;
-      margin-top:10px;
+      margin:10px 0 0;
     }
 
     .badge{
@@ -319,44 +338,37 @@
       background:rgba(185,66,34,.08);
     }
 
-    .banner{
-      margin-top:14px;
-      padding:15px;
-      border-radius:18px;
-      background:rgba(214,160,96,.13);
-      border:1px solid rgba(214,160,96,.28);
-      color:#6c491f;
-      font-size:14px;
-      line-height:1.9;
-    }
-
-    .banner strong{
-      color:var(--brown);
-      font-weight:600;
-    }
-
-    .danger-banner{
-      background:rgba(185,66,34,.08);
-      border-color:rgba(185,66,34,.22);
-      color:#7c2715;
-    }
-
-    .rule-grid{
+    .summary-list{
+      margin:14px 0 0;
+      padding:0;
+      list-style:none;
       display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      margin-top:14px;
+      gap:10px;
     }
 
-    .rule-card{
-      padding:15px;
-      border-radius:18px;
-      background:rgba(255,255,255,.45);
-      border:1px solid rgba(107,63,34,.10);
+    .summary-list li{
+      margin:0;
+      padding:12px 0;
+      border-bottom:1px solid rgba(88,63,43,.12);
+      display:grid;
+      grid-template-columns:32px 1fr;
+      gap:10px;
+      align-items:start;
     }
 
-    .rule-card h3{
-      margin-top:0;
+    .summary-list li:last-child{border-bottom:none}
+
+    .no{
+      width:28px;
+      height:28px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      background:rgba(214,160,96,.16);
+      color:var(--brown);
+      font-size:12px;
+      font-weight:600;
     }
 
     table{
@@ -365,13 +377,12 @@
       border-spacing:0;
       overflow:hidden;
       border:1px solid rgba(107,63,34,.12);
-      border-radius:18px;
+      border-radius:16px;
       margin:12px 0;
-      background:rgba(255,255,255,.55);
+      background:rgba(255,255,255,.42);
     }
 
-    th,
-    td{
+    th,td{
       padding:13px 13px;
       border-bottom:1px solid rgba(107,63,34,.10);
       font-size:14px;
@@ -387,9 +398,7 @@
       font-size:13px;
     }
 
-    tr:last-child td{
-      border-bottom:none;
-    }
+    tr:last-child td{border-bottom:none}
 
     .footer{
       margin-top:22px;
@@ -404,7 +413,7 @@
       position:fixed;
       right:14px;
       bottom:calc(16px + env(safe-area-inset-bottom));
-      z-index:40;
+      z-index:45;
       width:44px;
       height:44px;
       display:inline-flex;
@@ -412,93 +421,61 @@
       justify-content:center;
       border-radius:999px;
       border:1px solid rgba(107,63,34,.13);
-      background:rgba(255,250,243,.92);
+      background:rgba(255,250,243,.94);
       color:var(--brown);
-      box-shadow:var(--shadow2);
+      box-shadow:0 8px 20px rgba(77,54,33,.08);
       font-size:18px;
-      font-weight:500;
     }
 
-    @media (max-width:860px){
+    @media(max-width:860px){
       .top-inner{
         width:100%;
-        padding:12px 12px;
+        padding:12px;
         grid-template-columns:1fr;
         gap:10px;
       }
 
-      .nav{
-        justify-content:flex-start;
-      }
-
-      .container{
+      .wrap{
         width:100%;
         padding:0 12px;
       }
 
-      .intro{
+      .nav{justify-content:flex-start}
+      .hero{
         grid-template-columns:1fr;
-        gap:14px;
         padding-top:22px;
       }
 
-      .intro h1{
-        font-size:32px;
-      }
-
-      .intro-badge{
-        width:100%;
-      }
-
-      .block{
-        padding:18px 15px;
-      }
-
-      h2{
-        font-size:22px;
-      }
-
-      .rule-grid{
-        grid-template-columns:1fr;
-      }
+      .hero h1{font-size:32px}
+      .hero-badge{width:100%}
+      .tabs{top:113px}
+      .shell{padding:18px 15px}
+      h2{font-size:22px}
     }
 
-    @media (max-width:680px){
+    @media(max-width:680px){
       table{
         border:none;
         border-radius:0;
         background:transparent;
       }
 
-      thead{
-        display:none;
-      }
-
-      tbody{
-        display:block;
-      }
+      thead{display:none}
+      tbody{display:block}
 
       tr{
         display:block;
-        border:1px solid rgba(107,63,34,.12);
-        border-radius:18px;
-        overflow:hidden;
-        margin:12px 0;
-        background:rgba(255,255,255,.52);
-        box-shadow:var(--shadow2);
+        border-top:1px solid rgba(107,63,34,.16);
+        padding:10px 0;
       }
 
       td{
         display:grid;
-        grid-template-columns:7.4em 1fr;
+        grid-template-columns:7.2em 1fr;
         gap:10px;
-        padding:12px;
-        border-bottom:1px solid rgba(107,63,34,.10);
-        font-size:14px;
-      }
-
-      td:last-child{
+        padding:8px 0;
         border-bottom:none;
+        font-size:14px;
       }
 
       td::before{
@@ -509,37 +486,13 @@
       }
     }
 
-    @media (max-width:520px){
-      .brand-logo{
-        width:58px;
-      }
-
-      .brand-title{
-        font-size:13px;
-      }
-
-      .brand-en{
-        font-size:10px;
-      }
-
-      .nav a{
-        min-height:36px;
-        padding:7px 11px;
-        font-size:12px;
-      }
-
-      p,
-      li{
-        font-size:14px;
-      }
-    }
-
-    @media (prefers-reduced-motion:reduce){
-      *{
-        animation:none !important;
-        transition:none !important;
-        scroll-behavior:auto !important;
-      }
+    @media(max-width:520px){
+      .brand img{width:56px}
+      .brand-title{font-size:13px}
+      .brand-en{font-size:10px}
+      .tabs{top:108px}
+      .tab-btn{font-size:12px;padding:8px 11px}
+      p,li{font-size:14px}
     }
   </style>
 </head>
@@ -548,7 +501,7 @@
   <header class="topbar">
     <div class="top-inner">
       <a class="brand" href="index.html" aria-label="回營運中心">
-        <img class="brand-logo" src="https://raw.githubusercontent.com/kensuwaterchestnut/ken-su-New-Product-Request/main/%E5%8E%BB%E8%83%8C%E5%9C%96%E9%BB%91%E8%89%B2.png" alt="啃酥 LOGO">
+        <img src="https://raw.githubusercontent.com/kensuwaterchestnut/ken-su-New-Product-Request/main/%E5%8E%BB%E8%83%8C%E5%9C%96%E9%BB%91%E8%89%B2.png" alt="啃酥 LOGO">
         <div>
           <p class="brand-en">KENSU</p>
           <p class="brand-title">三色單制度公告</p>
@@ -557,134 +510,173 @@
 
       <nav class="nav" aria-label="頁面操作">
         <a href="index.html">回營運中心</a>
-        <a class="primary" href="#definition">三色單定義</a>
-        <a href="#period">效期與累積</a>
-        <a href="#runaway">跑料 A 級紅單</a>
+        <a class="primary" href="javascript:void(0)" onclick="openTab('summary')">摘要</a>
+        <a href="javascript:void(0)" onclick="openTab('definition')">定義</a>
+        <a href="javascript:void(0)" onclick="openTab('period')">效期</a>
+        <a href="javascript:void(0)" onclick="openTab('runaway')">跑料</a>
+        <a href="javascript:void(0)" onclick="openTab('appeal')">申覆</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section class="intro">
+  <main class="wrap">
+    <section class="hero">
       <div>
-        <p class="intro-kicker">THREE-COLOR TICKET SYSTEM</p>
+        <p class="hero-kicker">THREE-COLOR TICKET SYSTEM</p>
         <h1>三色單制度公告<br><span>黃單・橘單・紅單</span></h1>
-        <p>
-          本制度用於加盟分店營運管理、違規輔導與重大違約處置。
-          跑料屬 A 級紅單，總部得立即停權、停供貨並依合約啟動終止合作程序。
-        </p>
+        <p>本制度用於加盟分店營運管理、違規輔導與重大違約處置。內容改為分頁呈現，方便分店快速查閱。</p>
       </div>
-      <div class="intro-badge">V1.1 合約等效版</div>
+      <div class="hero-badge">V1.1 營運管理執行標準</div>
     </section>
 
-    <section class="block" id="summary">
-      <div class="section-head">
-        <p class="section-en">SUMMARY</p>
-        <h2>公告摘要</h2>
-        <div class="meta">
-          <span class="badge danger">跑料＝A級紅單</span>
-          <span class="badge">B級紅單12個月內2張 → 解約</span>
-          <span class="badge">黃單90天／橘單180天累積</span>
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" data-tab="summary" onclick="openTab('summary')">公告摘要</button>
+      <button class="tab-btn" data-tab="definition" onclick="openTab('definition')">三色單定義</button>
+      <button class="tab-btn" data-tab="period" onclick="openTab('period')">效期與累積</button>
+      <button class="tab-btn" data-tab="runaway" onclick="openTab('runaway')">跑料 A 級紅單</button>
+      <button class="tab-btn" data-tab="appeal" onclick="openTab('appeal')">申覆與說明</button>
+      <button class="tab-btn" data-tab="legal" onclick="openTab('legal')">權利保留</button>
+    </div>
+
+    <section class="shell">
+      <div class="panel active" id="panel-summary">
+        <div class="section">
+          <p class="section-en">SUMMARY</p>
+          <h2>公告摘要</h2>
+
+          <div class="meta">
+            <span class="badge danger">跑料＝A級紅單</span>
+            <span class="badge">B級紅單12個月內2張 → 啟動終止程序</span>
+            <span class="badge">黃單90天／橘單180天累積</span>
+          </div>
+
+          <ul class="summary-list">
+            <li><span class="no">01</span><span>黃單用於輔導改善，最近 90 天累積滿 3 張，可轉橘單 1 張。</span></li>
+            <li><span class="no">02</span><span>橘單用於一般違規，最近 180 天累積滿 2 張，可升級 B 級紅單。</span></li>
+            <li><span class="no">03</span><span>紅單用於重大違約或重大違規；B 級紅單最近 12 個月內滿 2 張，依合約啟動終止合作程序。</span></li>
+            <li><span class="no">04</span><span><b>跑料屬 A 級紅單</b>，總部得立即停權、停供貨，並依加盟合約啟動終止合作程序。</span></li>
+          </ul>
+
+          <div class="notice-line danger">
+            <strong>重要：</strong>A 級紅單，包含跑料等重大違約，總部得立即停權、停供貨，並依加盟合約啟動終止合作程序。
+          </div>
         </div>
       </div>
 
-      <div class="banner danger-banner">
-        <strong>重要：</strong>A 級紅單，包含跑料等重大違約，總部得立即停權、停供貨，並依加盟合約啟動終止合作程序。<br>
-        B 級紅單採累積制：最近 12 個月內累積滿 2 張，即依合約啟動解約程序。
-      </div>
-    </section>
+      <div class="panel" id="panel-definition">
+        <div class="section">
+          <p class="section-en">DEFINITION</p>
+          <h2>三色單定義</h2>
 
-    <section class="block" id="definition">
-      <div class="section-head">
-        <p class="section-en">DEFINITION</p>
-        <h2>三色單定義</h2>
-      </div>
-
-      <table aria-label="三色單定義">
-        <thead>
-          <tr>
-            <th>單別</th>
-            <th>用途 / 適用情況</th>
-            <th>分店需做什麼</th>
-            <th>可能後果</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-label="單別"><b>黃單（輔導）</b></td>
-            <td data-label="用途 / 情況">輕微缺失，可快速改善，不裁罰。</td>
-            <td data-label="分店要做">依期限補正並回傳佐證。</td>
-            <td data-label="可能後果">逾期未改善 → 橘單；最近 90 天滿 3 張 → 轉橘單 1 張。</td>
-          </tr>
-
-          <tr>
-            <td data-label="單別"><b>橘單（違規）</b></td>
-            <td data-label="用途 / 情況">一般違規，涉及裁罰或停權措施。</td>
-            <td data-label="分店要做">限期改善並提交補正佐證。</td>
-            <td data-label="可能後果">依合約裁罰；逾期未改善 → 紅單；最近 180 天滿 2 張 → 升級 B 級紅單。</td>
-          </tr>
-
-          <tr>
-            <td data-label="單別" class="danger"><b>紅單（重大）</b></td>
-            <td data-label="用途 / 情況">重大違約或重大違規，包含跑料、食安重大疑慮、侵權、惡意拒稽核等。</td>
-            <td data-label="分店要做">立即配合停權 / 停供貨處置並限期說明。</td>
-            <td data-label="可能後果" class="danger"><b>A 級紅單 → 可直接解約；B 級紅單 12 個月內滿 2 張 → 解約。</b></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="block" id="period">
-      <div class="section-head">
-        <p class="section-en">PERIOD</p>
-        <h2>效期與累積</h2>
+          <table aria-label="三色單定義">
+            <thead>
+              <tr>
+                <th>單別</th>
+                <th>用途 / 適用情況</th>
+                <th>分店需做什麼</th>
+                <th>可能後果</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="單別"><b>黃單（輔導）</b></td>
+                <td data-label="用途 / 情況">輕微缺失，可快速改善，不裁罰。</td>
+                <td data-label="分店要做">依期限補正並回傳佐證。</td>
+                <td data-label="可能後果">逾期未改善 → 橘單；最近 90 天滿 3 張 → 轉橘單 1 張。</td>
+              </tr>
+              <tr>
+                <td data-label="單別"><b>橘單（違規）</b></td>
+                <td data-label="用途 / 情況">一般違規，涉及裁罰或停權措施。</td>
+                <td data-label="分店要做">限期改善並提交補正佐證。</td>
+                <td data-label="可能後果">依合約裁罰；逾期未改善 → 紅單；最近 180 天滿 2 張 → 升級 B 級紅單。</td>
+              </tr>
+              <tr>
+                <td data-label="單別" class="danger"><b>紅單（重大）</b></td>
+                <td data-label="用途 / 情況">重大違約或重大違規，包含跑料、食安重大疑慮、侵權、惡意拒稽核等。</td>
+                <td data-label="分店要做">立即配合停權 / 停供貨處置並限期說明。</td>
+                <td data-label="可能後果" class="danger"><b>A 級紅單：得啟動終止合作程序；B 級紅單 12 個月內滿 2 張：依合約啟動終止合作程序。</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <div class="rule-grid">
-        <div class="rule-card">
+      <div class="panel" id="panel-period">
+        <div class="section">
+          <p class="section-en">PERIOD</p>
+          <h2>效期與累積</h2>
+
           <h3>黃單｜90天</h3>
-          <p>最近 90 天滿 3 張 → 轉橘單 1 張；同一事項 90 天內再犯得直接橘單。</p>
-        </div>
+          <ul>
+            <li>最近 90 天滿 3 張 → 轉橘單 1 張。</li>
+            <li>同一事項 90 天內再犯，得直接橘單。</li>
+          </ul>
 
-        <div class="rule-card">
           <h3>橘單｜180天</h3>
-          <p>最近 180 天滿 2 張 → 升級 B 級紅單；滿 3 張得啟動解約審查或加重處置。</p>
-        </div>
+          <ul>
+            <li>最近 180 天滿 2 張 → 升級 B 級紅單。</li>
+            <li>滿 3 張得啟動解約審查或加重處置，依合約與總部紀錄為準。</li>
+          </ul>
 
-        <div class="rule-card">
           <h3>紅單｜12個月</h3>
-          <p>效期 12 個月；B 級紅單最近 12 個月滿 2 張 → 解約。</p>
+          <ul>
+            <li>紅單效期 12 個月。</li>
+            <li>B 級紅單最近 12 個月滿 2 張 → 依合約啟動終止合作程序。</li>
+            <li>續約後未滿 12 個月之紅單承接計入；滿 12 個月自然失效。</li>
+          </ul>
         </div>
       </div>
 
-      <ul>
-        <li><b>續約承接：</b>續約後未滿 12 個月之紅單承接計入；滿 12 個月自然失效。</li>
-        <li><b>累積判定：</b>以總部紀錄、公告與合約規定為準。</li>
-      </ul>
-    </section>
+      <div class="panel" id="panel-runaway">
+        <div class="section">
+          <p class="section-en">RUNAWAY MATERIAL</p>
+          <h2>跑料＝A級紅單</h2>
 
-    <section class="block" id="runaway">
-      <div class="section-head">
-        <p class="section-en">RUNAWAY MATERIAL</p>
-        <h2>跑料＝A級紅單</h2>
+          <div class="notice-line danger">
+            <strong>跑料屬重大違約：</strong>查證成立，或高度可疑且拒絕配合稽核者，總部得直接開立 A 級紅單 1 張，並立即停權 / 停供貨，依合約啟動終止合作程序。
+          </div>
+
+          <h3>跑料定義</h3>
+          <ul>
+            <li>指定原物料、半成品、配方轉售、供第三方、跨店挪用、對外交換或任何非授權用途。</li>
+            <li>以非指定原物料替代指定料，仍對外宣稱為指定品質或指定原料。</li>
+            <li>混用非指定料冒用指定料，或拒不配合稽核查證，包含不提供必要佐證。</li>
+          </ul>
+
+          <p class="danger">
+            <b>處置：</b>查證成立或高度可疑且拒稽核 → 開立 A 級紅單 1 張，總部得立即停權 / 停供貨，並依合約啟動終止合作程序。
+          </p>
+        </div>
       </div>
 
-      <div class="banner danger-banner">
-        <strong>跑料屬重大違約：</strong>查證成立，或高度可疑且拒絕配合稽核者，總部得直接開立 A 級紅單 1 張，並立即停權 / 停供貨，依合約啟動解約程序。
+      <div class="panel" id="panel-appeal">
+        <div class="section">
+          <p class="section-en">APPEAL</p>
+          <h2>申覆與說明期限</h2>
+
+          <ul>
+            <li>分店收到黃單、橘單或紅單通知後，如對內容有異議，應於通知日起 <b>3 日內</b>向總部提出書面說明及佐證資料。</li>
+            <li>書面說明應包含事件說明、改善方式、佐證照片、收據、對話紀錄或其他可供查核資料。</li>
+            <li>逾期未提出者，視為同意總部紀錄與處置。</li>
+            <li>總部得依佐證內容重新審核、維持原處置、調整處置等級或要求限期補正。</li>
+          </ul>
+        </div>
       </div>
 
-      <h3>跑料定義</h3>
-      <ul>
-        <li>指定原物料、半成品、配方轉售、供第三方、跨店挪用、對外交換或任何非授權用途。</li>
-        <li>以非指定原物料替代指定料，仍對外宣稱為指定品質或指定原料。</li>
-        <li>混用非指定料冒用指定料，或拒不配合稽核查證，包含不提供必要佐證。</li>
-      </ul>
+      <div class="panel" id="panel-legal">
+        <div class="section">
+          <p class="section-en">LEGAL</p>
+          <h2>權利保留與最終解釋</h2>
 
-      <p class="danger">
-        <b>處置：</b>查證成立或高度可疑且拒稽核 → 直接開立 A 級紅單 1 張，得立即停權 / 停供貨，並依合約啟動解約程序。
-      </p>
+          <p class="note">
+            本制度為加盟合約之營運管理執行標準與總部公告規範；如與加盟合約牴觸，以加盟合約約定為準。
+          </p>
 
-      <p class="note">如與加盟合約牴觸，以加盟合約為準。總部保留修訂與最終解釋權。</p>
+          <p class="note">
+            總部得依品牌策略、稽核結果、營運狀況與合約約定，調整、補充或修訂本制度。總部保留修訂與最終解釋權。
+          </p>
+        </div>
+      </div>
     </section>
 
     <footer class="footer">
@@ -700,17 +692,33 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    function offsetHash(){
-      if(location.hash){
-        window.scrollTo({
-          top: window.scrollY - 86,
-          behavior:"instant"
-        });
+    function openTab(id){
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.tab === id);
+      });
+
+      document.querySelectorAll(".panel").forEach(panel => {
+        panel.classList.toggle("active", panel.id === "panel-" + id);
+      });
+
+      history.replaceState(null, "", "#" + id);
+
+      const tabs = document.getElementById("tabs");
+      if(tabs){
+        const top = tabs.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({top: top, behavior: "smooth"});
       }
     }
 
-    window.addEventListener("hashchange", offsetHash);
-    setTimeout(offsetHash, 1);
+    function openFromHash(){
+      const id = (location.hash || "").replace("#", "");
+      if(id && document.getElementById("panel-" + id)){
+        openTab(id);
+      }
+    }
+
+    window.addEventListener("hashchange", openFromHash);
+    setTimeout(openFromHash, 1);
   </script>
 </body>
 </html>
