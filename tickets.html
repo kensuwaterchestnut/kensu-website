@@ -25,6 +25,7 @@
 
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
     html{scroll-behavior:smooth}
+
     body{
       margin:0;
       color:var(--text);
@@ -50,8 +51,15 @@
       mask-image:linear-gradient(180deg,#000 0%,transparent 76%);
     }
 
-    a{color:inherit;text-decoration:none}
-    .wrap{width:min(var(--max),calc(100% - 28px));margin:0 auto}
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .wrap{
+      width:min(var(--max),calc(100% - 28px));
+      margin:0 auto;
+    }
 
     .topbar{
       position:sticky;
@@ -66,10 +74,10 @@
       width:min(var(--max),calc(100% - 28px));
       margin:0 auto;
       padding:12px 0;
-      display:grid;
-      grid-template-columns:auto 1fr;
-      gap:16px;
+      display:flex;
       align-items:center;
+      justify-content:space-between;
+      gap:16px;
     }
 
     .brand{
@@ -102,35 +110,10 @@
       white-space:nowrap;
     }
 
-    .nav{
-      display:flex;
-      justify-content:flex-end;
-      gap:8px;
-      overflow-x:auto;
-      -webkit-overflow-scrolling:touch;
-      padding-bottom:2px;
-    }
-
-    .nav a{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:38px;
-      padding:8px 13px;
-      border-radius:999px;
-      border:1px solid rgba(107,63,34,.13);
-      background:rgba(255,255,255,.55);
-      color:#3a2b1f;
+    .top-link{
+      color:var(--soft);
       font-size:13px;
-      font-weight:500;
       white-space:nowrap;
-      flex:0 0 auto;
-    }
-
-    .nav .primary{
-      color:#fff;
-      border-color:transparent;
-      background:linear-gradient(135deg,var(--brown),var(--brown2));
     }
 
     .hero{
@@ -159,7 +142,9 @@
       letter-spacing:.04em;
     }
 
-    .hero h1 span{color:var(--brown)}
+    .hero h1 span{
+      color:var(--brown);
+    }
 
     .hero p{
       margin:12px 0 0;
@@ -185,38 +170,46 @@
     }
 
     .tabs{
-      position:sticky;
-      top:69px;
-      z-index:40;
-      margin:0 -2px;
-      padding:12px 0;
-      background:linear-gradient(180deg,rgba(247,241,231,.96),rgba(247,241,231,.88));
-      backdrop-filter:blur(10px);
-      overflow-x:auto;
       display:flex;
-      gap:8px;
-      -webkit-overflow-scrolling:touch;
-      border-bottom:1px solid rgba(88,63,43,.08);
+      flex-wrap:wrap;
+      align-items:center;
+      gap:0 18px;
+      padding:16px 0 12px;
+      border-bottom:1px solid rgba(88,63,43,.12);
+      margin-bottom:16px;
     }
 
     .tab-btn{
-      flex:0 0 auto;
-      min-height:40px;
-      padding:9px 14px;
-      border-radius:999px;
-      border:1px solid rgba(107,63,34,.14);
-      background:rgba(255,255,255,.55);
-      color:#3a2b1f;
+      position:relative;
+      padding:7px 0;
+      border:0;
+      background:transparent;
+      color:var(--soft);
       font-family:inherit;
-      font-size:13px;
+      font-size:14px;
       font-weight:500;
       cursor:pointer;
+      line-height:1.7;
+    }
+
+    .tab-btn::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:2px;
+      height:2px;
+      background:transparent;
+      border-radius:999px;
+      transition:.2s ease;
     }
 
     .tab-btn.active{
-      color:#fff;
-      background:linear-gradient(135deg,var(--brown),var(--brown2));
-      border-color:transparent;
+      color:var(--brown);
+    }
+
+    .tab-btn.active::after{
+      background:var(--brown);
     }
 
     .shell{
@@ -229,8 +222,14 @@
       backdrop-filter:blur(10px);
     }
 
-    .panel{display:none}
-    .panel.active{display:block;animation:fadeIn .22s ease}
+    .panel{
+      display:none;
+    }
+
+    .panel.active{
+      display:block;
+      animation:fadeIn .22s ease;
+    }
 
     @keyframes fadeIn{
       from{opacity:0;transform:translateY(5px)}
@@ -272,14 +271,21 @@
       font-weight:500;
     }
 
-    p,li{
+    p,
+    li{
       color:var(--text);
       font-size:15px;
       line-height:1.9;
     }
 
-    p{margin:10px 0}
-    ul{margin:10px 0 10px 1.15rem;padding:0}
+    p{
+      margin:10px 0;
+    }
+
+    ul{
+      margin:10px 0 10px 1.15rem;
+      padding:0;
+    }
 
     .note{
       color:var(--soft);
@@ -356,7 +362,9 @@
       align-items:start;
     }
 
-    .summary-list li:last-child{border-bottom:none}
+    .summary-list li:last-child{
+      border-bottom:none;
+    }
 
     .no{
       width:28px;
@@ -382,7 +390,8 @@
       background:rgba(255,255,255,.42);
     }
 
-    th,td{
+    th,
+    td{
       padding:13px 13px;
       border-bottom:1px solid rgba(107,63,34,.10);
       font-size:14px;
@@ -398,7 +407,9 @@
       font-size:13px;
     }
 
-    tr:last-child td{border-bottom:none}
+    tr:last-child td{
+      border-bottom:none;
+    }
 
     .footer{
       margin-top:22px;
@@ -431,8 +442,6 @@
       .top-inner{
         width:100%;
         padding:12px;
-        grid-template-columns:1fr;
-        gap:10px;
       }
 
       .wrap{
@@ -440,17 +449,30 @@
         padding:0 12px;
       }
 
-      .nav{justify-content:flex-start}
+      .top-link{
+        display:none;
+      }
+
       .hero{
         grid-template-columns:1fr;
         padding-top:22px;
       }
 
-      .hero h1{font-size:32px}
-      .hero-badge{width:100%}
-      .tabs{top:113px}
-      .shell{padding:18px 15px}
-      h2{font-size:22px}
+      .hero h1{
+        font-size:32px;
+      }
+
+      .hero-badge{
+        width:100%;
+      }
+
+      .shell{
+        padding:18px 15px;
+      }
+
+      h2{
+        font-size:22px;
+      }
     }
 
     @media(max-width:680px){
@@ -460,8 +482,13 @@
         background:transparent;
       }
 
-      thead{display:none}
-      tbody{display:block}
+      thead{
+        display:none;
+      }
+
+      tbody{
+        display:block;
+      }
 
       tr{
         display:block;
@@ -487,12 +514,27 @@
     }
 
     @media(max-width:520px){
-      .brand img{width:56px}
-      .brand-title{font-size:13px}
-      .brand-en{font-size:10px}
-      .tabs{top:108px}
-      .tab-btn{font-size:12px;padding:8px 11px}
-      p,li{font-size:14px}
+      .brand img{
+        width:56px;
+      }
+
+      .brand-title{
+        font-size:13px;
+      }
+
+      .brand-en{
+        font-size:10px;
+      }
+
+      .tab-btn{
+        font-size:13px;
+        padding:6px 0;
+      }
+
+      p,
+      li{
+        font-size:14px;
+      }
     }
   </style>
 </head>
@@ -507,15 +549,7 @@
           <p class="brand-title">三色單制度公告</p>
         </div>
       </a>
-
-      <nav class="nav" aria-label="頁面操作">
-        <a href="index.html">回營運中心</a>
-        <a class="primary" href="javascript:void(0)" onclick="openTab('summary')">摘要</a>
-        <a href="javascript:void(0)" onclick="openTab('definition')">定義</a>
-        <a href="javascript:void(0)" onclick="openTab('period')">效期</a>
-        <a href="javascript:void(0)" onclick="openTab('runaway')">跑料</a>
-        <a href="javascript:void(0)" onclick="openTab('appeal')">申覆</a>
-      </nav>
+      <a class="top-link" href="index.html">回營運中心</a>
     </div>
   </header>
 
