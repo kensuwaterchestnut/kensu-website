@@ -3,222 +3,608 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>啃酥菱角酥｜三色單制度公告（V1.1版）</title>
-  <link rel="icon" href="https://raw.githubusercontent.com/kensuwaterchestnut/kensu-website/main/%E5%95%83%E9%85%A5%20Ken-01.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta name="format-detection" content="telephone=no">
+  <title>啃酥菱角酥｜三色單制度公告</title>
+  <meta name="description" content="啃酥菱角酥三色單制度公告，包含黃單、橘單、紅單定義、效期累積與跑料 A 級紅單處置規範。">
+
+  <link rel="icon" href="https://raw.githubusercontent.com/kensuwaterchestnut/ken-su-New-Product-Request/main/%E5%8E%BB%E8%83%8C%E5%9C%96%E9%BB%91%E8%89%B2.png">
 
   <style>
     :root{
-      --bg:#ffffff; --text:#0f172a; --muted:#64748b; --line:#e2e8f0; --card:#f8fafc;
-      --accent:#f59e0b; --accent-ink:#111827; --danger:#b91c1c; --radius:16px; --max:1000px;
-      --shadow: 0 8px 24px rgba(15,23,42,.06);
+      --bg:#f7f1e7;
+      --paper:#fffaf3;
+      --text:#2f241b;
+      --soft:#786657;
+      --line:rgba(88,63,43,.14);
+      --brown:#6b3f22;
+      --brown2:#8f5b34;
+      --gold:#d6a060;
+      --red:#b94222;
+      --green:#407834;
+      --shadow:0 18px 42px rgba(77,54,33,.08);
+      --shadow2:0 8px 20px rgba(77,54,33,.05);
+      --radius:22px;
+      --max:1000px;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+
+    *,
+    *::before,
+    *::after{
+      box-sizing:border-box;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
     body{
       margin:0;
-      font-family:"Noto Sans TC",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
-      background:var(--bg);
+      background:
+        radial-gradient(circle at 10% 6%, rgba(214,160,96,.14), transparent 28%),
+        linear-gradient(180deg,#fbf7f1 0%,#f7f1e7 48%,#fffaf4 100%);
+      font-family:"Noto Sans TC","Microsoft JhengHei",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      line-height:1.75;
+      overflow-x:hidden;
       -webkit-text-size-adjust:100%;
-      padding-bottom: env(safe-area-inset-bottom);
+      padding-bottom:env(safe-area-inset-bottom);
     }
-    a{color:inherit; text-decoration:none}
-    a:hover{text-decoration:underline}
-    img{max-width:100%; height:auto}
 
-    .container{max-width:var(--max); margin:0 auto; padding:clamp(14px, 3.8vw, 22px)}
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-1;
+      opacity:.14;
+      background-image:radial-gradient(rgba(107,63,34,.18) 1px, transparent 1px);
+      background-size:22px 22px;
+      mask-image:linear-gradient(180deg,#000 0%,transparent 78%);
+    }
 
-    header{
-      position:sticky; top:0; z-index:50;
-      background:rgba(255,255,255,.92);
-      backdrop-filter:saturate(1.2) blur(10px);
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(var(--max), calc(100% - 28px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,250,243,.92);
+      backdrop-filter:blur(12px);
       border-bottom:1px solid var(--line);
     }
-    .bar{display:flex; flex-direction:column; gap:10px}
-    .brand{display:flex; align-items:center; gap:10px; min-height:44px}
-    .brand img{width:36px; height:36px; border-radius:10px}
-    .brand h1{margin:0; font-size:16px; font-weight:900; line-height:1.2}
 
-    .actions{
+    .top-inner{
+      width:min(var(--max), calc(100% - 28px));
+      margin:0 auto;
+      padding:12px 0;
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:16px;
+      align-items:center;
+    }
+
+    .brand{
       display:flex;
-      gap:10px;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .brand-logo{
+      width:66px;
+      height:auto;
+      display:block;
+      flex:0 0 auto;
+    }
+
+    .brand-en{
+      margin:0;
+      color:var(--brown2);
+      font-size:11px;
+      letter-spacing:.22em;
+      font-weight:600;
+    }
+
+    .brand-title{
+      margin:3px 0 0;
+      color:var(--text);
+      font-size:15px;
+      font-weight:500;
+      letter-spacing:.04em;
+      white-space:nowrap;
+    }
+
+    .nav{
+      display:flex;
+      justify-content:flex-end;
+      gap:8px;
       overflow-x:auto;
       -webkit-overflow-scrolling:touch;
-      padding-bottom:4px;
+      padding-bottom:2px;
     }
-    .actions::-webkit-scrollbar{height:6px}
-    .actions::-webkit-scrollbar-thumb{background:rgba(100,116,139,.25); border-radius:999px}
 
-    .btn{
+    .nav a{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:8px;
-      padding:10px 14px;
-      min-height:44px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      font-weight:900;
-      background:#fff;
+      min-height:38px;
+      padding:8px 13px;
+      border-radius:999px;
+      border:1px solid rgba(107,63,34,.13);
+      background:rgba(255,255,255,.52);
+      color:#3a2b1f;
+      font-size:13px;
+      font-weight:500;
       white-space:nowrap;
       flex:0 0 auto;
-      box-shadow: 0 1px 0 rgba(15,23,42,.02);
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
     }
-    .btn:active{transform:translateY(1px)}
-    .btn-primary{background:var(--accent); color:var(--accent-ink); border-color:#fbbf24}
 
-    section.block{
-      border:1px solid var(--line);
-      border-radius:var(--radius);
+    .nav a:hover{
+      transform:translateY(-1px);
+      box-shadow:0 10px 22px rgba(77,54,33,.08);
       background:#fff;
-      padding:clamp(14px, 3.6vw, 18px);
-      margin:14px 0;
-      box-shadow: var(--shadow);
     }
-    .block h2{
-      margin:4px 0 10px;
-      font-size:18px;
-      font-weight:900;
-      border-left:5px solid var(--accent);
-      padding-left:10px;
-      line-height:1.3;
+
+    .nav .primary{
+      color:#fff;
+      border-color:transparent;
+      background:linear-gradient(135deg,var(--brown),var(--brown2));
     }
-    .block h3{margin:14px 0 8px; font-size:15.5px; font-weight:900; line-height:1.35}
 
-    p,li{line-height:1.9; font-size:16px}
-    ul{margin:10px 0 10px 1.1rem; padding:0}
+    .intro{
+      padding:28px 0 18px;
+      border-bottom:1px solid var(--line);
+      margin-bottom:18px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:20px;
+      align-items:end;
+    }
 
-    .meta{display:flex; gap:8px; flex-wrap:wrap; color:var(--muted); font-size:13px}
-    .badge{
-      display:inline-block;
-      padding:6px 10px;
+    .intro-kicker{
+      margin:0 0 8px;
+      color:var(--brown2);
+      font-size:11px;
+      letter-spacing:.22em;
+      font-weight:600;
+    }
+
+    .intro h1{
+      margin:0;
+      color:#2d2118;
+      font-size:clamp(30px,4.4vw,48px);
+      line-height:1.17;
+      font-weight:500;
+      letter-spacing:.04em;
+    }
+
+    .intro h1 span{
+      color:var(--brown);
+    }
+
+    .intro p{
+      margin:12px 0 0;
+      max-width:720px;
+      color:var(--soft);
+      font-size:14.5px;
+      line-height:1.95;
+    }
+
+    .intro-badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:10px 16px;
       border-radius:999px;
-      font-size:12px;
-      font-weight:900;
-      border:1px solid var(--line);
-      background:var(--card);
-      line-height:1.1;
+      border:1px solid rgba(185,66,34,.22);
+      background:rgba(185,66,34,.08);
+      color:var(--red);
+      font-size:13px;
+      font-weight:500;
+      white-space:nowrap;
     }
-    .badge.danger{border-color: rgba(185,28,28,.25); background: rgba(185,28,28,.06); color: var(--danger)}
-    .banner{
-      background:#fff7ed;
-      border:1px solid #fde68a;
-      border-radius:14px;
-      padding:12px;
-      font-weight:800;
-      color:#a16207;
+
+    .block{
+      position:relative;
+      overflow:hidden;
+      background:rgba(255,250,243,.88);
+      border:1px solid rgba(107,63,34,.12);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px;
+      margin:16px 0;
+      backdrop-filter:blur(10px);
+      scroll-margin-top:120px;
+    }
+
+    .block::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      width:100%;
+      height:5px;
+      background:linear-gradient(90deg,var(--brown),var(--gold),var(--brown2));
+    }
+
+    .section-head{
+      margin-bottom:16px;
+      padding-bottom:14px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .section-en{
+      margin:0 0 6px;
+      color:var(--brown2);
+      font-size:11px;
+      letter-spacing:.2em;
+      font-weight:600;
+    }
+
+    h2{
+      margin:0;
+      color:#2d2118;
+      font-size:24px;
+      line-height:1.35;
+      font-weight:500;
+      letter-spacing:.03em;
+    }
+
+    h3{
+      margin:18px 0 8px;
+      color:#30241b;
+      font-size:16px;
+      line-height:1.45;
+      font-weight:500;
+    }
+
+    p,
+    li{
+      color:var(--text);
+      font-size:15px;
+      line-height:1.9;
+    }
+
+    ul{
+      margin:10px 0 10px 1.15rem;
+      padding:0;
+    }
+
+    .note{
+      color:var(--soft);
+      font-size:13px;
       line-height:1.8;
     }
-    .banner strong{color:#7c2d12}
-    .danger{color:var(--danger); font-weight:900}
-    .note{font-size:13px; color:var(--muted); line-height:1.7}
+
+    .danger{
+      color:var(--red);
+      font-weight:600;
+    }
+
+    .meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(107,63,34,.13);
+      background:rgba(255,255,255,.55);
+      color:var(--brown);
+      font-size:12px;
+      font-weight:500;
+      line-height:1.2;
+    }
+
+    .badge.danger{
+      color:var(--red);
+      border-color:rgba(185,66,34,.22);
+      background:rgba(185,66,34,.08);
+    }
+
+    .banner{
+      margin-top:14px;
+      padding:15px;
+      border-radius:18px;
+      background:rgba(214,160,96,.13);
+      border:1px solid rgba(214,160,96,.28);
+      color:#6c491f;
+      font-size:14px;
+      line-height:1.9;
+    }
+
+    .banner strong{
+      color:var(--brown);
+      font-weight:600;
+    }
+
+    .danger-banner{
+      background:rgba(185,66,34,.08);
+      border-color:rgba(185,66,34,.22);
+      color:#7c2715;
+    }
+
+    .rule-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .rule-card{
+      padding:15px;
+      border-radius:18px;
+      background:rgba(255,255,255,.45);
+      border:1px solid rgba(107,63,34,.10);
+    }
+
+    .rule-card h3{
+      margin-top:0;
+    }
 
     table{
       width:100%;
       border-collapse:separate;
       border-spacing:0;
       overflow:hidden;
-      border:1px solid var(--line);
-      border-radius:14px;
-      margin:10px 0;
-      background:#fff;
+      border:1px solid rgba(107,63,34,.12);
+      border-radius:18px;
+      margin:12px 0;
+      background:rgba(255,255,255,.55);
     }
-    th,td{
-      padding:12px 12px;
-      border-bottom:1px solid var(--line);
-      font-size:14.5px;
-      vertical-align:top;
-      line-height:1.7;
-    }
-    th{background:var(--card); text-align:left; font-weight:900; font-size:13px}
-    tr:last-child td{border-bottom:none}
 
-    @media (max-width: 680px){
-      table{border:none; border-radius:0; background:transparent}
-      thead{display:none}
-      tbody{display:block}
+    th,
+    td{
+      padding:13px 13px;
+      border-bottom:1px solid rgba(107,63,34,.10);
+      font-size:14px;
+      vertical-align:top;
+      line-height:1.75;
+    }
+
+    th{
+      color:#2d2118;
+      background:rgba(214,160,96,.10);
+      text-align:left;
+      font-weight:500;
+      font-size:13px;
+    }
+
+    tr:last-child td{
+      border-bottom:none;
+    }
+
+    .footer{
+      margin-top:22px;
+      padding:28px 12px 10px;
+      color:var(--soft);
+      font-size:12px;
+      line-height:1.9;
+      text-align:center;
+    }
+
+    .backtop{
+      position:fixed;
+      right:14px;
+      bottom:calc(16px + env(safe-area-inset-bottom));
+      z-index:40;
+      width:44px;
+      height:44px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      border:1px solid rgba(107,63,34,.13);
+      background:rgba(255,250,243,.92);
+      color:var(--brown);
+      box-shadow:var(--shadow2);
+      font-size:18px;
+      font-weight:500;
+    }
+
+    @media (max-width:860px){
+      .top-inner{
+        width:100%;
+        padding:12px 12px;
+        grid-template-columns:1fr;
+        gap:10px;
+      }
+
+      .nav{
+        justify-content:flex-start;
+      }
+
+      .container{
+        width:100%;
+        padding:0 12px;
+      }
+
+      .intro{
+        grid-template-columns:1fr;
+        gap:14px;
+        padding-top:22px;
+      }
+
+      .intro h1{
+        font-size:32px;
+      }
+
+      .intro-badge{
+        width:100%;
+      }
+
+      .block{
+        padding:18px 15px;
+      }
+
+      h2{
+        font-size:22px;
+      }
+
+      .rule-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:680px){
+      table{
+        border:none;
+        border-radius:0;
+        background:transparent;
+      }
+
+      thead{
+        display:none;
+      }
+
+      tbody{
+        display:block;
+      }
+
       tr{
         display:block;
-        border:1px solid var(--line);
-        border-radius:14px;
+        border:1px solid rgba(107,63,34,.12);
+        border-radius:18px;
         overflow:hidden;
         margin:12px 0;
-        background:#fff;
-        box-shadow: var(--shadow);
+        background:rgba(255,255,255,.52);
+        box-shadow:var(--shadow2);
       }
+
       td{
-        display:flex;
+        display:grid;
+        grid-template-columns:7.4em 1fr;
         gap:10px;
-        align-items:flex-start;
-        padding:12px 12px;
-        border-bottom:1px solid var(--line);
-        font-size:15px;
+        padding:12px;
+        border-bottom:1px solid rgba(107,63,34,.10);
+        font-size:14px;
       }
-      td:last-child{border-bottom:none}
+
+      td:last-child{
+        border-bottom:none;
+      }
+
       td::before{
-        content: attr(data-label);
-        flex:0 0 7.2em;
-        max-width:7.2em;
-        color:var(--muted);
-        font-weight:900;
+        content:attr(data-label);
+        color:var(--soft);
         font-size:12px;
-        line-height:1.35;
-        padding-top:2px;
+        line-height:1.4;
       }
     }
 
-    @media (min-width: 860px){
-      .bar{flex-direction:row; align-items:center; justify-content:space-between}
-      .actions{overflow:visible; padding-bottom:0}
-      .brand h1{font-size:18px}
+    @media (max-width:520px){
+      .brand-logo{
+        width:58px;
+      }
+
+      .brand-title{
+        font-size:13px;
+      }
+
+      .brand-en{
+        font-size:10px;
+      }
+
+      .nav a{
+        min-height:36px;
+        padding:7px 11px;
+        font-size:12px;
+      }
+
+      p,
+      li{
+        font-size:14px;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *{
+        animation:none !important;
+        transition:none !important;
+        scroll-behavior:auto !important;
+      }
     }
   </style>
 </head>
 
-<body>
-  <header>
-    <div class="container bar">
-      <a class="brand" href="index.html" aria-label="回主頁">
-        <img src="https://raw.githubusercontent.com/kensuwaterchestnut/kensu-website/main/%E5%95%83%E9%85%A5%20Ken-01.png" alt="啃酥LOGO">
-        <h1>三色單制度公告（V1.1）</h1>
+<body id="top">
+  <header class="topbar">
+    <div class="top-inner">
+      <a class="brand" href="index.html" aria-label="回營運中心">
+        <img class="brand-logo" src="https://raw.githubusercontent.com/kensuwaterchestnut/ken-su-New-Product-Request/main/%E5%8E%BB%E8%83%8C%E5%9C%96%E9%BB%91%E8%89%B2.png" alt="啃酥 LOGO">
+        <div>
+          <p class="brand-en">KENSU</p>
+          <p class="brand-title">三色單制度公告</p>
+        </div>
       </a>
 
-      <nav class="actions" aria-label="頁面操作">
-        <a class="btn" href="index.html">回主頁</a>
-        <a class="btn btn-primary" href="#definition">看定義表</a>
-        <a class="btn" href="#period">效期與累積</a>
-        <a class="btn" href="#runaway">跑料（A級）</a>
+      <nav class="nav" aria-label="頁面操作">
+        <a href="index.html">回營運中心</a>
+        <a class="primary" href="#definition">三色單定義</a>
+        <a href="#period">效期與累積</a>
+        <a href="#runaway">跑料 A 級紅單</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
+    <section class="intro">
+      <div>
+        <p class="intro-kicker">THREE-COLOR TICKET SYSTEM</p>
+        <h1>三色單制度公告<br><span>黃單・橘單・紅單</span></h1>
+        <p>
+          本制度用於加盟分店營運管理、違規輔導與重大違約處置。
+          跑料屬 A 級紅單，總部得立即停權、停供貨並依合約啟動終止合作程序。
+        </p>
+      </div>
+      <div class="intro-badge">V1.1 合約等效版</div>
+    </section>
 
     <section class="block" id="summary">
-      <h2>公告摘要</h2>
-      <div class="meta">
-        <span class="badge danger">跑料＝A級紅單（可直接解約）</span>
-        <span class="badge">B級紅單：12個月內累積2張 → 解約</span>
-        <span class="badge">黃單90天／橘單180天累積</span>
+      <div class="section-head">
+        <p class="section-en">SUMMARY</p>
+        <h2>公告摘要</h2>
+        <div class="meta">
+          <span class="badge danger">跑料＝A級紅單</span>
+          <span class="badge">B級紅單12個月內2張 → 解約</span>
+          <span class="badge">黃單90天／橘單180天累積</span>
+        </div>
       </div>
 
-      <div class="banner" role="note" style="margin-top:10px">
-        <strong>重要：</strong>A級紅單（跑料等重大違約）總部得立即停權/停供貨，並依加盟合約啟動終止合作（解約）程序。<br>
-        B級紅單採累積制：最近12個月內累積滿2張，即依合約啟動解約程序。
+      <div class="banner danger-banner">
+        <strong>重要：</strong>A 級紅單，包含跑料等重大違約，總部得立即停權、停供貨，並依加盟合約啟動終止合作程序。<br>
+        B 級紅單採累積制：最近 12 個月內累積滿 2 張，即依合約啟動解約程序。
       </div>
     </section>
 
     <section class="block" id="definition">
-      <h2>三色單定義</h2>
+      <div class="section-head">
+        <p class="section-en">DEFINITION</p>
+        <h2>三色單定義</h2>
+      </div>
 
       <table aria-label="三色單定義">
         <thead>
           <tr>
             <th>單別</th>
-            <th>用途/適用情況</th>
+            <th>用途 / 適用情況</th>
             <th>分店需做什麼</th>
             <th>可能後果</th>
           </tr>
@@ -226,51 +612,105 @@
         <tbody>
           <tr>
             <td data-label="單別"><b>黃單（輔導）</b></td>
-            <td data-label="用途/情況">輕微缺失，可快速改善（不裁罰）</td>
-            <td data-label="分店要做">依期限補正並回傳佐證</td>
-            <td data-label="可能後果">逾期未改善→橘單；最近90天滿3張→轉橘單1張</td>
+            <td data-label="用途 / 情況">輕微缺失，可快速改善，不裁罰。</td>
+            <td data-label="分店要做">依期限補正並回傳佐證。</td>
+            <td data-label="可能後果">逾期未改善 → 橘單；最近 90 天滿 3 張 → 轉橘單 1 張。</td>
           </tr>
 
           <tr>
             <td data-label="單別"><b>橘單（違規）</b></td>
-            <td data-label="用途/情況">一般違規（涉及裁罰/停權措施）</td>
-            <td data-label="分店要做">限期改善＋提交補正佐證</td>
-            <td data-label="可能後果">依合約裁罰（首次違規NT$5,000）；逾期未改善→紅單；最近180天滿2張→升級B級紅單</td>
+            <td data-label="用途 / 情況">一般違規，涉及裁罰或停權措施。</td>
+            <td data-label="分店要做">限期改善並提交補正佐證。</td>
+            <td data-label="可能後果">依合約裁罰；逾期未改善 → 紅單；最近 180 天滿 2 張 → 升級 B 級紅單。</td>
           </tr>
 
           <tr>
             <td data-label="單別" class="danger"><b>紅單（重大）</b></td>
-            <td data-label="用途/情況">重大違約/重大違規（跑料、食安重大疑慮、侵權、惡意拒稽核等）</td>
-            <td data-label="分店要做">立即配合停權/停供貨處置並限期說明</td>
-            <td data-label="可能後果" class="danger"><b>A級紅單→可直接解約；B級紅單12個月內滿2張→解約</b></td>
+            <td data-label="用途 / 情況">重大違約或重大違規，包含跑料、食安重大疑慮、侵權、惡意拒稽核等。</td>
+            <td data-label="分店要做">立即配合停權 / 停供貨處置並限期說明。</td>
+            <td data-label="可能後果" class="danger"><b>A 級紅單 → 可直接解約；B 級紅單 12 個月內滿 2 張 → 解約。</b></td>
           </tr>
         </tbody>
       </table>
     </section>
 
     <section class="block" id="period">
-      <h2>效期與累積</h2>
+      <div class="section-head">
+        <p class="section-en">PERIOD</p>
+        <h2>效期與累積</h2>
+      </div>
+
+      <div class="rule-grid">
+        <div class="rule-card">
+          <h3>黃單｜90天</h3>
+          <p>最近 90 天滿 3 張 → 轉橘單 1 張；同一事項 90 天內再犯得直接橘單。</p>
+        </div>
+
+        <div class="rule-card">
+          <h3>橘單｜180天</h3>
+          <p>最近 180 天滿 2 張 → 升級 B 級紅單；滿 3 張得啟動解約審查或加重處置。</p>
+        </div>
+
+        <div class="rule-card">
+          <h3>紅單｜12個月</h3>
+          <p>效期 12 個月；B 級紅單最近 12 個月滿 2 張 → 解約。</p>
+        </div>
+      </div>
+
       <ul>
-        <li><b>黃單（90天）</b>：最近90天滿3張→轉橘單1張；同一事項90天內再犯得直接橘單。</li>
-        <li><b>橘單（180天）</b>：最近180天滿2張→升級B級紅單；滿3張得啟動解約審查或加重處置（依合約）。</li>
-        <li><b>紅單（12個月）</b>：效期12個月；B級紅單最近12個月滿2張→解約。</li>
-        <li><b>續約承接</b>：續約後未滿12個月之紅單承接計入；滿12個月自然失效。</li>
+        <li><b>續約承接：</b>續約後未滿 12 個月之紅單承接計入；滿 12 個月自然失效。</li>
+        <li><b>累積判定：</b>以總部紀錄、公告與合約規定為準。</li>
       </ul>
     </section>
 
     <section class="block" id="runaway">
-      <h2>跑料＝A級紅單（可直接解約）</h2>
+      <div class="section-head">
+        <p class="section-en">RUNAWAY MATERIAL</p>
+        <h2>跑料＝A級紅單</h2>
+      </div>
+
+      <div class="banner danger-banner">
+        <strong>跑料屬重大違約：</strong>查證成立，或高度可疑且拒絕配合稽核者，總部得直接開立 A 級紅單 1 張，並立即停權 / 停供貨，依合約啟動解約程序。
+      </div>
+
       <h3>跑料定義</h3>
       <ul>
-        <li>指定原物料/半成品/配方：轉售、供第三方、跨店挪用、對外交換或任何非授權用途。</li>
-        <li>以非指定原物料替代指定料，仍對外宣稱為指定品質/指定原料。</li>
-        <li>混用非指定料冒用指定料、或拒不配合稽核查證（含不提供必要佐證）。</li>
+        <li>指定原物料、半成品、配方轉售、供第三方、跨店挪用、對外交換或任何非授權用途。</li>
+        <li>以非指定原物料替代指定料，仍對外宣稱為指定品質或指定原料。</li>
+        <li>混用非指定料冒用指定料，或拒不配合稽核查證，包含不提供必要佐證。</li>
       </ul>
-      <p class="danger"><b>處置：</b>查證成立或高度可疑且拒稽核 → 直接開立A級紅單1張，得立即停權/停供貨，並依合約啟動解約程序。</p>
 
-      <p class="note">※ 如與加盟合約牴觸，以加盟合約為準。總部保留修訂與最終解釋權。</p>
+      <p class="danger">
+        <b>處置：</b>查證成立或高度可疑且拒稽核 → 直接開立 A 級紅單 1 張，得立即停權 / 停供貨，並依合約啟動解約程序。
+      </p>
+
+      <p class="note">如與加盟合約牴觸，以加盟合約為準。總部保留修訂與最終解釋權。</p>
     </section>
 
+    <footer class="footer">
+      酥味香企業社 ｜ 統一編號：93428964<br>
+      地址：台中市石岡區石岡街61號<br>
+      本頁面內容由總部保有修改權利<br>
+      © <span id="year"></span> 啃酥菱角酥 All Rights Reserved.
+    </footer>
   </main>
+
+  <a class="backtop" href="#top" aria-label="回到頂部">↑</a>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function offsetHash(){
+      if(location.hash){
+        window.scrollTo({
+          top: window.scrollY - 86,
+          behavior:"instant"
+        });
+      }
+    }
+
+    window.addEventListener("hashchange", offsetHash);
+    setTimeout(offsetHash, 1);
+  </script>
 </body>
 </html>
